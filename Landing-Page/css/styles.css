@@ -1,0 +1,378 @@
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+footer {
+  width: 100vw;
+  background-color: rgba(56, 133, 69, 0.8);
+  text-align: center;
+  padding: 1rem 0;
+  font-weight: bold;
+}
+
+footer a {
+  color: rgb(27, 66, 35);
+}
+
+.front-view {
+  background-image: url('../img/wallpaper.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom;
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  flex: 2;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15%;
+}
+
+.front-view .information {
+  width: 50%;
+  height: 50vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 2rem 1rem;
+}
+
+.information h1 {
+  font-size: 3.5rem;
+  margin: 0;
+}
+
+.information:nth-child(3) {
+  font-style: italic;
+}
+
+.information h3 {
+  font-size: 1.625rem;
+  margin: 0;
+}
+
+.front-view img {
+  width: 30%;
+  object-fit: cover;
+}
+
+.forms {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+#descriptions {
+  display: flex;
+  flex: 2;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 1.25%;
+}
+
+.benefits {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  background-color: #388545;
+  border-top-right-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  width: 48%;
+  height: 75vh;
+}
+
+.benefits-info {
+  padding: 0.3em 0;
+  padding-left: 0.5rem;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+
+.benefits-info h2 {
+  font-size: 1.85rem;
+}
+
+.benefits-info b {
+  font-size: 1.125rem;
+}
+
+.benefits:nth-child(2) .benefits-info li {
+  font-size: 1.2rem;
+}
+
+.benefits img {
+  width: 49%;
+  object-fit: cover;
+  border-top-right-radius: 2rem;
+}
+
+.more-info {
+  display: flex;
+  flex: 4;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 95%;
+  padding: 0 2%;
+  margin: 5% 0;
+}
+
+.info-card {
+  background-color: beige;
+  border-radius: 20px;
+  width: 24%;
+  height: 88vh;
+  text-justify: inter-word;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.info-card h3 {
+  text-align: center;
+  font-weight: 600;
+  padding: 1% 2%;
+  font-size: 1.5rem;
+}
+
+.info-card p {
+  padding: 3% 10%;
+  font-size: 1.1em;
+  text-indent: auto;
+}
+
+.info-card img {
+  width: 100%;
+  height: 50%;
+  object-fit: cover;
+}
+
+.contact-us {
+  display: flex;
+  flex-direction: row;
+  flex: 2;
+  height: 100vh;
+  width: 90%;
+  margin: 0 auto;
+  background-color: #e3f0aa;
+  border-radius: 2rem;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-us .heading,
+.contact-us .follow-us {
+  padding: 0 2rem;
+}
+
+.contact-us .heading h1,
+.suggestions h1 {
+  font-size: 2.5rem;
+}
+
+.get-in-touch {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+  padding: 1rem;
+}
+
+.enterprise-info {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 1rem;
+}
+
+.enterprise-info td {
+  text-align: center;
+}
+
+.enterprise-info img {
+  background-color: #388545;
+  border-radius: 50%;
+  width: 35%;
+  padding: 0.5rem;
+  color: rgba(256, 256, 256, 0.8);
+}
+
+.info-slide {
+  text-align: left;
+  margin-left: 0rem;
+}
+
+.info-slide h3 {
+  margin: 0;
+  margin-bottom: 0.25rem;
+}
+
+.follow-us h1 {
+  margin: 0;
+  margin-top: 1.5rem;
+  font-size: 1.7rem;
+}
+.social-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 4;
+  width: 40%;
+  /*margin: 0 auto;*/
+  padding: 1rem 0;
+}
+
+.social-links div {
+  background-color: #388545;
+  padding: 1rem;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.social-links a {
+  color: rgba(56, 133, 69, 0.8);
+}
+
+.social-links i {
+  font-weight: 500;
+  font-size: 2.5rem;
+}
+
+.suggestions {
+  background-color: rgba(256, 256, 256, 0.5);
+  padding: 1.5rem;
+  padding-top: 0.75rem;
+  border-radius: 1.5rem;
+  width: 40%;
+}
+
+.suggestions form {
+  width: 80%;
+  /* background-color: rgba(0, 0, 0, 0.1); */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.suggestions .form-field h4 {
+  margin: 0.75rem 0;
+  font-size: 1.25rem;
+}
+
+.suggestions input {
+  width: 98%;
+  height: 2rem;
+  font-size: 1rem;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+
+input:focus {
+  border: 2px solid rgba(57, 218, 84, 0.5);
+}
+
+.suggestions p {
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.suggestions button {
+  width: 50%;
+  padding: 0.5rem 1.5rem;
+  align-self: end;
+  font-size: 1rem;
+  border: none;
+  background-color: rgba(56, 133, 69, 0.5);
+  border-radius: 1rem;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#suggestionTxt {
+  width: 100%;
+  height: 6rem;
+  font-size: 1rem;
+  resize: none;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  resize: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*RESPONSIVE*/
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 480px) {
+  /*front-view*/
+  .front-view {
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    align-content: center;
+  }
+
+  .front-view img {
+    width: 60%;
+  }
+
+  .front-view .information {
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: center;
+    padding: 0.85rem 2.5rem;
+  }
+
+  .front-view .information span {
+    font-size: 0.8rem;
+  }
+  .front-view .information h3 {
+    font-size: 1.315rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /*beneficios*/
+  #descriptions {
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0rem;
+    height: 100vh;
+  }
+
+  .benefits {
+    padding: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .benefits img {
+    width: 100%;
+    height: 38vh;
+    border-radius: 0;
+  }
+
+  .benefits-info {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .benefits-info h2 {
+    font-size: 1.7rem;
+    margin: 0.6rem 1.5rem;
+  }
+
+  .benefits-info ul {
+    padding: 0.5rem;
+  }
+
+  .benefits-info b {
+    font-size: 1.125rem;
+  }
+}
