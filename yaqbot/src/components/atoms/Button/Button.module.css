@@ -1,9 +1,20 @@
+:root {
+  --bg-color: #445522;
+  --width: 80%;
+  --border-radius: 20px;
+  --color: #ffffff;
+}
+
 .button {
-  background: #445522;
-  color: white;
+  background: var(--bg-color);
+  color: var(--color);
+  padding: 20px 40px;
+  border-radius: var(--border-radius);
+  width: var(--width);
 }
 
 .button:hover {
-  background: white;
-  color: #445522;
+  background: var(--color);
+  color: var(--bg-color);
+  outline: 1px solid var(--bg-color);
 }

@@ -3,9 +3,15 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import Gallery from "./components/molecules/Gallery/Gallery";
+import Button from "./components/atoms/Button/Button";
 
 function App() {
   const [count, setCount] = useState(0);
+
+  const buttonStyleProps = {
+    bgColor: "#000fff",
+    borderRadius: "20px",
+  };
 
   return (
     <>
@@ -32,6 +38,7 @@ function App() {
       </p>
 
       <Gallery></Gallery>
+      <Button label="Hola mijo" stylesProps={buttonStyleProps} />
     </>
   );
 }
