@@ -1,5 +1,12 @@
-import styles from "./Button.component.css";
+import React from "react";
+import styles from "./Button.module.css";
 
-function Button() {}
+interface ButtonProps {
+  label: string;
+}
+
+function Button({ label }: ButtonProps) {
+  return <button className={styles.button}>{label}</button>;
+}
 
 export default Button;
