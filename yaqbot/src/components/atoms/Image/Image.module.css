@@ -1,0 +1,17 @@
+:root {
+  --bg_color: #2d2d2d;
+  --border-radius: 0px;
+  --width: 100px;
+  --height: 100px;
+}
+
+.image {
+  background-color: var(--bg_color);
+  width: var(--width);
+  height: var(--height);
+  border-radius: var(--border-radius);
+}
+
+.isRounded {
+  border-radius: 50%;
+}
