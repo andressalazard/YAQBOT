@@ -1,16 +1,11 @@
 import type React from 'react';
 import styles from './Image.module.css';
+import { cssElementsProps } from '../types/cssStyles';
 
-interface ImageStyleProps {
-  bgColor: string;
-  borderRadius?: string;
-  width: string;
-  height: string;
-}
 interface ImageProps {
   src?: string;
   alt: string | 'default img';
-  stylesProps: ImageStyleProps;
+  stylesProps: cssElementsProps;
 }
 
 function Image({ src, alt, stylesProps }: ImageProps) {
