@@ -1,3 +1,13 @@
+:root {
+  --bg_color: #2d2d2d;
+  --border-radius: 0px;
+  --width: 100px;
+  --height: 100px;
+}
+
 .card {
-  background-color: #b8b8b8;
+  background-color: var(--bg_color);
+  border-radius: var(--border-radius);
+  width: var(--width);
+  height: var(--height);
 }
