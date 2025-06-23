@@ -1,0 +1,11 @@
+:root {
+  --txt-decoration: underline;
+  --color: (internal value);
+  --cursor: auto;
+}
+
+.baseAnchor {
+  text-decoration: var(--txt-decoration);
+  color: var(--color);
+  cursor: var(--cursor);
+}
