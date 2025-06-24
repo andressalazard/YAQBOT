@@ -17,6 +17,7 @@ function Input({
 }: InputProps) {
   return (
     <input
+      className='px-10 py-4 bg-white rounded-xl'
       id={id}
       value={value}
       type={inputType}
