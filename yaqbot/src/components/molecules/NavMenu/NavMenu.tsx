@@ -1,4 +1,5 @@
-import NavItem from '../../atoms/NavItem/NavItem';
+import { Link } from 'react-router-dom';
+import styles from '../NavMenu/NavMenu.module.css';
 
 const NavMenu = () => {
   const navLinks = [
@@ -9,11 +10,15 @@ const NavMenu = () => {
   ];
 
   return (
-    <div className=''>
+    <ul className={styles.navMenu}>
       {navLinks.map((link, index) => (
-        <NavItem key={index} href={link.href} label={link.label} />
+        <Link to={link.href}>
+          <li key={index} className={styles.navItem}>
+            {link.label}
+          </li>
+        </Link>
       ))}
-    </div>
+    </ul>
   );
 };
 

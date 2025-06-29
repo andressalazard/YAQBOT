@@ -1,10 +1,4 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 import Toast from '../atoms/Toast/Toast';
 
 type AlertMode = 'success' | 'info' | 'warning' | 'error' | 'none';
@@ -16,9 +10,7 @@ interface AlertContextType {
   toggleAlert: (newMessage: string, newMode: AlertMode) => void;
 }
 
-export const AlertContext = createContext<AlertContextType | undefined>(
-  undefined
-);
+export const AlertContext = createContext<AlertContextType | undefined>(undefined);
 
 /*Alert Provider*/
 export const AlertProvider = ({ children }: { children: ReactNode }) => {
@@ -48,20 +40,13 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
     };
   }, [message]);
 
-  return (
-    <AlertContext.Provider value={{ message, toggleAlert, isAwake, mode }}>
-      {isAwake === true ? <Toast /> : <></>}
-      {children}
-    </AlertContext.Provider>
-  );
+  return <AlertContext.Provider value={{ message, toggleAlert, isAwake, mode }}>{children}</AlertContext.Provider>;
 };
 
 /*Alert hook*/
 export const useAlert = (): AlertContextType => {
   const context = useContext(AlertContext);
-  return (
-    context || { message: 'hola Andrés', isAwake: false, toggleAlert: () => {} }
-  );
+  return context || { message: 'hola Andrés', isAwake: false, toggleAlert: () => {} };
 };
 
 export default AlertContext;
