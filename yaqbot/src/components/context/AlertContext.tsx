@@ -1,5 +1,4 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import Toast from '../atoms/Toast/Toast';
 
 type AlertMode = 'success' | 'info' | 'warning' | 'error' | 'none';
 

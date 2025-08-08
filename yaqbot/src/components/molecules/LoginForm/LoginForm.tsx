@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Button from '../../atoms/Button/Button';
-import Input from '../../atoms/Input/Input';
+import Button from '../../atoms/Button';
+import Input from '../../atoms/Input';
 import { useAuth } from '../../context/AuthContext';
 
 const LoginForm = () => {
@@ -37,20 +37,12 @@ const LoginForm = () => {
             id={field.id}
             isDisabled={field.isDisabled}
             placeholder={field.placeholder}
-            onChange={(e) =>
-              field.type === 'email'
-                ? setEmail(e.target.value)
-                : setPassword(e.target.value)
-            }
+            onChange={(e) => (field.type === 'email' ? setEmail(e.target.value) : setPassword(e.target.value))}
           />
         ))}
       </section>
 
-      {isLoading ? (
-        <p>...cargando</p>
-      ) : (
-        <Button label='Login' type='submit' onClick={submitLogin} />
-      )}
+      {isLoading ? <p>...cargando</p> : <Button label='Login' type='submit' onClick={submitLogin} />}
       {token && <Button label='Logout' type='button' onClick={logout} />}
     </form>
   );

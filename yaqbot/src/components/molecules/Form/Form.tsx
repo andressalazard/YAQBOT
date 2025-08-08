@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Input from '../../atoms/Input/Input';
+import Input from '../../atoms/Input';
 
 function Form() {
   const [form, setForm] = useState({
