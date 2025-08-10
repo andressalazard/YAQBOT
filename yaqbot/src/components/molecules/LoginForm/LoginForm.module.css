@@ -1,0 +1,42 @@
+.card {
+  width: 35%;
+  background-color: rgba(256, 256, 256, 0.5);
+}
+
+.form_body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.5rem;
+  padding-top: 0.75rem;
+  border-radius: 1.5rem;
+  color: #000;
+}
+
+.form_body h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.form_body section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form_body input {
+  border: 1px solid #000;
+}
+
+.form_body h4 {
+  text-align: start;
+  margin: 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.button {
+  background-color: rgba(56, 133, 69, 0.5);
+  color: #ffffff;
+  font-weight: bold;
+}

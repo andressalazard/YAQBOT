@@ -1,10 +1,11 @@
 import styles from '../Header/Header.module.css';
 import NavMenu from '../NavMenu/NavMenu';
+import Logo from '../../atoms/Logo';
 
 const Header = () => {
   return (
     <header className={styles.header}>
-      <div>Logo</div>
+      <Logo />
       <NavMenu />
     </header>
   );

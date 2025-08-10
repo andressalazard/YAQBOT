@@ -5,8 +5,17 @@ interface CardProps {
   className?: string;
 }
 
+const baseStyle = {
+  padding: '1rem',
+  borderRadius: '1rem',
+};
+
 const Card: React.FC<CardProps> = ({ children, className }) => {
-  return <div className={className}>{children}</div>;
+  return (
+    <div style={baseStyle} className={className}>
+      {children}
+    </div>
+  );
 };
 
 export default Card;
