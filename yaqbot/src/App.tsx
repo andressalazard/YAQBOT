@@ -1,9 +1,9 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import UserCard from './components/molecules/UserCard/UserCard';
 
 import HomePage from './components/pages/HomePage/HomePage';
-import LoginPage from './components/pages/LoginPage/LoginPage';
+import LoginPage from './components/pages/LoginPage';
+import SigninPage from './components/pages/SigninPage';
 
 function App() {
   return (
@@ -11,6 +11,7 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<LoginPage />} />
+        <Route path='/signin' element={<SigninPage />} />
       </Routes>
     </BrowserRouter>
   );
