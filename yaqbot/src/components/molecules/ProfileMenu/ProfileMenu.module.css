@@ -1,0 +1,16 @@
+.profile_menu {
+  background-color: darkorange;
+}
+
+.menu_option {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.menu_option:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}

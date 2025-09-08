@@ -4,6 +4,7 @@ import Footer from '../../molecules/Footer/Footer';
 import Header from '../../molecules/Header/Header';
 import Toast from '../../atoms/Toast/Toast';
 import Panel from '../../molecules/Panel/Panel';
+import ProfileMenu from '../../molecules/ProfileMenu/ProfileMenu';
 
 const Content = () => {
   const { isAwake } = useAlert();
@@ -13,6 +14,7 @@ const Content = () => {
     <>
       {isAwake === true ? <Toast /> : <></>}
       <Panel />
+      <ProfileMenu />
     </>
   );
 };
