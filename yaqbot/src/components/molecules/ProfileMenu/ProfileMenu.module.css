@@ -1,5 +1,9 @@
 .profile_menu {
-  background-color: darkorange;
+  /* background-color: darkorange; */
+  background-color: #c9db75;
+  position: absolute;
+  top: 80px;
+  right: 0;
 }
 
 .menu_option {

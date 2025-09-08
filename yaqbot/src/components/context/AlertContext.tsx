@@ -18,8 +18,6 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
   const [mode, setMode] = useState<AlertMode>('none');
 
   const toggleAlert = (newMessage: string, newMode: AlertMode) => {
-    console.log('ToggleAlert here');
-    console.log(message + ' ' + isAwake);
     setMessage(newMessage);
     setIsAwake(true);
     setMode(newMode);
@@ -29,7 +27,6 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
     setMessage('');
     setIsAwake(false);
     setMode('none');
-    console.log('me fui');
   };
 
   useEffect(() => {

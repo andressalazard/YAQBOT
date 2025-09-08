@@ -8,6 +8,7 @@
   font-weight: bold;
   text-align: center;
   align-items: center;
+  position: relative;
 }
 
 .logo {
@@ -34,6 +35,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   font-size: 2rem;
   cursor: pointer;
+  position: relative;
 }
 
 .user-logo i {

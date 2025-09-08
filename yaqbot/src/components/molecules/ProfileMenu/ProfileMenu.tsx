@@ -1,5 +1,5 @@
-import Card from '../../atoms/Card';
 import ProfileMenuOption from '../../atoms/profileMenuOption';
+import ProfileMenuHeader from '../ProfileMenuHeader/ProfileMenuHeader';
 
 import styles from './ProfileMenu.module.css';
 
@@ -10,12 +10,8 @@ const ProfileMenu = () => {
   ];
 
   return (
-    <Card className={styles.profile_menu}>
-      <header>
-        <span>icon</span>
-        <span>nombre de usuario</span>
-        <span>correo electronico</span>
-      </header>
+    <div className={styles.profile_menu}>
+      <ProfileMenuHeader username='Andrés Salazar' email='asalazar@email.com' />
 
       <section>
         <ul>
@@ -28,7 +24,7 @@ const ProfileMenu = () => {
           </>
         </ul>
       </section>
-    </Card>
+    </div>
   );
 };
 
