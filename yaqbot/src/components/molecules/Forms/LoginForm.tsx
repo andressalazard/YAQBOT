@@ -1,12 +1,27 @@
 import Button from '../../atoms/Button';
 import Input from '../../atoms/Input';
 import Card from '../../atoms/Card';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Form.module.css';
+import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { token, login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogin = (email: string, password: string) => {
+    login(email, password);
+  };
+
+  useEffect(() => {
+    if (token !== null) {
+      //TODO verificar que sea un token valido y no solo que este vacío
+      navigate('/home');
+    }
+  }, [token]);
 
   return (
     <Card className={styles.card}>
@@ -23,7 +38,7 @@ const LoginForm = () => {
           </label>
           <Input inputType='password' id='passwordInput' placeholder='Contraseña' value={password} onChange={(e) => setPassword(e.target.value)} />
         </section>
-        <Button className={styles.button} label='Ingresar' type='submit' onClick={() => console.log('ahi voy!')} />
+        <Button className={styles.button} label='Ingresar' type='button' onClick={() => handleLogin(email, password)} />
       </form>
     </Card>
   );

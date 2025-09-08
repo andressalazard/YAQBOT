@@ -1,5 +1,4 @@
 import React, { ReactNode, useContext, useEffect, useState } from 'react';
-
 //interface for the context
 interface AuthContextType {
   token: string | null;
@@ -9,6 +8,8 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>; //because we are going to fetch token from API
   logout: () => void;
 }
+
+const API_URL = 'http://localhost:3000/api';
 
 //create the context
 const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
@@ -22,15 +23,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const login = async (email: string, password: string) => {
+    //Initial state of login
     setIsLoading(true);
     setErrorMessage(null);
-
     try {
-      const response = await fetch('https://reqres.in/api/login', {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': 'reqres-free-v1',
+          // 'x-api-key': 'reqres-free-v1',   en algun momento se puede utilizar
         },
         body: JSON.stringify({ email, password }),
       });
