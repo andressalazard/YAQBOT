@@ -1,0 +1,32 @@
+.card {
+  color: #000;
+  width: 50%;
+  border: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.card h1 {
+  font-weight: 500;
+  font-size: 4rem;
+}
+
+.button {
+  background-color: #348138;
+  color: #ffffff;
+  width: 25%;
+}
+
+.card span {
+  font-family: 'Pacifico', sans-serif;
+  font-weight: 800;
+  font-size: 3rem;
+  /* color: #224b12; */
+  background-color: #224b1285;
+  color: #fff;
+  padding: 1rem 2.5rem;
+  border-radius: 50%;
+}

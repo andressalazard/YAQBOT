@@ -1,4 +1,4 @@
-import Image from '../../atoms/Image/Image';
+import Image from '../../atoms/Image';
 
 function Gallery() {
   const imgStyleProps = {
@@ -10,13 +10,7 @@ function Gallery() {
 
   return (
     <div>
-      <Image
-        src={
-          'https://i.pinimg.com/736x/8f/70/32/8f70324731bcea43a99d81207a4051cc.jpg'
-        }
-        alt={'person'}
-        stylesProps={imgStyleProps}
-      ></Image>
+      <Image src={'https://i.pinimg.com/736x/8f/70/32/8f70324731bcea43a99d81207a4051cc.jpg'} alt={'person'} stylesProps={imgStyleProps}></Image>
     </div>
   );
 }

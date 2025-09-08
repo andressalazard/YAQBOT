@@ -1,0 +1,23 @@
+.distribution {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.btn_main {
+  padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.btn_color_1 {
+  background-color: #aa332d;
+}
+
+.btn_color_2 {
+  background-color: #334122;
+}
+
+.card {
+  background-color: cadetblue;
+}
