@@ -1,5 +1,6 @@
 import React, { ReactNode, useContext, useEffect, useState } from 'react';
 
+//interface for the context
 interface AuthContextType {
   token: string | null;
   errorMessage: string | null;
@@ -9,8 +10,11 @@ interface AuthContextType {
   logout: () => void;
 }
 
+//create the context
 const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
 
+//create the provider
+//this is the component that will wrap the app and provide the context to all components
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [token, setToken] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -55,13 +59,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     console.log('token actualizado: ', token);
   }, [token]);
 
-  return (
-    <AuthContext.Provider
-      value={{ token, errorMessage, isLoading, isLoggedIn, login, logout }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ token, errorMessage, isLoading, isLoggedIn, login, logout }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = (): AuthContextType => {
