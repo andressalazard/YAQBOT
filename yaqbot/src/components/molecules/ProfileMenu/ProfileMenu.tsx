@@ -1,13 +1,34 @@
 import ProfileMenuOption from '../../atoms/profileMenuOption';
 import ProfileMenuHeader from '../ProfileMenuHeader/ProfileMenuHeader';
+import { useAppDispatch } from '../../../hooks/hook';
+import { useSettings } from '../../context/SettingsContext';
+
+import { logout } from '../../../features/auth/authSlice';
 
 import styles from './ProfileMenu.module.css';
 
+type OptionsTypes = 'logout' | 'settings';
+
+interface optionsProps {
+  title: string;
+  icon: string;
+  navigateTo?: string;
+  type: OptionsTypes;
+}
+
 const ProfileMenu = () => {
+  const { toggleMenuStatus } = useSettings();
   const menuOptions = [
-    { title: 'Configuración', icon: 'settings', navigateTo: '/settings' },
-    { title: 'Cerrar Sesión', icon: 'logout', navigateTo: '/login' },
-  ];
+    { title: 'Configuración', icon: 'settings', navigateTo: '/settings', type: 'settings' },
+    { title: 'Cerrar Sesión', icon: 'logout', type: 'logout' },
+  ]<optionsProps>;
+
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    toggleMenuStatus();
+  };
 
   return (
     <div className={styles.profile_menu}>
@@ -18,7 +39,7 @@ const ProfileMenu = () => {
           <>
             {menuOptions.map((option, index) => (
               <li key={index}>
-                <ProfileMenuOption title={option.title} icon={option.icon} className={styles.menu_option} />
+                <ProfileMenuOption title={option.title} icon={option.icon} className={styles.menu_option} onClick={option.type === 'logout' ? () => handleLogout() : () => {}} />
               </li>
             ))}
           </>

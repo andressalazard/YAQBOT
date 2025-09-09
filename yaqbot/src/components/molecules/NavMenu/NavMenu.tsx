@@ -12,10 +12,8 @@ const NavMenu = () => {
   return (
     <ul className={styles.navMenu}>
       {navLinks.map((link, index) => (
-        <Link to={link.href}>
-          <li key={index} className={styles.navItem}>
-            {link.label}
-          </li>
+        <Link to={link.href} key={index}>
+          <li className={styles.navItem}>{link.label}</li>
         </Link>
       ))}
     </ul>

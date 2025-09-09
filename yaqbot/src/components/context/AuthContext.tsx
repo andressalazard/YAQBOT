@@ -1,4 +1,6 @@
-import React, { ReactNode, useContext, useEffect, useState } from 'react';
+import React, { ReactNode, useContext, useState } from 'react';
+import { useAppDispatch } from '../../hooks/hook';
+import { loginSuccess } from '../../features/auth/authSlice';
 //interface for the context
 interface AuthContextType {
   token: string | null;
@@ -22,6 +24,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!!token);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const dispatch = useAppDispatch();
+
   const login = async (email: string, password: string) => {
     //Initial state of login
     setIsLoading(true);
@@ -40,6 +44,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
       const data = await response.json();
       setToken(data.token);
+
+      dispatch(loginSuccess({ token: data.token }));
+
       setIsLoggedIn(true);
     } catch (error) {
       setErrorMessage((error as Error).message);
@@ -55,10 +62,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsLoading(false);
     setIsLoggedIn(false);
   };
-
-  useEffect(() => {
-    console.log('token actualizado: ', token);
-  }, [token]);
 
   return <AuthContext.Provider value={{ token, errorMessage, isLoading, isLoggedIn, login, logout }}>{children}</AuthContext.Provider>;
 };
