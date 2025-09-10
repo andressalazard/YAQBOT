@@ -1,0 +1,12 @@
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(61, 85, 12, 0.4);
+  padding: 4rem;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.3);
+}

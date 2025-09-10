@@ -1,50 +1,77 @@
-.card {
-  width: 35%;
-  background-color: rgba(256, 256, 256, 0.5);
-  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);
+.button {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #fff;
 }
 
-.medium_card {
-  width: 50%;
-  background-color: rgba(256, 256, 256, 0.5);
-  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);
-}
-
-.form_body {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 1.5rem;
-  padding-top: 0.75rem;
+.wrapper {
+  border: 1px solid #000;
+  padding: 1rem;
   border-radius: 1.5rem;
   color: #000;
 }
 
-.form_body h1 {
+/* HEADER */
+.header {
+  padding: 1rem 0;
+  position: relative;
+}
+
+.title {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+  font-weight: bold;
+  font-size: 2.25rem;
+}
+
+.profile_pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: absolute;
+  top: -75px;
+  left: calc(50% - 60px);
+  border: 3px solid #fff;
+}
+
+.return_button {
+  display: flex;
+  justify-content: center;
+  background-color: #59981a;
+  gap: 0.5rem;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  position: absolute;
+  left: 0;
+  top: 10px;
+}
+
+/* BODY */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 3rem;
+  padding-top: 0.75rem;
+  color: #000;
+}
+
+.body h1 {
   font-size: 2rem;
   font-weight: bold;
 }
 
-.form_body section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.form_body input {
+.body input {
   border: 1px solid #000;
 }
 
-.form_body h4 {
+.body h4 {
   text-align: start;
   margin: 0.5rem 0;
   font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.button {
-  background-color: rgba(56, 133, 69, 0.5);
-  color: #ffffff;
   font-weight: bold;
 }
 
@@ -54,37 +81,40 @@
   gap: 1rem;
 }
 
-/*MEDIUM*/
+/*FOOTER*/
 
-.form_body_medium {
+.footer {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   gap: 2rem;
-  padding: 3rem;
-  padding-top: 0.75rem;
-  border-radius: 1.5rem;
-  color: #000;
-  border: 1px solid #000;
+  padding: 0.5rem 0;
 }
 
-.form_body_medium h1 {
-  font-size: 2rem;
+.submit_button {
+  background-color: #59981a;
   font-weight: bold;
+  width: 50%;
+  font-size: 1.125rem;
+  box-shadow: 0px 5px 5px rgba(2, 44, 42, 0.1);
 }
 
-.form_body_medium section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+.already_account {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem 3rem;
+  border-radius: 1rem;
 }
 
-.form_body_medium input {
-  border: 1px solid #000;
+.already_account h1 {
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
 }
 
-.form_body_medium h4 {
-  text-align: start;
-  margin: 0.5rem 0;
-  font-size: 1.25rem;
-  font-weight: bold;
+.already_account button {
+  width: 90%;
+  background-color: rgba(56, 133, 69, 0.5);
+  padding: 0.5rem 1rem;
+  box-shadow: none;
+  font-size: 0.875rem;
 }
