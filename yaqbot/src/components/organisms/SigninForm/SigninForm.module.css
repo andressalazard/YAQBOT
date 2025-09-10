@@ -65,7 +65,8 @@
 }
 
 .body input {
-  border: 1px solid #000;
+  border: 1px solid RGBA(0, 0, 0, 0.4);
+  background-color: RGBA(0, 0, 0, 0.1);
 }
 
 .body h4 {
@@ -93,7 +94,7 @@
 }
 
 .submit_button {
-  background-color: #59981a;
+  background-color: RGBA(81, 152, 26, 0.8);
   font-weight: bold;
   width: 50%;
   font-size: 1.125rem;
@@ -113,7 +114,7 @@
 
 .already_account button {
   width: 90%;
-  background-color: rgba(56, 133, 69, 0.5);
+  background-color: RGBA(61, 85, 12, 0.6);
   padding: 0.5rem 1rem;
   box-shadow: none;
   font-size: 0.875rem;
