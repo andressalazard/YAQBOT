@@ -1,6 +1,6 @@
 import ProfileMenuOption from '../../atoms/profileMenuOption';
 import ProfileMenuHeader from '../ProfileMenuHeader/ProfileMenuHeader';
-import { useAppDispatch } from '../../../hooks/hook';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hook';
 import { useSettings } from '../../context/SettingsContext';
 
 import { logout } from '../../../features/auth/authSlice';
@@ -23,6 +23,8 @@ const ProfileMenu = () => {
     { title: 'Cerrar Sesión', icon: 'logout', type: 'logout' },
   ]<optionsProps>;
 
+  const authenticatedUser = useAppSelector((state) => state.auth.user);
+  console.log(authenticatedUser);
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
@@ -32,7 +34,7 @@ const ProfileMenu = () => {
 
   return (
     <div className={styles.profile_menu}>
-      <ProfileMenuHeader username='Andrés Salazar' email='asalazar@email.com' />
+      <ProfileMenuHeader username={authenticatedUser?.username || 'testUser'} email={authenticatedUser?.email || 'test@email.com'} />
 
       <section>
         <ul>

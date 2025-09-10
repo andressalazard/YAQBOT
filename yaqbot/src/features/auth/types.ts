@@ -11,8 +11,9 @@ interface AuthState {
   user: User | null;
 }
 
-interface LoginPayload {
+interface ValidPayload {
   token: string;
+  user: User;
 }
 
-export { User, AuthState, LoginPayload };
+export { User, AuthState, ValidPayload };

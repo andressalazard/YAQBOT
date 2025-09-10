@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../atoms/Button';
 import styles from './SigninForm.module.css';
 import FormInput from '../../molecules/FormInput/FormInput';
 import NavigationButton from '../../molecules/NavigationButton';
 import Image from '../../atoms/Image';
+import { useAlert } from '../../context/AlertContext';
+import { useAuth } from '../../context/AuthContext';
+import { useAppSelector } from '../../../hooks/hook';
+import { useNavigate } from 'react-router-dom';
 
 interface formDataProps {
   username: string;
@@ -20,22 +24,51 @@ const SigninForm = () => {
     confirmedPassword: '',
   });
 
+  const { toggleAlert } = useAlert();
+  const { signup } = useAuth();
+  const navigate = useNavigate();
+
+  const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
+
   const handleFormChange = (field: string, value: string) => {
     setFormData((prevState) => ({ ...prevState, [field]: value }));
   };
 
-  const handleSumbit = (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      //endpoint to send formData
-      console.log('Form submitted:', formData);
-    } catch (error) {
-      console.error('Error submitting form:', error);
+  const handleSumbit = () => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (formData.username === '' || formData.email === '' || formData.password === '' || formData.confirmedPassword === '') {
+      toggleAlert('Los campos no pueden estar vacíos', 'warning');
+      return;
     }
+
+    if (emailRegex.test(formData.email) === false) {
+      toggleAlert('Por favor, ingrese un correo electrónico válido', 'warning');
+      return;
+    }
+
+    if (passwordRegex.test(formData.password) === false) {
+      toggleAlert('La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial', 'warning');
+      return;
+    }
+
+    if (formData.password !== formData.confirmedPassword) {
+      toggleAlert('Las contraseñas no coinciden', 'warning');
+      return;
+    }
+
+    signup(formData.username, formData.email, formData.password);
   };
 
+  //checks if user is authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/home');
+    }
+  }, [isAuthenticated]);
+
   return (
-    <form className={styles.wrapper} onSubmit={handleSumbit}>
+    <form className={styles.wrapper}>
       {/* HEADER */}
       <section className={styles.header}>
         <Image className={styles.profile_pic} src='https://i.pinimg.com/736x/c6/3b/a4/c63ba4abc256a03c3f3a830965c365ac.jpg' alt='profile pic' />
@@ -95,7 +128,7 @@ const SigninForm = () => {
 
       {/* FOOTER */}
       <section className={styles.footer}>
-        <Button className={`${styles.button} ${styles.submit_button}`} label='Finalizar' />
+        <Button className={`${styles.button} ${styles.submit_button}`} label='Finalizar' onClick={handleSumbit} />
         <div className={styles.already_account}>
           <h1>¿Ya tienes una cuenta registrada?</h1>
           <NavigationButton
