@@ -24,7 +24,6 @@ const ProfileMenu = () => {
   ]<optionsProps>;
 
   const authenticatedUser = useAppSelector((state) => state.auth.user);
-  console.log(authenticatedUser);
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {

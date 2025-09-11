@@ -8,6 +8,7 @@ import { AuthProvider } from './components/context/AuthContext';
 import { SettingsProvider } from './components/context/SettingsContext';
 import { AlertProvider } from './components/context/AlertContext';
 import ProtectedRoute from './routes/ProtectedRoute';
+import ProfilePage from './components/pages/ProfilePage';
 
 function App() {
   return (
@@ -23,6 +24,16 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
+            <Route
+              path='/profile'
+              element={
+                <ProtectedRoute>
+                  <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
+
             <Route path='/login' element={<LoginPage />} />
             <Route path='/signin' element={<SigninPage />} />
           </Routes>
