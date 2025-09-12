@@ -1,8 +1,8 @@
 import styles from '../Header/Header.module.css';
-import NavMenu from '../NavMenu/NavMenu';
+import NavMenu from '../../molecules/NavMenu';
 import Logo from '../../atoms/Logo';
 import UserIconProfile from '../../atoms/UserIconProfile';
-import ProfileMenu from '../ProfileMenu/ProfileMenu';
+import ProfileMenu from '../../molecules/ProfileMenu/ProfileMenu';
 import { useSettings } from '../../context/SettingsContext';
 
 const Header = () => {
@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Logo className={styles.logo} />
-      <NavMenu />
+      <NavMenu navLinks={[{ label: 'Tienda', href: '/store' }]} className={styles.nav_menu} />
       <UserIconProfile className={styles.user_logo} handleClick={toggleMenuStatus} />
       <>{menuStatus === 'on' ? <ProfileMenu /> : <></>}</>
     </header>
