@@ -1,22 +1,17 @@
-type ButtonType = 'button' | 'submit' | 'reset' | undefined;
+export type ButtonType = 'button' | 'submit' | 'reset' | undefined;
 
 interface ButtonProps {
-  label: string;
+  label?: string;
   className?: string;
   type?: ButtonType;
+  children?: React.ReactNode;
   onClick?: () => void;
 }
 
-const baseStyle = {
-  padding: '0.5rem 1rem',
-  borderRadius: '0.5rem',
-  cursor: 'pointer'
-};
-
-const Button = ({ label = 'Button', type = 'button', onClick, className }: ButtonProps) => {
+const Button = ({ label = 'Button', type = 'button', onClick, className, children }: ButtonProps) => {
   return (
-    <button style={baseStyle} className={className} type={type} onClick={onClick}>
-      {label}
+    <button className={className} type={type} onClick={onClick}>
+      {children || label}
     </button>
   );
 };

@@ -1,16 +1,13 @@
-const Logo = () => {
-  const styles = {
-    fontFamily: 'Pacifico, sans-serif',
-    fontWeight: 800,
-    fontSize: '2rem',
-    color: '#224b12',
-    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-    backgroundColor: 'rgba(256,256,256,0.3)',
-    padding: '1rem 2rem',
-    borderRadius: '0.5rem'
-  };
+interface LogoProps {
+  className?: string;
+}
 
-  return <span style={styles}>YAQBOT</span>;
+const Logo: React.FC<LogoProps> = ({ className }) => {
+  return (
+    <div>
+      <span className={className}>YAQBOT</span>
+    </div>
+  );
 };
 
 export default Logo;

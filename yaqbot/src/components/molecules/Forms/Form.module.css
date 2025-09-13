@@ -43,6 +43,10 @@
 }
 
 .button {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+
   background-color: rgba(56, 133, 69, 0.5);
   color: #ffffff;
   font-weight: bold;

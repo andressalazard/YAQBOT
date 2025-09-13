@@ -1,19 +1,45 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
-import HomePage from './components/pages/HomePage/HomePage';
+import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';
 import SigninPage from './components/pages/SigninPage';
+import { AuthProvider } from './components/context/AuthContext';
+import { SettingsProvider } from './components/context/SettingsContext';
+import { AlertProvider } from './components/context/AlertContext';
+import ProtectedRoute from './routes/ProtectedRoute';
+import ProfilePage from './components/pages/ProfilePage';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/signin' element={<SigninPage />} />
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <AlertProvider>
+        <SettingsProvider>
+          <Routes>
+            <Route
+              path='/home'
+              element={
+                <ProtectedRoute>
+                  <HomePage />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path='/profile'
+              element={
+                <ProtectedRoute>
+                  <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/signin' element={<SigninPage />} />
+          </Routes>
+        </SettingsProvider>
+      </AlertProvider>
+    </AuthProvider>
   );
 }
 
