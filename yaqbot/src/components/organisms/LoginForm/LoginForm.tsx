@@ -1,12 +1,12 @@
-import Button from '../../atoms/Button';
-import Input from '../../atoms/Input';
-import Card from '../../atoms/Card';
 import { useState, useEffect } from 'react';
-import styles from './Form.module.css';
 import { useAuth } from '../../context/AuthContext';
 import { useAlert } from '../../context/AlertContext';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../../hooks/hook';
+import Button from '../../atoms/Button';
+import Card from '../../atoms/Card';
+import FormInput from '../../molecules/FormInput';
+import styles from './Form.module.css';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -42,31 +42,28 @@ const LoginForm = () => {
       <form className={styles.form_body}>
         <h1>Iniciar Sesión</h1>
         <section>
-          <label>
-            <h4>Correo Electrónico</h4>
-          </label>
-          <Input
-            inputType='email'
-            id='emailInput'
-            placeholder='Correo Electronico'
-            value={email}
-            onChange={(e) => {
-              e.preventDefault();
-              setEmail(e.target.value);
+          <FormInput
+            className={styles.form_input}
+            inputName='Correo Electrónico'
+            inputProps={{
+              className: styles.field,
+              inputType: 'email',
+              id: 'emailInput',
+              placeholder: 'johndoe123@email.com',
+              value: email,
+              onChange: (e) => setEmail(e.target.value),
             }}
           />
 
-          <label>
-            <h4>Contraseña</h4>
-          </label>
-          <Input
-            inputType='password'
-            id='passwordInput'
-            placeholder='Contraseña'
-            value={password}
-            onChange={(e) => {
-              e.preventDefault();
-              setPassword(e.target.value);
+          <FormInput
+            className={styles.form_input}
+            inputName='Contraseña'
+            inputProps={{
+              className: styles.field,
+              inputType: 'password',
+              id: 'emailInput',
+              value: password,
+              onChange: (e) => setPassword(e.target.value),
             }}
           />
         </section>

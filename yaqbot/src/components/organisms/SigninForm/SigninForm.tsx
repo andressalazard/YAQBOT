@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Button from '../../atoms/Button';
 import styles from './SigninForm.module.css';
-import FormInput from '../../molecules/FormInput/FormInput';
+import FormInput from '../../molecules/FormInput';
 import NavigationButton from '../../molecules/NavigationButton';
 import Image from '../../atoms/Image';
 import { useAlert } from '../../context/AlertContext';
@@ -79,8 +79,10 @@ const SigninForm = () => {
       <section className={styles.body}>
         <div className={styles.rows}>
           <FormInput
+            className={styles.form_input}
             inputName='Nombre de usuario'
             inputProps={{
+              className: styles.field,
               inputType: 'text',
               id: 'usernameInput',
               placeholder: 'JohnnyDoe',
@@ -92,8 +94,10 @@ const SigninForm = () => {
 
         <div className={styles.rows}>
           <FormInput
+            className={styles.form_input}
             inputName='Correo Electrónico'
             inputProps={{
+              className: styles.field,
               inputType: 'email',
               id: 'emailInput',
               placeholder: 'johndoe123@email.com',
@@ -105,8 +109,10 @@ const SigninForm = () => {
 
         <div className={styles.rows}>
           <FormInput
+            className={styles.form_input}
             inputName='Contraseña'
             inputProps={{
+              className: styles.field,
               inputType: 'password',
               id: 'passwordInput',
               value: formData.password,
@@ -115,8 +121,10 @@ const SigninForm = () => {
           />
 
           <FormInput
+            className={styles.form_input}
             inputName='Confirmar Contraseña'
             inputProps={{
+              className: styles.field,
               inputType: 'password',
               id: 'confirmedPasswordInput',
               value: formData.confirmedPassword,

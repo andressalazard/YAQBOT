@@ -20,7 +20,19 @@ const ProfileTemplate = () => {
 
   return (
     <div className={styles.page}>
-      <Header />
+      <Header
+        userAvatar={profile?.avatar || 'https://i.pinimg.com/736x/c6/3b/a4/c63ba4abc256a03c3f3a830965c365ac.jpg'}
+        navMenu={[{ label: 'Tienda', href: '/store' }]}
+        profileMenuHeader={{
+          username: user?.username || 'testUser',
+          email: user?.email || 'test@email.com',
+          photo: profile?.avatar || 'https://i.pinimg.com/736x/c6/3b/a4/c63ba4abc256a03c3f3a830965c365ac.jpg',
+        }}
+        profileMenuOptions={[
+          { title: 'Configuración', icon: 'settings', navigateTo: '/settings', type: 'settings' },
+          { title: 'Cerrar Sesión', icon: 'logout', type: 'logout' },
+        ]}
+      />
       <Card className={styles.profile}>
         <ProfilePhoto
           imageProps={{

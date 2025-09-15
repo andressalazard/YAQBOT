@@ -98,3 +98,15 @@
   font-size: 1.25rem;
   font-weight: bold;
 }
+
+.form_input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.field {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: #000;
+}

@@ -1,9 +1,9 @@
 import React from 'react';
-import Input from '../../atoms/Input';
-import styles from './FormInput.module.css';
+import Input from '../atoms/Input';
 
 interface FormInputProps {
   inputName: string;
+  className: string;
   inputProps: {
     inputType: string;
     placeholder?: string;
@@ -15,9 +15,9 @@ interface FormInputProps {
   };
 }
 
-const FormInput: React.FC<FormInputProps> = ({ inputName, inputProps }) => {
+const FormInput: React.FC<FormInputProps> = ({ inputName, className, inputProps }) => {
   return (
-    <div className={styles.field}>
+    <div className={className}>
       <label htmlFor={inputProps.id}>
         <h4>{inputName}</h4>
       </label>
