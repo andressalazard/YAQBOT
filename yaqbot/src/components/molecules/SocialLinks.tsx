@@ -7,8 +7,9 @@ interface socialLinksPros {
   className?: string;
   linkClassName?: string;
   socialLinks: {
-    platform?: SocialPlatforms;
-    href?: string;
+    name?: SocialPlatforms;
+    url?: string;
+    username?: string;
   }[];
 }
 
@@ -17,18 +18,10 @@ const SocialLinks: React.FC<socialLinksPros> = ({ linkClassName, className, soci
     <div className={className}>
       {socialLinks.map((link, index) => {
         return (
-          <LinkTag id={index} className={linkClassName} href={link.href}>
+          <LinkTag id={index} className={linkClassName} href={link.url}>
             <i
               className={`fa-brands ${
-                link.platform === 'facebook'
-                  ? 'fa-facebook-f'
-                  : link.platform === 'twitter'
-                  ? 'fa-twitter'
-                  : link.platform === 'instagram'
-                  ? 'fa-instagram'
-                  : link.platform === 'tiktok'
-                  ? 'fa-tiktok'
-                  : 'fa-youtube'
+                link.name === 'facebook' ? 'fa-facebook-f' : link.name === 'twitter' ? 'fa-twitter' : link.name === 'instagram' ? 'fa-instagram' : link.name === 'tiktok' ? 'fa-tiktok' : 'fa-youtube'
               }
                     }`}
             ></i>

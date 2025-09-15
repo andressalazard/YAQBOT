@@ -6,8 +6,9 @@ import Icon from '../../atoms/Icon';
 
 interface ProfileSocialsProps {
   socialLinks: {
-    platform?: 'facebook' | 'twitter' | 'instagram' | 'tiktok' | 'youtube';
-    href?: string;
+    name?: 'facebook' | 'twitter' | 'instagram' | 'tiktok' | 'youtube';
+    url?: string;
+    username?: string;
   }[];
 }
 

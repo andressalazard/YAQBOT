@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext, useState } from 'react';
 import { useAppDispatch } from '../../hooks/hook';
-import { loginSuccess, signupSuccess } from '../../features/auth/authSlice';
+import { loginSuccess, signupSuccess, setUser } from '../../features/auth/authSlice';
 import { useAlert } from './AlertContext';
 //interface for the context
 interface AuthContextType {
@@ -45,6 +45,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
       const data = await response.json();
       dispatch(signupSuccess({ token: data.token, user: data.user }));
+      dispatch(setUser(data.user));
     } catch (error) {
       toggleAlert(`Error interno: ${error}`, 'error');
     }
@@ -70,6 +71,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setToken(data.token);
 
       dispatch(loginSuccess({ token: data.token, user: data.user }));
+      dispatch(setUser(data.user));
 
       setIsLoggedIn(true);
     } catch (error) {
