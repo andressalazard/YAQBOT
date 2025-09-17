@@ -1,18 +1,23 @@
-import Image from '../../atoms/Image';
+import Image from '../atoms/Image';
 
-function Gallery() {
-  const imgStyleProps = {
-    bgColor: '#2d2d2d',
-    borderRadius: '20px',
-    width: '300px',
-    height: 'auto',
-  };
+interface GalleryProps {
+  className: string;
+  pictures: {
+    className: string;
+    src: string;
+  }[];
+}
 
+const Gallery: React.FC<GalleryProps> = ({ className, pictures }) => {
   return (
-    <div>
-      <Image src={'https://i.pinimg.com/736x/8f/70/32/8f70324731bcea43a99d81207a4051cc.jpg'} alt={'person'} stylesProps={imgStyleProps}></Image>
+    <div className={className}>
+      <>
+        {pictures.map((pic, index) => {
+          return <Image src={pic.src} alt={`img-${index}`} className={pic.className} />;
+        })}
+      </>
     </div>
   );
-}
+};
 
 export default Gallery;

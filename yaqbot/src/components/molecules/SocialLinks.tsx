@@ -18,10 +18,18 @@ const SocialLinks: React.FC<socialLinksPros> = ({ linkClassName, className, soci
     <div className={className}>
       {socialLinks.map((link, index) => {
         return (
-          <LinkTag id={index} className={linkClassName} href={link.url}>
+          <LinkTag key={index} className={linkClassName} href={link.url}>
             <i
               className={`fa-brands ${
-                link.name === 'facebook' ? 'fa-facebook-f' : link.name === 'twitter' ? 'fa-twitter' : link.name === 'instagram' ? 'fa-instagram' : link.name === 'tiktok' ? 'fa-tiktok' : 'fa-youtube'
+                link.name === 'facebook'
+                  ? 'fa-facebook-f'
+                  : link.name === 'twitter'
+                  ? 'fa-twitter'
+                  : link.name === 'instagram'
+                  ? 'fa-instagram'
+                  : link.name === 'tiktok'
+                  ? 'fa-tiktok'
+                  : 'fa-youtube'
               }
                     }`}
             ></i>
