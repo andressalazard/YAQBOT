@@ -9,19 +9,20 @@ import ProfilePhoto from '../../organisms/ProfilePhoto/ProfilePhoto';
 import ProfileSocials from '../../organisms/ProfileSocials/ProfileSocials';
 import UpdateProfile from '../../organisms/UpdateProfile/UpdateProfile';
 import styles from './profileTemplate.module.css';
+import UpdateAvatar from '../../organisms/UpdateAvatar/UpdateAvatar';
+import Spinner from '../../atoms/Spinner/Spinner';
 
 const ProfileTemplate = () => {
-  const { isEditing, fetchUserProfile } = UseProfile();
+  const { isEditing, isPicEditing, fetchUserProfile } = UseProfile();
   const user = useAppSelector((state) => state.auth.user);
   const profile = useAppSelector((state) => state.auth.profile);
-  console.log(profile);
 
   useEffect(() => {
     fetchUserProfile();
   }, []);
 
   if (!profile || !user) {
-    return <div>Cargando...</div>;
+    return <Spinner />;
   }
 
   return (
@@ -41,6 +42,8 @@ const ProfileTemplate = () => {
       />
       {isEditing ? (
         <UpdateProfile />
+      ) : isPicEditing ? (
+        <UpdateAvatar imageURL={profile?.avatar || 'https://i.pinimg.com/736x/41/b5/a0/41b5a032357cdfc37cee0d527fb6d18f.jpg'} />
       ) : (
         <Card className={styles.profile}>
           <ProfilePhoto
@@ -78,7 +81,6 @@ const ProfileTemplate = () => {
           />
         </Card>
       )}
-
       <Footer />
     </div>
   );

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { UseProfile } from '../../context/ProfileContext';
 import FormSection from '../../molecules/FormSection';
 import FormInput from '../../molecules/FormInput';
 import FormSelect from '../../molecules/FormSelect';
@@ -26,13 +27,13 @@ interface ProfileFormProps {
     bio?: string;
   };
   handleCancel?: () => void;
-  handleSubmit?: () => void;
+  handleSubmit?: (updatedForm: any) => void;
 }
 
 const ProfileForm: React.FC<ProfileFormProps> = ({ userAccount, userLocation, userProfile, handleCancel, handleSubmit }) => {
+  const { handleNewAccountChange, handleNewProfileChange } = UseProfile();
   const [account, setAccount] = useState({ username: userAccount?.username || '', email: userAccount?.email || '' });
   const [location, setLocation] = useState({ region: userLocation?.region || '', address: userLocation?.address || '' });
-  const [password, setPassword] = useState({ password: '', confirmPassword: '' });
 
   const [profile, setProfile] = useState({
     fullname: userProfile?.fullname || '',
@@ -45,19 +46,17 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ userAccount, userLocation, us
   const handleFormChange = (field: string, value: string) => {
     if (field in account) {
       setAccount((prevState) => ({ ...prevState, [field]: value }));
+      handleNewAccountChange(field, value);
     }
 
     if (field in profile) {
       setProfile((prevState) => ({ ...prevState, [field]: value }));
-      console.log(profile);
+      handleNewProfileChange(field, value);
     }
 
     if (field in location) {
       setLocation((prevState) => ({ ...prevState, [field]: value }));
-    }
-
-    if (field in password) {
-      setPassword((prevState) => ({ ...prevState, [field]: value }));
+      handleNewProfileChange(field, value);
     }
   };
 
@@ -205,40 +204,6 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ userAccount, userLocation, us
           }}
         />
       </FormSection>
-
-      <FormSection
-        title='Cambiar la contraseña'
-        classNames={{
-          title: styles.title,
-          card: styles.card_password,
-          section: styles.section,
-        }}
-      >
-        <FormInput
-          className={styles.form_input}
-          inputName='Contraseña'
-          inputProps={{
-            className: styles.field,
-            inputType: 'password',
-            id: 'passwordInput',
-            value: password.password,
-            onChange: (e) => handleFormChange('password', e.target.value),
-          }}
-        />
-
-        <FormInput
-          className={styles.form_input}
-          inputName='Confirmar contraseña'
-          inputProps={{
-            className: styles.field,
-            inputType: 'password',
-            id: 'confirmPasswordInput',
-            value: password.confirmPassword,
-            onChange: (e) => handleFormChange('confirmPassword', e.target.value),
-          }}
-        />
-      </FormSection>
-
       <FormSection
         title=''
         classNames={{

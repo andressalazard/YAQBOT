@@ -25,7 +25,7 @@ const ProfileDetails: React.FC<DetailsBoardProps> = ({ bioDetails }) => {
         feature='edit'
         className={`material-icons ${styles.edit_icon}`}
         onClick={() => {
-          toggleEditing();
+          toggleEditing('PROFILE');
         }}
       />
     </Card>

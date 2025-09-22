@@ -10,7 +10,6 @@ interface AuthContextType {
   isLoggedIn: boolean;
   login: (email: string, password: string) => Promise<void>; //because we are going to fetch token from API
   logout: () => void;
-
   signup: (username: string, email: string, password: string) => Promise<void>;
 }
 

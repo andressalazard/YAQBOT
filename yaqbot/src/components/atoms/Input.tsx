@@ -9,7 +9,9 @@ interface InputProps {
 }
 
 function Input({ inputType, id, placeholder, className, isDisabled, value, onChange }: InputProps) {
-  return <input className={className} id={id} value={value} type={inputType} placeholder={placeholder} disabled={isDisabled} onChange={onChange}></input>;
+  return (
+    <input className={className} id={id} value={value} type={inputType} placeholder={placeholder} disabled={isDisabled} onChange={onChange}></input>
+  );
 }
 
 export default Input;

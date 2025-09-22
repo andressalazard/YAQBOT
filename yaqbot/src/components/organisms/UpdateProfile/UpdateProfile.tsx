@@ -8,7 +8,16 @@ import { UseProfile } from '../../context/ProfileContext';
 const UpdateProfile: React.FC = () => {
   const user = useAppSelector((state) => state.auth.user);
   const profile = useAppSelector((state) => state.auth.profile);
-  const { toggleEditing } = UseProfile();
+  const { toggleEditing, updateUserData, getNewProfile, getNewAccount } = UseProfile();
+
+  const handleSubmit = () => {
+    const newAccount = getNewAccount();
+    const newProfile = getNewProfile();
+    updateUserData(newAccount, newProfile);
+    setTimeout(() => {
+      toggleEditing('PROFILE');
+    }, 3000);
+  };
 
   return (
     <Card className={styles.update_profile}>
@@ -24,7 +33,10 @@ const UpdateProfile: React.FC = () => {
           bio: profile?.bio,
         }}
         handleCancel={() => {
-          toggleEditing();
+          toggleEditing('PROFILE');
+        }}
+        handleSubmit={() => {
+          handleSubmit();
         }}
       />
     </Card>
