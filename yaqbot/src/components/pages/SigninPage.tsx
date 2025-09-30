@@ -1,7 +1,12 @@
+import { ProfileProvider } from '../context/ProfileContext';
 import Signin from '../organisms/Signin/Signin';
 
 const SigninPage = () => {
-  return <Signin />;
+  return (
+    <ProfileProvider>
+      <Signin />
+    </ProfileProvider>
+  );
 };
 
 export default SigninPage;

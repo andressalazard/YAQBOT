@@ -5,14 +5,14 @@ import Icon from '../../atoms/Icon';
 import Image from '../../atoms/Image';
 import styles from './UpdateAvatar.module.css';
 import InputFile from '../../atoms/InputFile';
-import { UseProfile } from '../../context/ProfileContext';
+import { useProfile } from '../../context/ProfileContext';
 
 interface UpdateAvatarPhotoProps {
   imageURL: string;
 }
 
 const UpdateAvatar: React.FC<UpdateAvatarPhotoProps> = ({ imageURL }) => {
-  const { toggleEditing, updateUserAvatar } = UseProfile();
+  const { toggleEditing, updateUserAvatar } = useProfile();
   const [isNewPhoto, setIsNewPhoto] = useState<boolean>(false);
   const [file, setFile] = useState<File | undefined>(undefined);
   const [imageSrc, setImageSrc] = useState<string | undefined>(imageURL);
@@ -25,6 +25,13 @@ const UpdateAvatar: React.FC<UpdateAvatarPhotoProps> = ({ imageURL }) => {
     };
     reader.readAsDataURL(file);
     setFile(file);
+  };
+
+  const acceptChanges = () => {
+    if (file) {
+      updateUserAvatar(file);
+    }
+    toggleEditing('AVATAR');
   };
 
   return (
@@ -44,9 +51,7 @@ const UpdateAvatar: React.FC<UpdateAvatarPhotoProps> = ({ imageURL }) => {
         <Button
           className={isNewPhoto === true ? `${styles.button}` : `${styles.button} ${styles.blocked_btn}`}
           onClick={() => {
-            if (file) {
-              updateUserAvatar(file);
-            }
+            acceptChanges();
           }}
         >
           <Icon feature='check' className={`material-icons ${styles.icons}`} />

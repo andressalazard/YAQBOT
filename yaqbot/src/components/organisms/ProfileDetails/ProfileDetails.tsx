@@ -1,6 +1,6 @@
 import Card from '../../atoms/Card';
 import Icon from '../../atoms/Icon';
-import { UseProfile } from '../../context/ProfileContext';
+import { useProfile } from '../../context/ProfileContext';
 import BioDetail from '../../molecules/BioDetail';
 import styles from './ProfileDetails.module.css';
 
@@ -12,7 +12,7 @@ interface DetailsBoardProps {
 }
 
 const ProfileDetails: React.FC<DetailsBoardProps> = ({ bioDetails }) => {
-  const { toggleEditing } = UseProfile();
+  const { toggleEditing } = useProfile();
   return (
     <Card className={styles.dashboard_card}>
       <h1 className={styles.section_header}>Perfil del Usuario</h1>

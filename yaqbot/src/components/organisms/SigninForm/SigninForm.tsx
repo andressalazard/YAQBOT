@@ -8,6 +8,7 @@ import { useAlert } from '../../context/AlertContext';
 import { useAuth } from '../../context/AuthContext';
 import { useAppSelector } from '../../../hooks/hook';
 import { useNavigate } from 'react-router-dom';
+import { useProfile } from '../../context/ProfileContext';
 
 interface formDataProps {
   username: string;
@@ -25,7 +26,8 @@ const SigninForm = () => {
   });
 
   const { toggleAlert } = useAlert();
-  const { signup } = useAuth();
+  const { signinApp } = useAuth();
+  const { createUserProfile } = useProfile();
   const navigate = useNavigate();
 
   const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
@@ -57,12 +59,15 @@ const SigninForm = () => {
       return;
     }
 
-    signup(formData.username, formData.email, formData.password);
+    signinApp(formData.username, formData.email, formData.password);
   };
 
   //checks if user is authenticated
   useEffect(() => {
     if (isAuthenticated) {
+      //creates the profile after is autenticated.
+      // this line is temporary until we developed a new way to handle profile creation
+      createUserProfile();
       navigate('/home');
     }
   }, [isAuthenticated]);

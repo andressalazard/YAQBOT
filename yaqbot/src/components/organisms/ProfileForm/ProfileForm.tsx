@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { UseProfile } from '../../context/ProfileContext';
+import { useProfile } from '../../context/ProfileContext';
 import FormSection from '../../molecules/FormSection';
 import FormInput from '../../molecules/FormInput';
 import FormSelect from '../../molecules/FormSelect';
@@ -31,7 +31,7 @@ interface ProfileFormProps {
 }
 
 const ProfileForm: React.FC<ProfileFormProps> = ({ userAccount, userLocation, userProfile, handleCancel, handleSubmit }) => {
-  const { handleNewAccountChange, handleNewProfileChange } = UseProfile();
+  const { handleChange } = useProfile();
   const [account, setAccount] = useState({ username: userAccount?.username || '', email: userAccount?.email || '' });
   const [location, setLocation] = useState({ region: userLocation?.region || '', address: userLocation?.address || '' });
 
@@ -46,17 +46,17 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ userAccount, userLocation, us
   const handleFormChange = (field: string, value: string) => {
     if (field in account) {
       setAccount((prevState) => ({ ...prevState, [field]: value }));
-      handleNewAccountChange(field, value);
+      handleChange('ACCOUNT', field, value);
     }
 
     if (field in profile) {
       setProfile((prevState) => ({ ...prevState, [field]: value }));
-      handleNewProfileChange(field, value);
+      handleChange('PROFILE', field, value);
     }
 
     if (field in location) {
       setLocation((prevState) => ({ ...prevState, [field]: value }));
-      handleNewProfileChange(field, value);
+      handleChange('PROFILE', field, value);
     }
   };
 

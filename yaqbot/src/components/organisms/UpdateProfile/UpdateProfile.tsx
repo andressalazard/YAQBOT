@@ -3,17 +3,15 @@ import { useAppSelector } from '../../../hooks/hook';
 import Card from '../../atoms/Card';
 import ProfileForm from '../ProfileForm/ProfileForm';
 import styles from './UpdateProfile.module.css';
-import { UseProfile } from '../../context/ProfileContext';
+import { useProfile } from '../../context/ProfileContext';
 
 const UpdateProfile: React.FC = () => {
-  const user = useAppSelector((state) => state.auth.user);
-  const profile = useAppSelector((state) => state.auth.profile);
-  const { toggleEditing, updateUserData, getNewProfile, getNewAccount } = UseProfile();
+  const user = useAppSelector((state) => state.user.user);
+  const profile = useAppSelector((state) => state.user.profile);
+  const { toggleEditing, updateUserData } = useProfile();
 
   const handleSubmit = () => {
-    const newAccount = getNewAccount();
-    const newProfile = getNewProfile();
-    updateUserData(newAccount, newProfile);
+    updateUserData();
     setTimeout(() => {
       toggleEditing('PROFILE');
     }, 3000);

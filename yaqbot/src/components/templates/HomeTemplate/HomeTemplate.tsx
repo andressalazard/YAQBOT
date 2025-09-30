@@ -1,11 +1,21 @@
+import { useEffect } from 'react';
 import { useAppSelector } from '../../../hooks/hook';
 import Footer from '../../organisms/Footer/Footer';
 import Header from '../../organisms/Header/Header';
 import styles from './HomeTemplate.module.css';
+import { useProfile } from '../../context/ProfileContext';
 
 const HomeTemplate = () => {
-  const user = useAppSelector((state) => state.auth.user);
-  const profile = useAppSelector((state) => state.auth.profile);
+  const { getUserData } = useProfile();
+  const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
+  const user = useAppSelector((state) => state.user.user);
+  const profile = useAppSelector((state) => state.user.profile);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      getUserData();
+    }
+  }, [isAuthenticated, getUserData]);
 
   return (
     <div className={styles.home}>

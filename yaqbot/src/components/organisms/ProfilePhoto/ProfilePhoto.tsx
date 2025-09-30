@@ -1,7 +1,7 @@
 import Card from '../../atoms/Card';
 import Icon from '../../atoms/Icon';
 import Image from '../../atoms/Image';
-import { UseProfile } from '../../context/ProfileContext';
+import { useProfile } from '../../context/ProfileContext';
 import ProfilePhotoHeader from '../../molecules/ProfilePhotoHeader';
 import styles from './ProfilePhoto.module.css';
 interface ProfilePhotoProps {
@@ -16,7 +16,7 @@ interface ProfilePhotoProps {
 }
 
 const ProfilePhoto: React.FC<ProfilePhotoProps> = ({ imageProps, headerProps, position }) => {
-  const { toggleEditing } = UseProfile();
+  const { toggleEditing } = useProfile();
   return (
     <Card className={`${styles.profile_photo_card} ${position}`}>
       <ProfilePhotoHeader {...headerProps} className={styles.profile_header} />

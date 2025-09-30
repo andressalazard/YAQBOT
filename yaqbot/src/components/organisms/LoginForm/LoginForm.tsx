@@ -11,7 +11,7 @@ import styles from './Form.module.css';
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useAuth();
+  const { loginApp } = useAuth();
   const { toggleAlert } = useAlert();
   const navigate = useNavigate();
   const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
@@ -28,7 +28,7 @@ const LoginForm = () => {
       return;
     }
 
-    login(email, password);
+    loginApp(email, password);
   };
 
   useEffect(() => {

@@ -1,50 +1,36 @@
-import React, { ReactNode, useContext, useEffect, useState } from 'react';
-import { useAlert } from './AlertContext';
+import React, { ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks/hook';
-import { setUserProfile } from '../../features/auth/authSlice';
+import { useAlert } from './AlertContext';
+import { getProfile, updateProfile, updateAvatar, createProfile } from '../../services/profileService';
+import { getUserById, updateUser } from '../../services/userService';
+import { NewProfile, UpdatedProfile, UpdatedUser } from '../../models/dataModel';
+import { setUser, setProfile } from '../../features/user/userSlice';
 
-type genderType = 'MALE' | 'FEMALE' | 'OTHER';
-type editionFlags = 'PROFILE' | 'AVATAR';
-interface AccountFormat {
-  username?: string;
-  email?: string;
-}
-interface ProfileFormat {
-  fullname?: string;
-  phone?: string;
-  region?: string;
-  address?: string;
-  birthday?: string;
-  gender?: genderType;
-}
+type editionFlags = 'ACCOUNT' | 'PROFILE' | 'AVATAR';
 interface ProfileContextType {
   isEditing: boolean;
   isPicEditing: boolean;
+  updatedUser: UpdatedUser;
+  updatedProfile: UpdatedProfile;
   toggleEditing: (flag: editionFlags) => void;
-
-  fetchUserProfile: () => void;
-  //account
-  getNewAccount: () => AccountFormat;
-  handleNewAccountChange: (field: string, value: string) => void;
-
-  //profile
-  getNewProfile: () => ProfileFormat;
-  handleNewProfileChange: (field: string, value: string) => void;
-
-  updateUserData: (newAccount?: AccountFormat, newProfile?: ProfileFormat) => void;
+  handleChange: (flag: editionFlags, field: string, value: string) => void;
+  getUserData: () => void;
+  createUserProfile: () => void;
+  updateUserData: () => void;
   updateUserAvatar: (file: File) => void;
 }
-const API_URL = 'http://localhost:3000/api';
 
 export const ProfileContext = React.createContext<ProfileContextType | undefined>(undefined);
 
 export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.auth.user);
+  const userId = useAppSelector((state) => state.auth.userid);
   const { toggleAlert } = useAlert();
-
   const [isEditing, SetIsEditing] = useState(false);
   const [isPicEditing, SetIsPicEditing] = useState(false);
+  const [updatedUser, setUpdatedUser] = useState({});
+  const [updatedProfile, setUpdatedProfile] = useState({});
+
   const toggleEditing = (flag: editionFlags) => {
     if (flag === 'PROFILE') {
       SetIsEditing((prevState) => (prevState === true ? false : true));
@@ -57,27 +43,19 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (isEditing === false) {
-      setNewAccount({});
-      setNewProfile({});
+      setUpdatedUser({});
+      setUpdatedProfile({});
     }
   }, [isEditing]);
 
-  //account
-  const [newAccount, setNewAccount] = useState({});
-  const getNewAccount = () => {
-    return newAccount;
-  };
-  const handleNewAccountChange = (field: string, value: string) => {
-    setNewAccount((prevState) => ({ ...prevState, [field]: value }));
-  };
+  const handleChange = (flag: editionFlags, field: string, value: string) => {
+    if (flag === 'ACCOUNT') {
+      setUpdatedUser((prevState) => ({ ...prevState, [field]: value }));
+    }
 
-  //profile
-  const [newProfile, setNewProfile] = useState({});
-  const getNewProfile = () => {
-    return newProfile;
-  };
-  const handleNewProfileChange = (field: string, value: string) => {
-    setNewProfile((prevState) => ({ ...prevState, [field]: value }));
+    if (flag === 'PROFILE') {
+      setUpdatedProfile((prevState) => ({ ...prevState, [field]: value }));
+    }
   };
 
   const formatDate = (inputDate: string) => {
@@ -89,114 +67,69 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     return `${year}-${month}-${day}`;
   };
 
-  const fetchUserProfile = async () => {
-    try {
-      if (user === null) {
-        toggleAlert('Usuario no encontrado', 'error');
-        return;
-      }
-      const response = await fetch(`${API_URL}/profile/${user?.id}`);
-
-      if (!response.ok) toggleAlert('Error al obtener la información del usuario', 'error');
-
-      const data = await response.json();
-      const profileData = { ...data, birthday: formatDate(data.birthday) };
-
-      dispatch(setUserProfile(profileData));
-    } catch (error) {
-      toggleAlert(`Error interno del sistema: ${error}`, 'error');
+  const getUserData = useCallback(async () => {
+    if (!userId) {
+      return;
     }
-  };
+    const user = await getUserById(userId);
+    dispatch(setUser(user));
 
-  //account
-  const updateUserAccount = async (updatedAccount: AccountFormat) => {
-    try {
-      const response = await fetch(`${API_URL}/users/${user?.id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedAccount),
-      });
+    const profileData = await getProfile(userId);
+    const profile = { ...profileData, birthday: formatDate(profileData.birthday) };
+    dispatch(setProfile(profile));
+  }, [userId, dispatch]);
 
-      if (!response.ok) {
-        toggleAlert('Error al actualizar la cuenta del usuario', 'error');
-      }
-    } catch (error) {
-      toggleAlert(`Error interno: ${error}`, 'error');
+  const updateUserData = async () => {
+    if (!userId) {
+      return;
     }
-  };
-
-  //profile
-  const updateUserProfile = async (updatedData: ProfileFormat) => {
-    try {
-      const response = await fetch(`${API_URL}/profile/${user?.id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedData),
-      });
-      if (!response.ok) {
-        toggleAlert('Error al actualizar el perfil del usuario', 'error');
-      }
-    } catch (error) {
-      toggleAlert(`Error interno: ${error}`, 'error');
-    }
-  };
-
-  const updateUserData = (userAccount?: AccountFormat, userProfile?: ProfileFormat) => {
-    if (userAccount && Object.keys(userAccount).length > 0) {
-      updateUserAccount(userAccount);
+    if (Object.keys(updatedUser).length > 0) {
+      await updateUser(userId, updatedUser);
+      toggleAlert('Los datos del Usuario fueron actualizados con éxito', 'success');
     }
 
-    if (userProfile && Object.keys(userProfile).length > 0) {
-      updateUserProfile(userProfile);
+    if (Object.keys(updatedProfile).length > 0) {
+      await updateProfile(userId, updatedProfile);
+      toggleAlert('Los datos del Perfil fueron actualizados con éxito', 'success');
     }
-
-    toggleAlert('Los datos del Usuario fueron actualizados con éxito', 'success');
   };
 
   const updateUserAvatar = async (file: File | undefined) => {
+    if (!userId) {
+      return;
+    }
+    if (!file) {
+      toggleAlert('Necesita subir un archivo', 'error');
+      return;
+    }
+    await updateAvatar(userId, file);
+    toggleAlert('La foto de perfil se actualizó con éxito', 'success');
+  };
+
+  const createUserProfile = async (newProfile: NewProfile = {}) => {
+    if (!userId) {
+      console.log('usuario no encontrado!');
+      return;
+    }
     try {
-      if (user === null) {
-        toggleAlert('Usuario no encontrado', 'error');
-        return;
-      }
-
-      if (!file) {
-        throw new Error('url is missing');
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append('file', file);
-
-      const response = await fetch(`${API_URL}/profile/photo/${user?.id}`, {
-        method: 'PATCH',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error('Internal error while uploading the image');
-      }
-
-      toggleAlert('Foto de perfil actualizado con éxito', 'success');
+      return await createProfile(userId, newProfile);
     } catch (error) {
-      toggleAlert('Error al actualizar el avatar del usuario ' + error, 'error');
+      toggleAlert(`Error al crear el perfil del usuario ${error}`, 'error');
     }
   };
 
   return (
     <ProfileContext.Provider
       value={{
-        fetchUserProfile,
+        createUserProfile,
+        updatedProfile,
+        updatedUser,
+        getUserData,
         isEditing,
         isPicEditing,
         toggleEditing,
-        handleNewProfileChange,
-        getNewProfile,
+        handleChange,
         updateUserData,
-        getNewAccount,
-        handleNewAccountChange,
         updateUserAvatar,
       }}
     >
@@ -205,7 +138,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const UseProfile = (): ProfileContextType => {
+export const useProfile = (): ProfileContextType => {
   const context = useContext(ProfileContext);
   return context || ({} as ProfileContextType);
 };
