@@ -6,14 +6,15 @@ import LoginPage from './components/pages/LoginPage';
 import SigninPage from './components/pages/SigninPage';
 import { AuthProvider } from './components/context/AuthContext';
 import { SettingsProvider } from './components/context/SettingsContext';
-import { AlertProvider } from './components/context/AlertContext';
+
 import ProtectedRoute from './routes/ProtectedRoute';
 import ProfilePage from './components/pages/ProfilePage';
+import { ToastProvider } from './components/context/ToastContext';
 
 function App() {
   return (
-    <AuthProvider>
-      <AlertProvider>
+    <ToastProvider>
+      <AuthProvider>
         <SettingsProvider>
           <Routes>
             <Route
@@ -38,8 +39,8 @@ function App() {
             <Route path='/signin' element={<SigninPage />} />
           </Routes>
         </SettingsProvider>
-      </AlertProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </ToastProvider>
   );
 }
 

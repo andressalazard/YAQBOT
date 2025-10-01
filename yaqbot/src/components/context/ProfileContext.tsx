@@ -1,10 +1,10 @@
 import React, { ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks/hook';
-import { useAlert } from './AlertContext';
 import { getProfile, updateProfile, updateAvatar, createProfile } from '../../services/profileService';
 import { getUserById, updateUser } from '../../services/userService';
 import { NewProfile, UpdatedProfile, UpdatedUser } from '../../models/dataModel';
 import { setUser, setProfile } from '../../features/user/userSlice';
+import { useToast } from './ToastContext';
 
 type editionFlags = 'ACCOUNT' | 'PROFILE' | 'AVATAR';
 interface ProfileContextType {
@@ -25,7 +25,7 @@ export const ProfileContext = React.createContext<ProfileContextType | undefined
 export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const dispatch = useAppDispatch();
   const userId = useAppSelector((state) => state.auth.userid);
-  const { toggleAlert } = useAlert();
+  const { addToast } = useToast();
   const [isEditing, SetIsEditing] = useState(false);
   const [isPicEditing, SetIsPicEditing] = useState(false);
   const [updatedUser, setUpdatedUser] = useState({});
@@ -85,12 +85,12 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     }
     if (Object.keys(updatedUser).length > 0) {
       await updateUser(userId, updatedUser);
-      toggleAlert('Los datos del Usuario fueron actualizados con éxito', 'success');
+      addToast('Los datos del Usuario fueron actualizados con éxito', 'success');
     }
 
     if (Object.keys(updatedProfile).length > 0) {
       await updateProfile(userId, updatedProfile);
-      toggleAlert('Los datos del Perfil fueron actualizados con éxito', 'success');
+      addToast('Los datos del Perfil fueron actualizados con éxito', 'success');
     }
   };
 
@@ -99,11 +99,11 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
     if (!file) {
-      toggleAlert('Necesita subir un archivo', 'error');
+      addToast('Necesita subir un archivo', 'error');
       return;
     }
     await updateAvatar(userId, file);
-    toggleAlert('La foto de perfil se actualizó con éxito', 'success');
+    addToast('La foto de perfil se actualizó con éxito', 'success');
   };
 
   const createUserProfile = async (newProfile: NewProfile = {}) => {
@@ -114,7 +114,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     try {
       return await createProfile(userId, newProfile);
     } catch (error) {
-      toggleAlert(`Error al crear el perfil del usuario ${error}`, 'error');
+      addToast(`Error al crear el perfil del usuario ${error}`, 'error');
     }
   };
 

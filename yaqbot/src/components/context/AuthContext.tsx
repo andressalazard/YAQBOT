@@ -1,8 +1,8 @@
 import React, { ReactNode, useContext, useState } from 'react';
 import { useAppDispatch } from '../../hooks/hook';
 import { loginSuccess, logout, signupSuccess } from '../../features/auth/authSlice';
-import { useAlert } from './AlertContext';
 import { login, signin } from '../../services/authService';
+import { useToast } from './ToastContext';
 //interface for the context
 interface AuthContextType {
   isLoading: boolean;
@@ -19,7 +19,7 @@ const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { toggleAlert } = useAlert();
+  const { addToast } = useToast();
 
   const dispatch = useAppDispatch();
 
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const payload = await signin({ username, email, password });
       dispatch(signupSuccess({ token: payload.token, userid: payload.userid }));
     } catch (error) {
-      toggleAlert(`Error al registrar usuario: ${error}`, 'error');
+      addToast(`Error al registrar usuario: ${error}`, 'error');
     } finally {
       setIsLoading(false);
     }
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const payload = await login({ email, password });
       dispatch(loginSuccess({ token: payload.token, userid: payload.userid }));
     } catch (error) {
-      toggleAlert(`Error al iniciar sesión: ${error}`, 'error');
+      addToast(`Error al iniciar sesión: ${error}`, 'error');
     } finally {
       //run even though is success or error
       setIsLoading(false);

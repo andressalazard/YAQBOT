@@ -1,0 +1,52 @@
+.toast {
+  width: 450px;
+  height: 90px;
+  padding: 12px 16px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  gap: 1rem;
+  text-align: start;
+  align-items: center;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.toast h2 {
+  font-weight: bold;
+  font-size: 1.125rem;
+}
+
+.toast_info {
+  background-color: #007bff;
+}
+
+.toast_success {
+  background-color: #28a745;
+}
+
+.toast_error {
+  background-color: #dc3545;
+}
+.toast_warning {
+  background-color: #d6b23a;
+}
+
+.icon {
+  font-size: 2rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  padding: 0.5rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

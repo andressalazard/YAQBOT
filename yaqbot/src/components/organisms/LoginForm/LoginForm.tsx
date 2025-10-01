@@ -1,30 +1,30 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { useAlert } from '../../context/AlertContext';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../../hooks/hook';
 import Button from '../../atoms/Button';
 import Card from '../../atoms/Card';
 import FormInput from '../../molecules/FormInput';
 import styles from './Form.module.css';
+import { useToast } from '../../context/ToastContext';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { loginApp } = useAuth();
-  const { toggleAlert } = useAlert();
+  const { addToast } = useToast();
   const navigate = useNavigate();
   const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
 
   const handleLogin = (email: string, password: string) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (email === '' || password === '') {
-      toggleAlert('Los campos no pueden estar vacíos', 'warning');
+      addToast('Los campos no pueden estar vacíos', 'warning');
       return;
     }
 
     if (!emailRegex.test(email)) {
-      toggleAlert('Por favor, ingrese un correo electrónico válido', 'warning');
+      addToast('Por favor, ingrese un correo electrónico válido', 'warning');
       return;
     }
 

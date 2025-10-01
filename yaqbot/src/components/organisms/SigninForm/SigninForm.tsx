@@ -4,11 +4,11 @@ import styles from './SigninForm.module.css';
 import FormInput from '../../molecules/FormInput';
 import NavigationButton from '../../molecules/NavigationButton';
 import Image from '../../atoms/Image';
-import { useAlert } from '../../context/AlertContext';
 import { useAuth } from '../../context/AuthContext';
 import { useAppSelector } from '../../../hooks/hook';
 import { useNavigate } from 'react-router-dom';
 import { useProfile } from '../../context/ProfileContext';
+import { useToast } from '../../context/ToastContext';
 
 interface formDataProps {
   username: string;
@@ -25,7 +25,7 @@ const SigninForm = () => {
     confirmedPassword: '',
   });
 
-  const { toggleAlert } = useAlert();
+  const { addToast } = useToast();
   const { signinApp } = useAuth();
   const { createUserProfile } = useProfile();
   const navigate = useNavigate();
@@ -40,22 +40,22 @@ const SigninForm = () => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (formData.username === '' || formData.email === '' || formData.password === '' || formData.confirmedPassword === '') {
-      toggleAlert('Los campos no pueden estar vacíos', 'warning');
+      addToast('Los campos no pueden estar vacíos', 'warning');
       return;
     }
 
     if (emailRegex.test(formData.email) === false) {
-      toggleAlert('Por favor, ingrese un correo electrónico válido', 'warning');
+      addToast('Por favor, ingrese un correo electrónico válido', 'warning');
       return;
     }
 
     if (passwordRegex.test(formData.password) === false) {
-      toggleAlert('La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial', 'warning');
+      addToast('La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial', 'warning');
       return;
     }
 
     if (formData.password !== formData.confirmedPassword) {
-      toggleAlert('Las contraseñas no coinciden', 'warning');
+      addToast('Las contraseñas no coinciden', 'warning');
       return;
     }
 
