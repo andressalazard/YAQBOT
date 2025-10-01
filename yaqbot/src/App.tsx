@@ -10,6 +10,7 @@ import { SettingsProvider } from './components/context/SettingsContext';
 import ProtectedRoute from './routes/ProtectedRoute';
 import ProfilePage from './components/pages/ProfilePage';
 import { ToastProvider } from './components/context/ToastContext';
+import NotFoundPage from './components/pages/NotFoundPage';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
 
             <Route path='/login' element={<LoginPage />} />
             <Route path='/signin' element={<SigninPage />} />
+            <Route path='*' element={<NotFoundPage />} />
           </Routes>
         </SettingsProvider>
       </AuthProvider>
