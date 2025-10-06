@@ -11,6 +11,7 @@ import ProtectedRoute from './routes/ProtectedRoute';
 import ProfilePage from './components/pages/ProfilePage';
 import { ToastProvider } from './components/context/ToastContext';
 import NotFoundPage from './components/pages/NotFoundPage';
+import MarketPlacePage from './components/pages/MarketPlacePage';
 
 function App() {
   return (
@@ -32,6 +33,15 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path='/marketplace'
+              element={
+                <ProtectedRoute>
+                  <MarketPlacePage />
                 </ProtectedRoute>
               }
             />
