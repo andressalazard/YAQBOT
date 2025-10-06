@@ -4,7 +4,6 @@ import Footer from '../../organisms/Footer/Footer';
 import Header from '../../organisms/Header/Header';
 import styles from './HomeTemplate.module.css';
 import { useProfile } from '../../context/ProfileContext';
-import Toast from '../../atoms/Toast/Toast';
 
 const HomeTemplate = () => {
   const { getUserData } = useProfile();
