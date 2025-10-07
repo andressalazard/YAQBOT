@@ -17,3 +17,33 @@
   bottom: 70px;
   right: 10px;
 }
+
+/*ir a inicio de sesion*/
+.already_account {
+  color: #0f0f0f;
+}
+
+/*button*/
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.5rem 0;
+}
+
+.submit_button {
+  background-color: RGBA(81, 152, 26, 0.8);
+  font-weight: bold;
+  width: 50%;
+  font-size: 1.125rem;
+  box-shadow: 0px 5px 5px rgba(2, 44, 42, 0.1);
+}
+
+.number_circle_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}

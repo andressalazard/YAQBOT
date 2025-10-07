@@ -1,0 +1,14 @@
+.circle {
+  border-radius: 50%;
+  background-color: #4a90e2;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.selected {
+  background-color: #235586;
+  border: 2px solid #ffffff;
+}
