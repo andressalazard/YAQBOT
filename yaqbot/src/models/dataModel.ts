@@ -77,6 +77,20 @@ export interface UpdatedProfile {
   socialLinks?: SocialLink[];
 }
 
+/***************************************************
+ * Products
+ ***************************************************/
+export type ProductCategory = 'PLANT' | 'FERTILIZER' | 'FLOWERPOT' | 'TOOL' | 'OTHER';
+export interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+  category: ProductCategory;
+  image: string[];
+}
+
 /****************************************************
  * Payloads
  ***************************************************/

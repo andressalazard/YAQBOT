@@ -6,11 +6,11 @@ import Icon from '../../atoms/Icon';
 
 interface ProductPreviewProps {
   information: {
-    tag: string;
-    title: string;
+    category: string;
+    name: string;
     price: number;
-    rate: number;
-    image: { src: string; alt?: string };
+    rate?: number;
+    image: string[];
   };
 }
 
@@ -18,12 +18,12 @@ const ProductPreview: React.FC<ProductPreviewProps> = ({ information }) => {
   return (
     <div className={styles.product_preview}>
       <section className={styles.product_pic}>
-        <Image className={styles.pic} src={information.image.src} alt={information.image.alt || ''} />
-        <span className={styles.product_tag}>{information.tag}</span>
+        <Image className={styles.pic} src={information.image[0]} alt={'product image'} />
+        <span className={styles.product_tag}>{information.category}</span>
       </section>
 
       <section className={styles.product_description}>
-        <h1 className={styles.title}>{information.title}</h1>
+        <h1 className={styles.title}>{information.name}</h1>
         <div className={styles.details}>
           <div className={styles.product_rate}>
             <Icon className={`material-icons ${styles.star}`} feature='star' />

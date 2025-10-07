@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './MarketPlaceTemplate.module.css';
 import SearchBar from '../../molecules/SearchBar/SearchBar';
 import ProductPreview from '../../organisms/ProductPreview/ProductPreview';
+import { useProduct } from '../../context/ProductContext';
 
 const ProductMocks = [
   {
@@ -24,9 +25,25 @@ const ProductMocks = [
       alt: 'flowerpot',
     },
   },
+  {
+    title: 'Phalaenopsis Orchid Flower',
+    tag: 'plants',
+    price: 14.0,
+    rate: 4.3,
+    image: {
+      src: 'https://i.pinimg.com/1200x/73/18/61/73186114b6454ea460a6b64764d23bfa.jpg',
+      alt: 'flowerpot',
+    },
+  },
 ];
 
 const MarketPlaceTemplate: React.FC = () => {
+  const { productsCatalog, getCatalog } = useProduct();
+
+  useEffect(() => {
+    getCatalog();
+  }, []);
+
   return (
     <div className={styles.marketplace}>
       <SearchBar
@@ -35,7 +52,7 @@ const MarketPlaceTemplate: React.FC = () => {
         }}
       />
       <section className={styles.dashboard}>
-        {ProductMocks.map((product, index) => (
+        {productsCatalog.map((product, index) => (
           <ProductPreview information={product} key={index} />
         ))}
       </section>
