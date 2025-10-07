@@ -1,0 +1,9 @@
+.dashboard {
+  --grid-max-col-count: 3;
+  --grid-min-col-size: 180px;
+  --grid-gap: 1rem;
+
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: repeat(auto-fit, minmax(calc(100% / 4), 1fr));
+}
