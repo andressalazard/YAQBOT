@@ -3,6 +3,7 @@ import styles from './SearchBar.module.css';
 import Icon from '../../atoms/Icon';
 import Input from '../../atoms/Input';
 import Button from '../../atoms/Button';
+import { useProduct } from '../../context/ProductContext';
 
 interface SearchBarProps {
   submitSearch: () => void;
@@ -10,9 +11,14 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ submitSearch }) => {
   const [target, setTarget] = useState<string | undefined>(undefined);
+  const { setSearchTerm, filterProducts } = useProduct();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTarget(e.target.value);
+    if (target != undefined) {
+      setSearchTerm(target);
+      filterProducts();
+    }
   };
 
   return (

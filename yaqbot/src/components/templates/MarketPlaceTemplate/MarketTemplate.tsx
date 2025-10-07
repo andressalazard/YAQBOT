@@ -4,41 +4,8 @@ import SearchBar from '../../molecules/SearchBar/SearchBar';
 import ProductPreview from '../../organisms/ProductPreview/ProductPreview';
 import { useProduct } from '../../context/ProductContext';
 
-const ProductMocks = [
-  {
-    title: 'Satori Cactus',
-    tag: 'plant',
-    price: 29.9,
-    rate: 5.0,
-    image: {
-      src: 'https://i.pinimg.com/1200x/f4/3f/71/f43f71bfa4458c651356fd9f449231ce.jpg',
-      alt: 'cactus',
-    },
-  },
-  {
-    title: 'Black FlowerPot',
-    tag: 'accesories',
-    price: 12.0,
-    rate: 5.0,
-    image: {
-      src: 'https://i.pinimg.com/1200x/aa/79/67/aa79671f79c9efd87c080bf16fe46ce5.jpg',
-      alt: 'flowerpot',
-    },
-  },
-  {
-    title: 'Phalaenopsis Orchid Flower',
-    tag: 'plants',
-    price: 14.0,
-    rate: 4.3,
-    image: {
-      src: 'https://i.pinimg.com/1200x/73/18/61/73186114b6454ea460a6b64764d23bfa.jpg',
-      alt: 'flowerpot',
-    },
-  },
-];
-
 const MarketPlaceTemplate: React.FC = () => {
-  const { productsCatalog, getCatalog } = useProduct();
+  const { productsCatalog, getCatalog, filteredProducts } = useProduct();
 
   useEffect(() => {
     getCatalog();
@@ -52,9 +19,13 @@ const MarketPlaceTemplate: React.FC = () => {
         }}
       />
       <section className={styles.dashboard}>
-        {productsCatalog.map((product, index) => (
+        {filteredProducts.map((product, index) => (
           <ProductPreview information={product} key={index} />
         ))}
+
+        {/* {productsCatalog.map((product, index) => (
+          <ProductPreview information={product} key={index} />
+        ))} */}
       </section>
     </div>
   );
