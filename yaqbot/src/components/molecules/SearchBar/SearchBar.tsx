@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './SearchBar.module.css';
 import Icon from '../../atoms/Icon';
 import Input from '../../atoms/Input';
@@ -7,18 +7,14 @@ import { useProduct } from '../../context/ProductContext';
 
 interface SearchBarProps {
   submitSearch: () => void;
+  searchTerm: string;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ submitSearch }) => {
-  const [target, setTarget] = useState<string | undefined>(undefined);
-  const { setSearchTerm, filterProducts } = useProduct();
+const SearchBar: React.FC<SearchBarProps> = ({ submitSearch, searchTerm }) => {
+  const { setSearchTerm } = useProduct();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTarget(e.target.value);
-    if (target != undefined) {
-      setSearchTerm(target);
-      filterProducts();
-    }
+    setSearchTerm(e.target.value);
   };
 
   return (
@@ -28,7 +24,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ submitSearch }) => {
         className={styles.search_input}
         inputType='text'
         id='searchbar'
-        value={target}
+        value={searchTerm}
         onChange={handleChange}
         placeholder='Start searching the products you like'
       />

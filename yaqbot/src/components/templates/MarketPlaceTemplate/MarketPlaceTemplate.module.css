@@ -1,5 +1,4 @@
 .dashboard {
-  border: 1px solid red;
   padding: 2rem;
   --grid-max-col-count: 3;
   --grid-min-col-size: 180px;
