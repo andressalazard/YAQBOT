@@ -5,12 +5,13 @@ import styles from './Pagination.module.css';
 interface PaginationProps {
   itemsPerPage: number;
   totalItems: number;
+  totalPages: number;
   currentPage: number;
   onPageChange: (page: number) => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, totalItems, currentPage, onPageChange }) => {
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, totalItems, totalPages, currentPage, onPageChange }) => {
+  // const totalPages = Math.ceil(totalItems / itemsPerPage);
   const numbers = [...Array(totalPages + 1).keys()].slice(1);
 
   const handlePreviousPage = () => {
@@ -38,7 +39,6 @@ const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, totalItems, curre
         }}
       >
         <Icon className={`material-icons ${styles.icons}`} feature='arrow_back' />
-        {/* <span>Prev. Page</span> */}
       </Button>
       <ul className={styles.pages}>
         {numbers.map((number, index) => (
@@ -59,7 +59,6 @@ const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, totalItems, curre
           handleNextPage();
         }}
       >
-        {/* <span>Next Page</span> */}
         <Icon className={`material-icons ${styles.icons}`} feature='arrow_forward' />
       </Button>
     </div>

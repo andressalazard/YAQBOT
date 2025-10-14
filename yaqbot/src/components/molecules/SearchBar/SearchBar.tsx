@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './SearchBar.module.css';
 import Icon from '../../atoms/Icon';
 import Input from '../../atoms/Input';
@@ -8,10 +8,17 @@ import { useProduct } from '../../context/ProductContext';
 interface SearchBarProps {
   submitSearch: () => void;
   searchTerm: string;
+  changePage?: (page: number) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ submitSearch, searchTerm }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ submitSearch, searchTerm, changePage }) => {
   const { setSearchTerm } = useProduct();
+
+  useEffect(() => {
+    if (changePage) {
+      changePage(1);
+    }
+  }, [searchTerm]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
