@@ -50,6 +50,7 @@
   padding: 3rem;
   padding-top: 0.75rem;
   color: #000;
+  min-width: 400px;
 }
 
 .body h1 {
@@ -73,19 +74,6 @@
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-}
-
-.rows__label {
-  display: flex;
-  justify-content: space-between;
-  margin: -1rem 0;
-}
-
-.error {
-  color: red;
-}
-.success {
-  color: green;
 }
 
 /*FOOTER*/
@@ -136,4 +124,12 @@
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   color: #000;
+}
+
+.form_textarea {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px solid #ccc;
 }

@@ -9,36 +9,27 @@ import { useAppSelector } from "../../../hooks/hook";
 import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../context/ProfileContext";
 import { useToast } from "../../context/ToastContext";
-
-interface formDataProps {
-  username: string;
-  email: string;
-  password: string;
-  confirmedPassword: string;
-}
+import { formDataProps } from "../Signin/Signin";
+import {
+  getUserByEmail,
+  getUserByUsername,
+} from "../../../services/userService";
 
 interface SigninFormProps {
   formData: formDataProps;
   handleFormChange: (field: string, value: string) => void;
+  handleNextStep: (num: number) => void;
 }
 
-const SigninForm = ({ formData, handleFormChange }: SigninFormProps) => {
-  /*
-  const [formData, setFormData] = useState<formDataProps>({
-    username: "",
-    email: "",
-    password: "",
-    confirmedPassword: "",
-  });
-  */
-
+const SigninForm = ({
+  formData,
+  handleFormChange,
+  handleNextStep,
+}: SigninFormProps) => {
   const { addToast } = useToast();
-  const { signinApp } = useAuth();
 
-  /*const handleFormChange = (field: string, value: string) => {
-    setFormData((prevState) => ({ ...prevState, [field]: value }));
-  };
-  */
+  const [labelEmail, setLabelEmail] = useState(false);
+  const [labelUsername, setLabelUsername] = useState(false);
 
   const handleSumbit = () => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -71,8 +62,14 @@ const SigninForm = ({ formData, handleFormChange }: SigninFormProps) => {
       addToast("Las contraseñas no coinciden", "warning");
       return;
     }
+    if (labelEmail || labelUsername) {
+      addToast("Email o Username en uso", "warning");
+      return;
+    }
 
-    signinApp(formData.username, formData.email, formData.password);
+    handleNextStep(1);
+
+    //signinApp(formData.username, formData.email, formData.password);
   };
 
   return (
@@ -89,9 +86,29 @@ const SigninForm = ({ formData, handleFormChange }: SigninFormProps) => {
               id: "usernameInput",
               placeholder: "JohnnyDoe",
               value: formData.username,
-              onChange: (e) => handleFormChange("username", e.target.value),
+              onChange: (e) => {
+                handleFormChange("username", e.target.value);
+                getUserByUsername(e.target.value.trim())
+                  .then(() => {
+                    // fulfilled: el username existe
+                    setLabelUsername(true);
+                  })
+                  .catch(() => {
+                    // rejected: el username se puede usar
+                    setLabelUsername(false);
+                  });
+              },
             }}
           />
+        </div>
+        <div className={styles.rows__label}>
+          {formData.username !== "" && (
+            <p className={`${labelUsername ? styles.error : styles.success}`}>
+              {labelUsername
+                ? "Nombre de usuario ya en uso"
+                : "Nombre de usuario disponible"}
+            </p>
+          )}
         </div>
 
         <div className={styles.rows}>
@@ -104,9 +121,27 @@ const SigninForm = ({ formData, handleFormChange }: SigninFormProps) => {
               id: "emailInput",
               placeholder: "johndoe123@email.com",
               value: formData.email,
-              onChange: (e) => handleFormChange("email", e.target.value),
+              onChange: (e) => {
+                handleFormChange("email", e.target.value);
+                getUserByEmail(e.target.value)
+                  .then(() => {
+                    // fulfilled: el email existe
+                    setLabelEmail(true);
+                  })
+                  .catch(() => {
+                    // rejected: el email se puede usar
+                    setLabelEmail(false);
+                  });
+              },
             }}
           />
+        </div>
+        <div className={styles.rows__label}>
+          {formData.email !== "" && (
+            <p className={`${labelEmail ? styles.error : styles.success}`}>
+              {labelEmail ? "Correo ya en uso" : "Correo disponible"}
+            </p>
+          )}
         </div>
 
         <div className={styles.rows}>
@@ -135,6 +170,15 @@ const SigninForm = ({ formData, handleFormChange }: SigninFormProps) => {
             }}
           />
         </div>
+      </section>
+      <section className={styles.footer}>
+        <Button
+          className={`${styles.button} ${styles.submit_button}`}
+          label={`Siguiente`}
+          onClick={() => {
+            handleSumbit();
+          }}
+        />
       </section>
     </form>
   );

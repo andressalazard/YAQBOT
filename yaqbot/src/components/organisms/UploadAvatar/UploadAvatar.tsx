@@ -1,10 +1,14 @@
 import React, { useState } from "react";
+import style from "./UploadAvatar.module.css";
+import Button from "../../atoms/Button";
+import styles from "./UploadAvatar.module.css";
 
 interface UploadAvatarProps {
   file: File | null;
   urlImage: string;
   setFile: (file: File | null) => void;
   setUrlImage: (url: string) => void;
+  handleNextStep: (num: number) => void;
 }
 
 const UploadAvatar = ({
@@ -12,34 +16,21 @@ const UploadAvatar = ({
   urlImage,
   setFile,
   setUrlImage,
+  handleNextStep,
 }: UploadAvatarProps) => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>(urlImage);
-  const [loading, setLoading] = useState(false);
 
   // Muestra preview local antes de subir
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const newFile = e.target.files[0];
-      setSelectedFile(newFile);
+      setFile(newFile);
       setPreview(URL.createObjectURL(newFile));
     }
   };
 
-  // Simula subida al backend y actualiza urlImage
-  const handleUpload = async () => {
-    if (!selectedFile) return;
-    setLoading(true);
-    // Aquí iría tu lógica real de subida (fetch/axios)
-    // Simulación: espera 1 segundo y usa el preview
-    setTimeout(() => {
-      setUrlImage(preview);
-      setLoading(false);
-    }, 1000);
-  };
-
   return (
-    <div>
+    <div className={style.container}>
       <div style={{ marginBottom: "1rem" }}>
         {preview && (
           <img
@@ -55,21 +46,15 @@ const UploadAvatar = ({
         )}
       </div>
       <input type="file" accept="image/*" onChange={handleFileChange} />
-      <button
-        type="button"
-        onClick={handleUpload}
-        disabled={!selectedFile || loading}
-        style={{ marginLeft: "1rem" }}
-      >
-        {loading ? "Subiendo..." : "Subir Imagen"}
-      </button>
-      {/* Muestra el url final */}
-      {urlImage && (
-        <div style={{ marginTop: "1rem" }}>
-          <span>URL de imagen subida:</span>
-          <div style={{ wordBreak: "break-all" }}>{urlImage}</div>
-        </div>
-      )}
+      <section className={styles.footer}>
+        <Button
+          className={`${styles.button}`}
+          label={`Finalizar`}
+          onClick={() => {
+            handleNextStep(3);
+          }}
+        />
+      </section>
     </div>
   );
 };

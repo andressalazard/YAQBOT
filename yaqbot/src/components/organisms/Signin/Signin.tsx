@@ -1,5 +1,5 @@
-import { useState } from "react";
-import Button from "../../atoms/Button";
+import { useEffect, useState } from "react";
+
 import Card from "../../atoms/Card";
 import NavigationButton from "../../molecules/NavigationButton";
 import SigninForm from "../../organisms/SigninForm/SigninForm";
@@ -7,31 +7,18 @@ import CreateProfile from "../CreateProfile/CreateProfile";
 import styles from "./Signin.module.css";
 import { OptionsMenuSignIn } from "../../molecules/OptionsMenu";
 import UploadAvatar from "../UploadAvatar/UploadAvatar";
+import Spinner from "../../atoms/Spinner/Spinner";
+import { signin } from "../../../services/authService";
+import { createProfile } from "../../../services/profileService";
 
-// Definir los tipos con opciones específicas
-type NivelJardineria =
-  | "PRINCIPIANTE"
-  | "INTERMEDIO"
-  | "AVANZADO"
-  | "EXPERTO"
-  | "";
-type Genero = "MASCULINO" | "FEMENINO" | "OTRO" | "PREFIERO_NO_DECIR" | "";
-
-// Opciones para los selects
-const NIVELES_JARDINERIA: { label: string; value: NivelJardineria }[] = [
-  { label: "Seleccionar nivel", value: "" },
-  { label: "Principiante", value: "PRINCIPIANTE" },
-  { label: "Intermedio", value: "INTERMEDIO" },
-  { label: "Avanzado", value: "AVANZADO" },
-  { label: "Experto", value: "EXPERTO" },
-];
+type Genero = "MALE" | "FEMALE" | "OTHER";
 
 const OPCIONES_GENERO: { label: string; value: Genero }[] = [
-  { label: "Seleccionar género", value: "" },
-  { label: "Masculino", value: "MASCULINO" },
-  { label: "Femenino", value: "FEMENINO" },
-  { label: "Otro", value: "OTRO" },
-  { label: "Prefiero no decir", value: "PREFIERO_NO_DECIR" },
+  { label: "Seleccionar género", value: "OTHER" },
+  { label: "Masculino", value: "MALE" },
+  { label: "Femenino", value: "FEMALE" },
+  { label: "Otro", value: "OTHER" },
+  { label: "Prefiero no decir", value: "OTHER" },
 ];
 export interface DatosFormulario {
   name: string;
@@ -40,15 +27,15 @@ export interface DatosFormulario {
   direccion: string;
   fechaNacimiento: string;
   genero: Genero;
-  nivelJardineria: NivelJardineria;
   biografia: string;
 }
 
-interface formDataProps {
+export interface formDataProps {
   username: string;
   email: string;
   password: string;
   confirmedPassword: string;
+  stateForm: "WAITING" | "SUCCESS" | "ERROR" | "PROCESSING";
 }
 
 const SigninOrganism = () => {
@@ -70,6 +57,7 @@ const SigninOrganism = () => {
     email: "",
     password: "",
     confirmedPassword: "",
+    stateForm: "WAITING",
   });
 
   const [urlImage, setUrlImage] = useState<string>(
@@ -89,6 +77,44 @@ const SigninOrganism = () => {
     setFormData((prevState) => ({ ...prevState, [field]: value }));
   };
 
+  async function createNewUser() {
+    try {
+      const payload = await signin({
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+      });
+      console.log("Usuario creado con éxito:", payload);
+      if (!payload.userid) {
+        throw new Error("No se recibió un userid válido");
+      }
+
+      const payloadProfile = await createProfile(payload.userid, {
+        fullname: datos.name,
+        phone: datos.telephone,
+        region: datos.region,
+        address: datos.direccion,
+        birthday: datos.fechaNacimiento,
+        gender: datos.genero || "OTHER",
+        avatar: urlImage,
+        bio: datos.biografia,
+      });
+      console.log("Perfil creado con éxito:", payloadProfile);
+      setSelectedOption(4);
+    } catch (error) {
+      console.error("Error creando usuario:", error);
+    } finally {
+      setSelectedOption(4);
+    }
+  }
+
+  useEffect(() => {
+    console.log("DATOS:", datos, formData);
+    if (selectedOption === 3) {
+      createNewUser();
+    }
+  }, [selectedOption]);
+
   return (
     <div className={styles.body}>
       <Card className={styles.card}>
@@ -99,30 +125,45 @@ const SigninOrganism = () => {
         />
 
         {selectedOption === 0 && (
-          <SigninForm formData={formData} handleFormChange={handleFormChange} />
+          <SigninForm
+            formData={formData}
+            handleFormChange={handleFormChange}
+            handleNextStep={setSelectedOption}
+          />
         )}
         {selectedOption === 1 && (
           <CreateProfile
             datos={datos}
             onChange={handleFieldChange}
             OPCIONES_GENERO={OPCIONES_GENERO}
-            NIVELES_JARDINERIA={NIVELES_JARDINERIA}
+            handleNextStep={setSelectedOption}
           />
         )}
         {selectedOption === 2 && (
-          <UploadAvatar urlImage={urlImage} setUrlImage={setUrlImage} />
+          <UploadAvatar
+            urlImage={urlImage}
+            setUrlImage={setUrlImage}
+            file={file}
+            setFile={setFile}
+            handleNextStep={setSelectedOption}
+          />
+        )}
+        {selectedOption === 3 && (
+          <Spinner size={"large"} className={styles.spinner} />
+        )}
+        {selectedOption === 4 && (
+          <div className={styles.success_message}>
+            <h2 className={styles.already_account}>
+              ¡Registro completado con éxito!
+            </h2>
+            <p className={styles.already_account}>
+              Ya puedes iniciar sesión con tu nueva cuenta.
+            </p>
+          </div>
         )}
 
-        <section className={styles.footer}>
-          <Button
-            className={`${styles.button} ${styles.submit_button}`}
-            label="Finalizar"
-            onClick={() => console.log("Finalizar Registro")}
-          />
-        </section>
-
         <div className={styles.already_account}>
-          <h2>¿Ya tienes una cuenta registrada?</h2>
+          {selectedOption !== 4 && <h2>¿Ya tienes una cuenta registrada?</h2>}
           <NavigationButton
             buttonProps={{
               className: `${styles.button} ${styles.submit_button}`,
