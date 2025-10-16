@@ -6,12 +6,11 @@ import Button from '../../atoms/Button';
 import { useProduct } from '../../context/ProductContext';
 
 interface SearchBarProps {
-  submitSearch: () => void;
   searchTerm: string;
   changePage?: (page: number) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ submitSearch, searchTerm, changePage }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, changePage }) => {
   const { setSearchTerm } = useProduct();
 
   useEffect(() => {
@@ -22,6 +21,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ submitSearch, searchTerm, changeP
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
+  };
+
+  const clearSearch = () => {
+    setSearchTerm('');
   };
 
   return (
@@ -35,7 +38,17 @@ const SearchBar: React.FC<SearchBarProps> = ({ submitSearch, searchTerm, changeP
         onChange={handleChange}
         placeholder='Start searching the products you like'
       />
-      <Button className={styles.search_button} label='Search' onClick={submitSearch} />
+
+      {searchTerm.length > 0 && (
+        <Button
+          className={styles.search_button}
+          onClick={() => {
+            clearSearch();
+          }}
+        >
+          <Icon className={`material-icons ${styles.icons}`} feature='close' />
+        </Button>
+      )}
     </div>
   );
 };
