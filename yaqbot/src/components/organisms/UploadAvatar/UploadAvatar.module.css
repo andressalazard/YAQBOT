@@ -1,0 +1,19 @@
+.container {
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  background-color: RGBA(81, 152, 26, 0.8);
+  font-weight: bold;
+
+  font-size: 1.125rem;
+  box-shadow: 0px 5px 5px rgba(2, 44, 42, 0.1);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #fff;
+  margin: 1rem auto;
+}
