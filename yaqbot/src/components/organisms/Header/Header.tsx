@@ -1,18 +1,54 @@
 import styles from '../Header/Header.module.css';
 import NavMenu from '../../molecules/NavMenu';
 import Logo from '../../atoms/Logo';
-import UserIconProfile from '../../atoms/UserIconProfile';
-import ProfileMenu from '../../molecules/ProfileMenu/ProfileMenu';
+import ProfileMenu from '../../molecules/ProfileMenu';
 import { useSettings } from '../../context/SettingsContext';
+import ProfilePhoto from '../../atoms/ProfilePhoto';
 
-const Header = () => {
+interface HeaderProps {
+  userAvatar: string;
+  navMenu: {
+    label: string;
+    href: string;
+  }[];
+
+  profileMenuHeader: {
+    username: string;
+    email: string;
+    photo: string;
+  };
+
+  profileMenuOptions: {
+    title: string;
+    icon: string;
+    navigateTo?: string;
+    type: 'logout' | 'settings';
+  }[];
+}
+
+const Header: React.FC<HeaderProps> = ({ userAvatar, navMenu, profileMenuHeader, profileMenuOptions }) => {
   const { menuStatus, toggleMenuStatus } = useSettings();
   return (
     <header className={styles.header}>
       <Logo className={styles.logo} />
-      <NavMenu navLinks={[{ label: 'Tienda', href: '/store' }]} className={styles.nav_menu} />
-      <UserIconProfile className={styles.user_logo} handleClick={toggleMenuStatus} />
-      <>{menuStatus === 'on' ? <ProfileMenu /> : <></>}</>
+      <NavMenu navLinks={navMenu} className={styles.nav_menu} />
+      <ProfilePhoto src={userAvatar} className={styles.profile_pic} handleClick={toggleMenuStatus} />
+      <>
+        {menuStatus === 'on' ? (
+          <ProfileMenu
+            menuHeader={{
+              className: styles.profile_menu,
+              username: profileMenuHeader.username,
+              email: profileMenuHeader.email,
+              photo: profileMenuHeader.photo,
+            }}
+            menuOptions={profileMenuOptions}
+            optionsClassName={styles.profile_menu_option}
+          />
+        ) : (
+          <></>
+        )}
+      </>
     </header>
   );
 };

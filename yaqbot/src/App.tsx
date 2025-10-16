@@ -6,14 +6,18 @@ import LoginPage from './components/pages/LoginPage';
 import SigninPage from './components/pages/SigninPage';
 import { AuthProvider } from './components/context/AuthContext';
 import { SettingsProvider } from './components/context/SettingsContext';
-import { AlertProvider } from './components/context/AlertContext';
+
 import ProtectedRoute from './routes/ProtectedRoute';
 import ProfilePage from './components/pages/ProfilePage';
+import { ToastProvider } from './components/context/ToastContext';
+import NotFoundPage from './components/pages/NotFoundPage';
+import MarketPlacePage from './components/pages/MarketPlacePage';
+import { ProductProvider } from './components/context/ProductContext';
 
 function App() {
   return (
-    <AuthProvider>
-      <AlertProvider>
+    <ToastProvider>
+      <AuthProvider>
         <SettingsProvider>
           <Routes>
             <Route
@@ -33,13 +37,24 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path='/marketplace'
+              element={
+                <ProtectedRoute>
+                  <ProductProvider>
+                    <MarketPlacePage />
+                  </ProductProvider>
+                </ProtectedRoute>
+              }
+            />
 
             <Route path='/login' element={<LoginPage />} />
             <Route path='/signin' element={<SigninPage />} />
+            <Route path='*' element={<NotFoundPage />} />
           </Routes>
         </SettingsProvider>
-      </AlertProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </ToastProvider>
   );
 }
 

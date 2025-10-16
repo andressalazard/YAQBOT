@@ -1,7 +1,8 @@
-import Signin from '../organisms/Signin/Signin';
+import { ProfileProvider } from '../context/ProfileContext';
+import SigninTemplate from '../templates/SigninTemplate/SigninTemplate';
 
 const SigninPage = () => {
-  return <Signin />;
+  return <ProfileProvider>{<SigninTemplate />}</ProfileProvider>;
 };
 
 export default SigninPage;

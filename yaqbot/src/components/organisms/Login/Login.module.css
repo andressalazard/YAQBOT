@@ -12,27 +12,7 @@
 }
 
 .toast {
-  width: 35vw;
   position: absolute;
   bottom: 70px;
   right: 10px;
-  border-radius: 0.5rem;
-  background-color: rgba(24, 46, 28, 0.8);
-  color: beige;
-
-  padding: 2rem 1rem;
-
-  display: flex;
-  gap: 1rem;
-  text-align: start;
-  align-items: center;
-}
-
-.toast h2 {
-  font-weight: bold;
-  font-size: 1rem;
-}
-
-.toast li {
-  margin: 0 auto;
 }

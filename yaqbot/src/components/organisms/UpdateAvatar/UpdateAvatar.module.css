@@ -1,0 +1,98 @@
+.card {
+  background-color: rgba(61, 85, 12, 0.5);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 0.45rem;
+  width: 50%;
+  position: relative;
+}
+
+.card header {
+  padding: 1rem;
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: #2d2d2d;
+}
+
+.image {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.card section {
+  border-top: 2px solid rgba(256, 256, 256, 0.1);
+  padding: 0.2rem 2rem;
+  display: flex;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  gap: 2rem;
+  border-radius: 50px;
+  align-items: center;
+}
+
+.button {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  cursor: pointer;
+  gap: 0.25rem;
+}
+
+.btn_input {
+  position: relative;
+}
+
+.button:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+  /* border: 1px solid #dbdbdb; */
+}
+
+.icons {
+  font-size: 2rem;
+}
+
+.btn_label {
+  font-size: 0.75rem;
+  font-weight: bold;
+  width: 50px;
+  line-height: 0.8rem;
+}
+
+.icon_close {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  background-color: rgba(0, 0, 0, 0.1);
+  font-size: 2rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.icon_close:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.input {
+  position: absolute;
+  width: 100%;
+  border-radius: 0.5rem;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+
+.blocked_btn {
+  opacity: 0.2;
+}
+
+.blocked_btn:hover {
+  cursor: not-allowed;
+  background-color: transparent;
+  border: none;
+}

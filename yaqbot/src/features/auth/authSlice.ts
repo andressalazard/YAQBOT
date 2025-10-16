@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User, AuthState, ValidPayload } from './types';
+import { AuthState, ValidPayload } from '../../models/dataModel';
 
 const tokenFromStorage = localStorage.getItem('token');
 
 const initialState: AuthState = {
   token: tokenFromStorage,
+  userid: null,
   isAuthenticated: !!tokenFromStorage,
   loading: false,
-  user: null,
 };
 
 const authSlice = createSlice({
@@ -16,28 +16,25 @@ const authSlice = createSlice({
   reducers: {
     loginSuccess: (state, action: PayloadAction<ValidPayload>) => {
       state.token = action.payload.token;
-      state.user = action.payload.user;
+      state.userid = action.payload.userid;
       state.isAuthenticated = true;
       localStorage.setItem('token', action.payload.token);
     },
     signupSuccess: (state, action: PayloadAction<ValidPayload>) => {
       state.token = action.payload.token;
-      state.user = action.payload.user;
+      state.userid = action.payload.userid;
       state.isAuthenticated = true;
       localStorage.setItem('token', action.payload.token);
     },
 
     logout: (state) => {
       state.token = null;
+      state.userid = null;
       state.isAuthenticated = false;
-      state.user = null;
       localStorage.removeItem('token');
-    },
-    setUser: (state, action: PayloadAction<User>) => {
-      state.user = action.payload;
     },
   },
 });
 
-export const { loginSuccess, signupSuccess, logout, setUser } = authSlice.actions;
+export const { loginSuccess, signupSuccess, logout } = authSlice.actions;
 export default authSlice.reducer;

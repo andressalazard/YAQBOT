@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import Button from '../../atoms/Button';
 import styles from './SigninForm.module.css';
-import FormInput from '../../molecules/FormInput/FormInput';
+import FormInput from '../../molecules/FormInput';
 import NavigationButton from '../../molecules/NavigationButton';
 import Image from '../../atoms/Image';
-import { useAlert } from '../../context/AlertContext';
 import { useAuth } from '../../context/AuthContext';
 import { useAppSelector } from '../../../hooks/hook';
 import { useNavigate } from 'react-router-dom';
+import { useProfile } from '../../context/ProfileContext';
+import { useToast } from '../../context/ToastContext';
 
 interface formDataProps {
   username: string;
@@ -24,8 +25,9 @@ const SigninForm = () => {
     confirmedPassword: '',
   });
 
-  const { toggleAlert } = useAlert();
-  const { signup } = useAuth();
+  const { addToast } = useToast();
+  const { signinApp } = useAuth();
+  const { createUserProfile } = useProfile();
   const navigate = useNavigate();
 
   const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
@@ -38,31 +40,34 @@ const SigninForm = () => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (formData.username === '' || formData.email === '' || formData.password === '' || formData.confirmedPassword === '') {
-      toggleAlert('Los campos no pueden estar vacíos', 'warning');
+      addToast('Los campos no pueden estar vacíos', 'warning');
       return;
     }
 
     if (emailRegex.test(formData.email) === false) {
-      toggleAlert('Por favor, ingrese un correo electrónico válido', 'warning');
+      addToast('Por favor, ingrese un correo electrónico válido', 'warning');
       return;
     }
 
     if (passwordRegex.test(formData.password) === false) {
-      toggleAlert('La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial', 'warning');
+      addToast('La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial', 'warning');
       return;
     }
 
     if (formData.password !== formData.confirmedPassword) {
-      toggleAlert('Las contraseñas no coinciden', 'warning');
+      addToast('Las contraseñas no coinciden', 'warning');
       return;
     }
 
-    signup(formData.username, formData.email, formData.password);
+    signinApp(formData.username, formData.email, formData.password);
   };
 
   //checks if user is authenticated
   useEffect(() => {
     if (isAuthenticated) {
+      //creates the profile after is autenticated.
+      // this line is temporary until we developed a new way to handle profile creation
+      createUserProfile();
       navigate('/home');
     }
   }, [isAuthenticated]);
@@ -79,8 +84,10 @@ const SigninForm = () => {
       <section className={styles.body}>
         <div className={styles.rows}>
           <FormInput
+            className={styles.form_input}
             inputName='Nombre de usuario'
             inputProps={{
+              className: styles.field,
               inputType: 'text',
               id: 'usernameInput',
               placeholder: 'JohnnyDoe',
@@ -92,8 +99,10 @@ const SigninForm = () => {
 
         <div className={styles.rows}>
           <FormInput
+            className={styles.form_input}
             inputName='Correo Electrónico'
             inputProps={{
+              className: styles.field,
               inputType: 'email',
               id: 'emailInput',
               placeholder: 'johndoe123@email.com',
@@ -105,8 +114,10 @@ const SigninForm = () => {
 
         <div className={styles.rows}>
           <FormInput
+            className={styles.form_input}
             inputName='Contraseña'
             inputProps={{
+              className: styles.field,
               inputType: 'password',
               id: 'passwordInput',
               value: formData.password,
@@ -115,8 +126,10 @@ const SigninForm = () => {
           />
 
           <FormInput
+            className={styles.form_input}
             inputName='Confirmar Contraseña'
             inputProps={{
+              className: styles.field,
               inputType: 'password',
               id: 'confirmedPasswordInput',
               value: formData.confirmedPassword,
