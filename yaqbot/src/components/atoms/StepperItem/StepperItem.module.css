@@ -1,0 +1,17 @@
+.stepper_body {
+  color: #000;
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+.index {
+  padding: 1rem;
+  border: 1px solid #2d2d2d;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+}

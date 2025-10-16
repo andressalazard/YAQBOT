@@ -5,3 +5,11 @@ export interface Toast {
   message: string;
   type: ToastType;
 }
+
+export type StepperType = 'first' | 'middle' | 'end';
+export interface Stepper {
+  value: string;
+  title: string;
+  supportingText?: string;
+  type: StepperType;
+}
