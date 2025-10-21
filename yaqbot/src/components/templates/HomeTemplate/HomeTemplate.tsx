@@ -20,12 +20,16 @@ const HomeTemplate = () => {
   return (
     <div className={styles.home}>
       <Header
-        userAvatar={profile?.avatar || 'https://i.pinimg.com/736x/c6/3b/a4/c63ba4abc256a03c3f3a830965c365ac.jpg'}
-        navMenu={[{ label: 'Tienda', href: '/marketplace' }]}
+        userAvatar={
+          profile?.avatar ||
+          'https://i.pinimg.com/736x/c6/3b/a4/c63ba4abc256a03c3f3a830965c365ac.jpg'
+        }
         profileMenuHeader={{
           username: user?.username || 'testUser',
           email: user?.email || 'test@email.com',
-          photo: profile?.avatar || 'https://i.pinimg.com/736x/c6/3b/a4/c63ba4abc256a03c3f3a830965c365ac.jpg',
+          photo:
+            profile?.avatar ||
+            'https://i.pinimg.com/736x/c6/3b/a4/c63ba4abc256a03c3f3a830965c365ac.jpg',
         }}
         profileMenuOptions={[
           { title: 'Configuración', icon: 'settings', navigateTo: '/settings', type: 'settings' },

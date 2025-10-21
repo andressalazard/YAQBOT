@@ -7,11 +7,6 @@ import ProfilePhoto from '../../atoms/ProfilePhoto';
 
 interface HeaderProps {
   userAvatar: string;
-  navMenu: {
-    label: string;
-    href: string;
-  }[];
-
   profileMenuHeader: {
     username: string;
     email: string;
@@ -26,13 +21,24 @@ interface HeaderProps {
   }[];
 }
 
-const Header: React.FC<HeaderProps> = ({ userAvatar, navMenu, profileMenuHeader, profileMenuOptions }) => {
+const navMenu = [
+  { icon: 'home', title: 'Inicio', navigateTo: '/home' },
+  { icon: 'storefront', title: 'Tienda', navigateTo: '/marketplace' },
+  { icon: 'notifications', title: 'Notificaciones' },
+  { icon: 'account_circle', title: 'Perfil', navigateTo: '/profile' },
+];
+const Header: React.FC<HeaderProps> = ({ userAvatar, profileMenuHeader, profileMenuOptions }) => {
   const { menuStatus, toggleMenuStatus } = useSettings();
+
   return (
     <header className={styles.header}>
       <Logo className={styles.logo} />
       <NavMenu navLinks={navMenu} className={styles.nav_menu} />
-      <ProfilePhoto src={userAvatar} className={styles.profile_pic} handleClick={toggleMenuStatus} />
+      <ProfilePhoto
+        src={userAvatar}
+        className={styles.profile_pic}
+        handleClick={toggleMenuStatus}
+      />
       <>
         {menuStatus === 'on' ? (
           <ProfileMenu

@@ -1,9 +1,9 @@
 .header {
-  padding: 1rem;
+  padding: 2rem;
   display: flex;
   justify-content: space-between;
   width: 100vw;
-  height: 15vh;
+  height: 14vh;
   background-color: rgba(99, 194, 115, 0.9);
   font-weight: bold;
   text-align: center;
@@ -47,6 +47,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
 .profile_menu {
