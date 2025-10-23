@@ -13,6 +13,7 @@ import { ToastProvider } from './components/context/ToastContext';
 import NotFoundPage from './components/pages/NotFoundPage';
 import MarketPlacePage from './components/pages/MarketPlacePage';
 import { ProductProvider } from './components/context/ProductContext';
+import UserPlantsPage from './components/pages/UserPlantsPage';
 
 function App() {
   return (
@@ -44,6 +45,15 @@ function App() {
                   <ProductProvider>
                     <MarketPlacePage />
                   </ProductProvider>
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/plant"
+              element={
+                <ProtectedRoute>
+                  <UserPlantsPage />
                 </ProtectedRoute>
               }
             />

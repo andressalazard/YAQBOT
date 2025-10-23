@@ -16,6 +16,7 @@ interface HeaderProps {
 
 const navMenu = [
   { icon: 'home', title: 'Inicio', navigateTo: '/home' },
+  { icon: 'local_florist', title: 'Mis plantas', navigateTo: '/plant' },
   { icon: 'storefront', title: 'Tienda', navigateTo: '/marketplace' },
   { icon: 'notifications', title: 'Notificaciones' },
   { icon: 'account_circle', title: 'Perfil', navigateTo: '/profile' },
