@@ -13,6 +13,7 @@ import { ToastProvider } from './components/context/ToastContext';
 import NotFoundPage from './components/pages/NotFoundPage';
 import MarketPlacePage from './components/pages/MarketPlacePage';
 import { ProductProvider } from './components/context/ProductContext';
+import { ForgotPasswordPage } from './components/pages/ForgotPasswordPage';
 
 function App() {
   return (
@@ -49,7 +50,8 @@ function App() {
             />
 
             <Route path='/login' element={<LoginPage />} />
-            <Route path='/signin' element={<SigninPage />} />
+            <Route path='/register' element={<SigninPage />} />
+            <Route path='/forgot-password' element={<ForgotPasswordPage />} />
             <Route path='*' element={<NotFoundPage />} />
           </Routes>
         </SettingsProvider>

@@ -45,7 +45,7 @@ const SigninOrganism = () => {
     region: "",
     direccion: "",
     fechaNacimiento: "",
-    genero: "",
+    genero: "OTHER",
     nivelJardineria: "",
     biografia: "",
   });
@@ -116,7 +116,7 @@ const SigninOrganism = () => {
   }, [selectedOption]);
 
   return (
-    <div className={styles.body}>
+    <div className={`${styles.body} !min-h-screen`}>
       <Card className={styles.card}>
         <OptionsMenuSignIn
           selectedOption={selectedOption}
@@ -162,7 +162,7 @@ const SigninOrganism = () => {
           </div>
         )}
 
-        <div className={styles.already_account}>
+        <div className={`${styles.already_account} p-2`}>
           {selectedOption !== 4 && <h2>¿Ya tienes una cuenta registrada?</h2>}
           <NavigationButton
             buttonProps={{

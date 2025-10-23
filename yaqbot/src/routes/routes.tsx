@@ -10,5 +10,5 @@ export type AppRoute = {
 export const appRoutes: AppRoute[] = [
   { path: '/login', element: <LoginPage /> },
   { path: '/', element: <HomePage /> },
-  { path: '/signin', element: <SigninPage /> },
+  { path: '/register', element: <SigninPage /> },
 ];

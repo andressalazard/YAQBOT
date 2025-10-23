@@ -14,7 +14,7 @@ const LoginCard = () => {
           type: 'button',
           className: styles.button,
         }}
-        navigateTo='/signin'
+        navigateTo='/register'
       />
     </Card>
   );

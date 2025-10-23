@@ -11,4 +11,8 @@ const signin = async (data: NewUser): Promise<ValidPayload> => {
   return postData(`${AUTH_ENDPOINT}/register`, data);
 };
 
-export { login, signin };
+const forgotPassword = async (email: string): Promise<ValidPayload> => {
+  return postData(`${AUTH_ENDPOINT}/forgot-password`, { email });
+};
+
+export { login, signin, forgotPassword };

@@ -79,7 +79,7 @@ const SigninForm = ({
         <div className={styles.rows}>
           <FormInput
             className={styles.form_input}
-            inputName="Nombre de usuario"
+            inputName="Nombre de usuario *"
             inputProps={{
               className: styles.field,
               inputType: "text",
@@ -114,7 +114,7 @@ const SigninForm = ({
         <div className={styles.rows}>
           <FormInput
             className={styles.form_input}
-            inputName="Correo Electrónico"
+            inputName="Correo Electrónico *"
             inputProps={{
               className: styles.field,
               inputType: "email",
@@ -147,7 +147,7 @@ const SigninForm = ({
         <div className={styles.rows}>
           <FormInput
             className={styles.form_input}
-            inputName="Contraseña"
+            inputName="Contraseña *"
             inputProps={{
               className: styles.field,
               inputType: "password",
@@ -159,7 +159,7 @@ const SigninForm = ({
 
           <FormInput
             className={styles.form_input}
-            inputName="Confirmar Contraseña"
+            inputName="Confirmar Contraseña *"
             inputProps={{
               className: styles.field,
               inputType: "password",
