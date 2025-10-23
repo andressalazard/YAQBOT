@@ -4,6 +4,7 @@
   font-family: 'Roboto';
   padding: 0.5rem;
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .product_pic {
@@ -89,4 +90,8 @@
 
 .add_cart {
   border: 1px solid #000;
+}
+.product_preview:hover {
+  transform: scale(1.025);
+  transition: transform 0.3s ease-in-out;
 }

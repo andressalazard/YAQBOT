@@ -5,7 +5,7 @@ import { useSettings } from '../context/SettingsContext';
 
 import { logout } from '../../features/auth/authSlice';
 
-type OptionsTypes = 'logout' | 'settings';
+export type OptionsTypes = 'logout' | 'settings' | 'shopping';
 
 interface ProfileMenuProps {
   menuHeader: {
@@ -36,14 +36,23 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ menuHeader, menuOptions, opti
 
   return (
     <div className={menuHeader.className}>
-      <ProfileMenuHeader username={menuHeader.username} email={menuHeader.email} photo={menuHeader.photo} />
+      <ProfileMenuHeader
+        username={menuHeader.username}
+        email={menuHeader.email}
+        photo={menuHeader.photo}
+      />
 
       <section>
         <ul>
           <>
             {menuOptions.map((option, index) => (
               <li key={index}>
-                <ProfileMenuOption title={option.title} icon={option.icon} className={optionsClassName} onClick={option.type === 'logout' ? () => handleLogout() : () => {}} />
+                <ProfileMenuOption
+                  title={option.title}
+                  icon={option.icon}
+                  className={optionsClassName}
+                  onClick={option.type === 'logout' ? () => handleLogout() : () => {}}
+                />
               </li>
             ))}
           </>

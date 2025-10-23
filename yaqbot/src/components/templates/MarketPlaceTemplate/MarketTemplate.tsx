@@ -4,14 +4,9 @@ import SearchBar from '../../molecules/SearchBar/SearchBar';
 import ProductPreview from '../../organisms/ProductPreview/ProductPreview';
 import { useProduct } from '../../context/ProductContext';
 import Pagination from '../../molecules/Pagination/Pagination';
-import { useAppSelector } from '../../../hooks/hook';
-import Header from '../../organisms/Header/Header';
-import Footer from '../../organisms/Footer/Footer';
+import RenderTemplate from '../RenderTemplate/RenderTemplate';
 
 const MarketPlaceTemplate: React.FC = () => {
-  const user = useAppSelector((state) => state.user.user);
-  const profile = useAppSelector((state) => state.user.profile);
-
   const productsPerPage = 6;
   const { getCatalog, productsCatalog, searchTerm } = useProduct();
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,32 +21,12 @@ const MarketPlaceTemplate: React.FC = () => {
     getCatalog();
   }, []);
   return (
-    <div className={styles.page}>
-      <Header
-        userAvatar={
-          profile?.avatar ||
-          'https://i.pinimg.com/736x/c6/3b/a4/c63ba4abc256a03c3f3a830965c365ac.jpg'
-        }
-        profileMenuHeader={{
-          username: user?.username || 'testUser',
-          email: user?.email || 'test@email.com',
-          photo:
-            profile?.avatar ||
-            'https://i.pinimg.com/736x/c6/3b/a4/c63ba4abc256a03c3f3a830965c365ac.jpg',
-        }}
-        profileMenuOptions={[
-          {
-            title: 'Configuración',
-            icon: 'settings',
-            navigateTo: '/settings',
-            type: 'settings',
-          },
-          { title: 'Cerrar Sesión', icon: 'logout', type: 'logout' },
-        ]}
-      />
-
+    <RenderTemplate>
       <div className={styles.marketplace}>
-        <SearchBar searchTerm={searchTerm} changePage={setCurrentPage} />
+        <div className={styles.titleSearch}>
+          <h1>Lista de productos</h1>
+          <SearchBar searchTerm={searchTerm} changePage={setCurrentPage} />
+        </div>
         <section className={styles.dashboard}>
           {visibleProducts.map((product, index) => (
             <ProductPreview information={product} key={index} />
@@ -67,9 +42,7 @@ const MarketPlaceTemplate: React.FC = () => {
           />
         )}
       </div>
-
-      <Footer />
-    </div>
+    </RenderTemplate>
   );
 };
 

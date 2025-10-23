@@ -21,7 +21,7 @@ function App() {
         <SettingsProvider>
           <Routes>
             <Route
-              path='/home'
+              path="/home"
               element={
                 <ProtectedRoute>
                   <HomePage />
@@ -30,7 +30,7 @@ function App() {
             />
 
             <Route
-              path='/profile'
+              path="/profile"
               element={
                 <ProtectedRoute>
                   <ProfilePage />
@@ -38,7 +38,7 @@ function App() {
               }
             />
             <Route
-              path='/marketplace'
+              path="/marketplace"
               element={
                 <ProtectedRoute>
                   <ProductProvider>
@@ -48,9 +48,9 @@ function App() {
               }
             />
 
-            <Route path='/login' element={<LoginPage />} />
-            <Route path='/signin' element={<SigninPage />} />
-            <Route path='*' element={<NotFoundPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signin" element={<SigninPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </SettingsProvider>
       </AuthProvider>

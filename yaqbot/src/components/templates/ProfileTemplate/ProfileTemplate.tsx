@@ -1,8 +1,6 @@
 import { useProfile } from '../../context/ProfileContext';
 import { useAppSelector } from '../../../hooks/hook';
 import Card from '../../atoms/Card';
-import Footer from '../../organisms/Footer/Footer';
-import Header from '../../organisms/Header/Header';
 import ProfileDetails from '../../organisms/ProfileDetails/ProfileDetails';
 import ProfilePhoto from '../../organisms/ProfilePhoto/ProfilePhoto';
 import ProfileSocials from '../../organisms/ProfileSocials/ProfileSocials';
@@ -10,6 +8,7 @@ import UpdateProfile from '../../organisms/UpdateProfile/UpdateProfile';
 import styles from './ProfileTemplate.module.css';
 import UpdateAvatar from '../../organisms/UpdateAvatar/UpdateAvatar';
 import Spinner from '../../atoms/Spinner/Spinner';
+import RenderTemplate from '../RenderTemplate/RenderTemplate';
 
 const ProfileTemplate = () => {
   const { isEditing, isPicEditing } = useProfile();
@@ -21,29 +20,7 @@ const ProfileTemplate = () => {
   }
 
   return (
-    <div className={styles.page}>
-      <Header
-        userAvatar={
-          profile?.avatar ||
-          'https://i.pinimg.com/736x/c6/3b/a4/c63ba4abc256a03c3f3a830965c365ac.jpg'
-        }
-        profileMenuHeader={{
-          username: user?.username || 'testUser',
-          email: user?.email || 'test@email.com',
-          photo:
-            profile?.avatar ||
-            'https://i.pinimg.com/736x/c6/3b/a4/c63ba4abc256a03c3f3a830965c365ac.jpg',
-        }}
-        profileMenuOptions={[
-          {
-            title: 'Configuración',
-            icon: 'settings',
-            navigateTo: '/settings',
-            type: 'settings',
-          },
-          { title: 'Cerrar Sesión', icon: 'logout', type: 'logout' },
-        ]}
-      />
+    <RenderTemplate>
       {isEditing ? (
         <UpdateProfile />
       ) : isPicEditing ? (
@@ -101,8 +78,7 @@ const ProfileTemplate = () => {
           />
         </Card>
       )}
-      <Footer />
-    </div>
+    </RenderTemplate>
   );
 };
 

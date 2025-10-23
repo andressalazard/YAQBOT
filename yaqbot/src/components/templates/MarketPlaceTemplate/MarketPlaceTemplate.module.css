@@ -5,12 +5,24 @@
   align-items: center;
 }
 
+.titleSearch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #000;
+}
+
+.titleSearch h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
 .marketplace {
   display: flex;
   flex-direction: column;
   justify-items: flex-end;
   justify-content: center;
-  border: 1px solid red;
   padding: 1rem;
   width: 100%;
 }

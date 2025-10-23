@@ -1,7 +1,7 @@
 import styles from '../Header/Header.module.css';
 import NavMenu from '../../molecules/NavMenu';
 import Logo from '../../atoms/Logo';
-import ProfileMenu from '../../molecules/ProfileMenu';
+import ProfileMenu, { OptionsTypes } from '../../molecules/ProfileMenu';
 import { useSettings } from '../../context/SettingsContext';
 import ProfilePhoto from '../../atoms/ProfilePhoto';
 
@@ -12,13 +12,6 @@ interface HeaderProps {
     email: string;
     photo: string;
   };
-
-  profileMenuOptions: {
-    title: string;
-    icon: string;
-    navigateTo?: string;
-    type: 'logout' | 'settings';
-  }[];
 }
 
 const navMenu = [
@@ -27,7 +20,14 @@ const navMenu = [
   { icon: 'notifications', title: 'Notificaciones' },
   { icon: 'account_circle', title: 'Perfil', navigateTo: '/profile' },
 ];
-const Header: React.FC<HeaderProps> = ({ userAvatar, profileMenuHeader, profileMenuOptions }) => {
+
+const userMenu: { title: string; icon: string; navigateTo?: string; type: OptionsTypes }[] = [
+  { title: 'Mis Compras', icon: 'shopping_cart', navigateTo: '/my-purchases', type: 'shopping' },
+  { title: 'Configuración', icon: 'settings', navigateTo: '/settings', type: 'settings' },
+  { title: 'Cerrar Sesión', icon: 'logout', type: 'logout' },
+];
+
+const Header: React.FC<HeaderProps> = ({ userAvatar, profileMenuHeader }) => {
   const { menuStatus, toggleMenuStatus } = useSettings();
 
   return (
@@ -48,7 +48,7 @@ const Header: React.FC<HeaderProps> = ({ userAvatar, profileMenuHeader, profileM
               email: profileMenuHeader.email,
               photo: profileMenuHeader.photo,
             }}
-            menuOptions={profileMenuOptions}
+            menuOptions={userMenu}
             optionsClassName={styles.profile_menu_option}
           />
         ) : (
