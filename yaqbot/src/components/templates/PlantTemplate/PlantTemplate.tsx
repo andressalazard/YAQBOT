@@ -3,6 +3,8 @@ import styles from './PlantTemplate.module.css';
 import RenderTemplate from '../RenderTemplate/RenderTemplate';
 import { retrievedPlant } from '../../../models/dataModel';
 import PlantCard from '../../molecules/PlantCard/PlantCard';
+import AddPlantButton from '../../molecules/AddPlantButton/AddPlantButton';
+import NewPlantForm from '../../molecules/NewPlantForm/NewPlantForm';
 
 const plantsMock: retrievedPlant[] = [
   {
@@ -47,7 +49,10 @@ const PlantTemplate: React.FC = () => {
             ))}
           </section>
 
-          <section className={styles.newRegister}>Aqui se agregará una nueva planta</section>
+          <section className={styles.newRegister}>
+            <AddPlantButton />
+            <NewPlantForm />
+          </section>
         </div>
       </div>
     </RenderTemplate>

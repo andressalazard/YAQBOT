@@ -1,0 +1,41 @@
+.plantForm {
+  background-color: var(--soft-green-color);
+  border-radius: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border: 2px solid var(--primary-darker-color);
+
+  justify-content: space-between;
+}
+
+.plantForm header {
+  font-family: var(--page-title);
+  text-align: left;
+  font-size: 2rem;
+}
+
+.content {
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+  border: 1px solid red;
+}
+
+.inputField {
+  text-align: left;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputField input {
+  background-color: var(--primary-white-color);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.carousel {
+  background-color: var(--medium-grey-color);
+}
