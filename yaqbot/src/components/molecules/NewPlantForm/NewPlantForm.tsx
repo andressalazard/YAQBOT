@@ -1,7 +1,23 @@
 import React from 'react';
 import styles from './NewPlantForm.module.css';
+import Carousel from '../../organisms/Carousel/Carousel';
+import { catalogPlant } from '../../../models/dataModel';
+import PlantOption from '../PlantOption/PlantOption';
 
-const NewPlantForm: React.FC = () => {
+interface NewPlantFormProps {
+  plantsCatalog: catalogPlant[];
+}
+
+const NewPlantForm: React.FC<NewPlantFormProps> = ({ plantsCatalog }) => {
+  const plantItems = plantsCatalog.map((item, i) => (
+    <PlantOption
+      key={i}
+      image={item.image[0]}
+      title={item.name}
+      type={item.plant.type}
+      weather={item.plant.weather}
+    />
+  ));
   return (
     <div className={styles.plantForm}>
       <header>Registro de nueva planta</header>
@@ -14,7 +30,7 @@ const NewPlantForm: React.FC = () => {
         </section>
         <section>
           <h1>Elige una de las siguientes opciones</h1>
-          <div className={styles.carousel}>Aqui va el carousel</div>
+          <Carousel items={plantItems} />
         </section>
       </div>
       <footer>

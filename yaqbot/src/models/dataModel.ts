@@ -127,6 +127,16 @@ export interface retrievedPlant {
   status: string;
 }
 
+export interface catalogPlant {
+  id: string;
+  name: string;
+  image: string[];
+  plant: {
+    type: string;
+    weather: weather[];
+  };
+}
+
 /****************************************************
  * Payloads
  ***************************************************/

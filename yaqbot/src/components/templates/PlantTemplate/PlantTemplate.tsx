@@ -5,6 +5,7 @@ import { retrievedPlant } from '../../../models/dataModel';
 import PlantCard from '../../molecules/PlantCard/PlantCard';
 import AddPlantButton from '../../molecules/AddPlantButton/AddPlantButton';
 import NewPlantForm from '../../molecules/NewPlantForm/NewPlantForm';
+import { usePlant } from '../../context/PlantContext';
 
 const plantsMock: retrievedPlant[] = [
   {
@@ -31,11 +32,14 @@ const plantsMock: retrievedPlant[] = [
 
 const PlantTemplate: React.FC = () => {
   const [plantsList, setPlantsList] = useState<retrievedPlant[]>([]);
+  const { isEditing, changeEdition, plantsCatalog, getPlantsCatalog } = usePlant();
 
   useEffect(() => {
     //here we are going to fetch from API the users registered plants
     setPlantsList(plantsMock);
-  }, []);
+    // getPlantsCatalog();
+    console.log('is editing: ', isEditing);
+  }, [isEditing]);
 
   return (
     <RenderTemplate>
@@ -50,8 +54,12 @@ const PlantTemplate: React.FC = () => {
           </section>
 
           <section className={styles.newRegister}>
-            <AddPlantButton />
-            <NewPlantForm />
+            <AddPlantButton
+              handleClick={() => {
+                changeEdition();
+              }}
+            />
+            {isEditing === true && <NewPlantForm plantsCatalog={plantsCatalog} />}
           </section>
         </div>
       </div>
