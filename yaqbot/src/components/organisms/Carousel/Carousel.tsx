@@ -10,13 +10,13 @@ interface CarouselProps {
 const Carousel: React.FC<CarouselProps> = ({ items }) => {
   return (
     <div className={styles.carousel}>
-      <Button className={`material-icons ${styles.carrousel_btn}`}>arrow_back</Button>
+      <Button className={`material-icons ${styles.carousel_btn}`}>arrow_back</Button>
       <section className={styles.carousel_track}>
         {items.map((item, i) => (
           <CarouselItem key={i}>{item}</CarouselItem>
         ))}
       </section>
-      <Button className={`material-icons ${styles.carrousel_btn}`}>arrow_forward</Button>
+      <Button className={`material-icons ${styles.carousel_btn}`}>arrow_forward</Button>
     </div>
   );
 };

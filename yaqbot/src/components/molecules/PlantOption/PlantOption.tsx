@@ -15,12 +15,14 @@ const PlantOption: React.FC<PlantOptionProps> = ({ image, title, type, weather }
       <Image src={image} alt="plant-image" className={styles.plantImage} />
       <section className={styles.details}>
         <h1>{title}</h1>
-        <p>{type}</p>
-        <ul>
+        <p>
+          Tipo de planta: <span>{type}</span>
+        </p>
+        {/* <ul>
           {weather.map((w, index) => (
             <li key={index}>{w}</li>
           ))}
-        </ul>
+        </ul> */}
       </section>
     </div>
   );

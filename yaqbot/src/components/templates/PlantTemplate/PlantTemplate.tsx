@@ -37,8 +37,7 @@ const PlantTemplate: React.FC = () => {
   useEffect(() => {
     //here we are going to fetch from API the users registered plants
     setPlantsList(plantsMock);
-    // getPlantsCatalog();
-    console.log('is editing: ', isEditing);
+    getPlantsCatalog();
   }, [isEditing]);
 
   return (

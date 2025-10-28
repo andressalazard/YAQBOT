@@ -7,12 +7,15 @@
 :root {
   --page-title: 'Outfit', sans-serif;
   --actions-title: 'Space Mono', sans-serif;
+  --details-title: 'Inconsolata', sans-serif;
+  --header-title: 'Roboto', sans-serif;
 
   --primary-base-color: #81b622;
   --primary-intense-color: #59981a;
   --primary-bright-color: #ecf87f;
   --primary-darker-color: #3d550c;
 
+  --primary-bright-color: #e4ebac;
   --primary-white-color: #f1f1f1;
   --secondary-white-color: #fffaaa;
 
