@@ -99,6 +99,17 @@ export interface ValidPayload {
   userid: string;
 }
 
+export interface PayloadForgotPassword {
+  message: string;
+  type: string;
+}
+
+export interface PayloadVerifyResetToken {
+  success: boolean;
+  resetToken: string;
+  expiresIn: string;
+}
+
 /**************************************************
  * slices
  **************************************************/

@@ -9,7 +9,7 @@ import { OptionsMenuSignIn } from "../../molecules/OptionsMenu";
 import UploadAvatar from "../UploadAvatar/UploadAvatar";
 import Spinner from "../../atoms/Spinner/Spinner";
 import { signin } from "../../../services/authService";
-import { createProfile } from "../../../services/profileService";
+import { createProfile, updateAvatar } from "../../../services/profileService";
 
 type Genero = "MALE" | "FEMALE" | "OTHER";
 
@@ -46,7 +46,6 @@ const SigninOrganism = () => {
     direccion: "",
     fechaNacimiento: "",
     genero: "OTHER",
-    nivelJardineria: "",
     biografia: "",
   });
 
@@ -100,6 +99,16 @@ const SigninOrganism = () => {
         bio: datos.biografia,
       });
       console.log("Perfil creado con éxito:", payloadProfile);
+      if (!payloadProfile.userid) {
+        throw new Error("No se recibió un userid válido");
+      }
+    
+     const payloadImage = await updateAvatar(payload.userid, file);
+      console.log("Avatar actualizado con éxito:", payloadImage);
+      if (!payloadImage.userid) {
+        throw new Error("No se recibió un userid válido");
+      }
+
       setSelectedOption(4);
     } catch (error) {
       console.error("Error creando usuario:", error);
@@ -109,7 +118,6 @@ const SigninOrganism = () => {
   }
 
   useEffect(() => {
-    console.log("DATOS:", datos, formData);
     if (selectedOption === 3) {
       createNewUser();
     }

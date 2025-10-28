@@ -14,6 +14,7 @@ import NotFoundPage from './components/pages/NotFoundPage';
 import MarketPlacePage from './components/pages/MarketPlacePage';
 import { ProductProvider } from './components/context/ProductContext';
 import { ForgotPasswordPage } from './components/pages/ForgotPasswordPage';
+import { ResetPasswordPage } from './components/pages/ResetPasswordPage';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<SigninPage />} />
             <Route path='/forgot-password' element={<ForgotPasswordPage />} />
+            <Route path='/reset-password' element={<ResetPasswordPage />} />
             <Route path='*' element={<NotFoundPage />} />
           </Routes>
         </SettingsProvider>

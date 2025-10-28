@@ -2,10 +2,14 @@ import { useState } from "react";
 import FormInput from "../molecules/FormInput";
 import Button from "../atoms/Button";
 import { forgotPassword } from "../../services/authService";
+import { useNavigate } from "react-router-dom";
 
 export const ForgotPasswordPage = () => { 
     const [email, setEmail] = useState<string>('');
     const [message, setMessage] = useState<{text: string, type: 'error' | 'success'} | null>(null);
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState<boolean>(false);
+
 
     const handleForm = async (email: string) => {
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -18,11 +22,12 @@ export const ForgotPasswordPage = () => {
         setMessage({text: 'Por favor, ingrese un correo electrónico válido', type: 'error'});
         return;
         }
-
+        setLoading(true);
 
         // Aquí iría la lógica para manejar el envío del formulario
         const msm = await forgotPassword(email);
         setMessage({text: msm?.message, type: msm?.success ? 'success' : 'error'});
+        setLoading(false);
     }
 
     return (
@@ -45,12 +50,23 @@ export const ForgotPasswordPage = () => {
                 }}
               />
             <p className={`text-gray-200 text-md md:text-md m-6 mt-2 px-5 ${message?.type === 'error' ? 'text-red-300' : 'text-green-500'}`}>{message?.text}</p>
+            {!loading ? (
             <Button 
-                className="bg-gradient-to-r from-cyan-500 to-fuchsia-600 hover:from-cyan-400 hover:to-fuchsia-500 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-300 transform" 
+                className="bg-gradient-to-r from-cyan-500 to-fuchsia-600 hover:from-cyan-400 hover:to-fuchsia-500 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-300 transform disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100" 
                 label='Ingresar' 
                 type='button' 
-                onClick={() => handleForm(email)} 
+                onClick={() => handleForm(email)}
             />
+            ):(
+                <p className="text-white">Cargando...</p>
+            )}
+            <Button 
+                className="block mt-4 bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-400 hover:to-blue-500 text-white font-bold py-3 px-8 mx-auto rounded-lg shadow-lg hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 transform" 
+                label='Iniciar Sesión' 
+                type='button' 
+                onClick={() => navigate('/login')} 
+            />
+            
         </div>
     </div>  
     );
