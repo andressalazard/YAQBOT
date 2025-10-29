@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './PlantOption.module.css';
 import Image from '../../atoms/Image';
 
 interface PlantOptionProps {
+  id: string;
   image: string;
   title: string;
   type: string;
   weather: string[];
 }
 
-const PlantOption: React.FC<PlantOptionProps> = ({ image, title, type, weather }) => {
+const PlantOption: React.FC<PlantOptionProps> = ({ id, image, title, type, weather }) => {
+  const [plantId, setPlantId] = useState<string>(id);
+
   return (
     <div className={styles.plantCard}>
       <Image src={image} alt="plant-image" className={styles.plantImage} />

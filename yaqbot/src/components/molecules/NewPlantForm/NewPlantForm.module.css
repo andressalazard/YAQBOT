@@ -17,9 +17,20 @@
 }
 
 .content {
-  display: grid;
-  grid-template-rows: 1fr 2fr;
-  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+}
+
+.choose_a_plant {
+  margin-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+}
+
+.choose_a_plant h1 {
+  padding-top: 0.75rem;
+  text-align: start;
+  margin-bottom: 0.5rem;
 }
 
 .inputField {
@@ -38,4 +49,12 @@
 
 .carousel {
   background-color: var(--medium-grey-color);
+}
+
+.create_plant_btn {
+  padding: 1rem;
+  background-color: var(--primary-intense-color);
+  color: var(--primary-white-color);
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
 }

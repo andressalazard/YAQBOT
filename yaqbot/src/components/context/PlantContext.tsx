@@ -7,6 +7,8 @@ interface PlantContextType {
   getPlantsCatalog: () => void;
   isEditing: boolean;
   changeEdition: () => void;
+  chosenPlantId: string;
+  setChosenPlantId: (id: string) => void;
 }
 
 //context
@@ -16,6 +18,7 @@ export const PlantContext = React.createContext<PlantContextType | undefined>(un
 export const PlantProvider = ({ children }: { children: React.ReactNode }) => {
   const [plantsCatalog, setPlantsCatalog] = useState<catalogPlant[]>([]);
   const [isEditing, setIsEditing] = useState(false);
+  const [chosenPlantId, setChosenPlantId] = useState<string>('');
 
   const changeEdition = () => {
     setIsEditing((prevStatus) => (prevStatus === false ? true : false));
@@ -27,7 +30,16 @@ export const PlantProvider = ({ children }: { children: React.ReactNode }) => {
     setPlantsCatalog(catalog);
   };
   return (
-    <PlantContext.Provider value={{ plantsCatalog, getPlantsCatalog, isEditing, changeEdition }}>
+    <PlantContext.Provider
+      value={{
+        plantsCatalog,
+        getPlantsCatalog,
+        isEditing,
+        changeEdition,
+        chosenPlantId,
+        setChosenPlantId,
+      }}
+    >
       {children}
     </PlantContext.Provider>
   );
