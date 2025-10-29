@@ -10,14 +10,22 @@ interface NewPlantFormProps {
 
 const NewPlantForm: React.FC<NewPlantFormProps> = ({ plantsCatalog }) => {
   const [plantName, setPlantName] = useState<string>('');
+  const [chosenPlant, setChosenPlant] = useState<catalogPlant | undefined>(undefined);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPlantName(e.target.value);
   };
 
+  const handlePlantSelect = (index: number) => {
+    const plant = plantsCatalog[index];
+    if (plant) {
+      setChosenPlant(plant);
+    }
+  };
+
   useEffect(() => {
-    console.log('plants name: ', plantName);
-  }, [plantName]);
+    console.log('chosen plant: ', chosenPlant);
+  }, [chosenPlant]);
 
   const plantItems = plantsCatalog.map((item, i) => (
     <PlantOption
@@ -47,7 +55,7 @@ const NewPlantForm: React.FC<NewPlantFormProps> = ({ plantsCatalog }) => {
         </section>
         <section className={styles.choose_a_plant}>
           <h1>Escoge una de las siguientes opciones: </h1>
-          <Carousel items={plantItems} />
+          <Carousel items={plantItems} onSelectItem={handlePlantSelect} />
         </section>
         <footer>
           <button className={styles.create_plant_btn}>Añadir Planta</button>

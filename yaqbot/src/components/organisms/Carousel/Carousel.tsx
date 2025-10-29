@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './Carousel.module.css';
 import Button from '../../atoms/Button';
 import CarouselItem from './CarouselItem';
@@ -11,7 +11,7 @@ interface CarouselProps {
 
 const Carousel: React.FC<CarouselProps> = ({ items, itemsPerSlide = 3, onSelectItem }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [selectedItem, setSelectedItem] = useState<React.ReactNode>(undefined);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const totalItems = items.length;
 
   const totalSlides = Math.ceil(totalItems / itemsPerSlide);
@@ -28,7 +28,10 @@ const Carousel: React.FC<CarouselProps> = ({ items, itemsPerSlide = 3, onSelectI
   };
 
   const handleSelect = (index: number) => {
-    onSelectItem?.(index);
+    setSelectedIndex(index);
+    if (onSelectItem) {
+      onSelectItem(index);
+    }
   };
 
   return (
@@ -53,10 +56,9 @@ const Carousel: React.FC<CarouselProps> = ({ items, itemsPerSlide = 3, onSelectI
             key={i}
             isActive={i >= start && i < end}
             onClick={() => {
-              setSelectedItem(item);
               handleSelect(i);
             }}
-            isSelected={item === selectedItem}
+            isSelected={i === selectedIndex}
           >
             {item}
           </CarouselItem>
