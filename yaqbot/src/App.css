@@ -1,42 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Pacifico&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Space Mono');
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Outfit:wght@100..900&display=swap');
+:root {
+  --page-title: 'Outfit', sans-serif;
+  --actions-title: 'Space Mono', sans-serif;
+  --details-title: 'Inconsolata', sans-serif;
+  --header-title: 'Roboto', sans-serif;
+
+  --primary-base-color: #81b622;
+  --primary-intense-color: #59981a;
+  --primary-bright-color: #ecf87f;
+  --primary-darker-color: #3d550c;
+
+  --primary-white-color: #f1f1f1;
+  --secondary-white-color: #fffaaa;
+
+  --primary-dark-color: #222;
+
+  --soft-grey-color: #eee;
+  --soft-green-color: #b7e7a3;
+
+  --medium-grey-color: #888;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  box-sizing: border-box;
 }

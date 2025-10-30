@@ -1,0 +1,139 @@
+.button {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* HEADER */
+.header {
+  padding: 1rem 0;
+  position: relative;
+}
+
+.title {
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+  font-weight: bold;
+  font-size: 2.25rem;
+}
+
+.profile_pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: absolute;
+  top: -75px;
+  left: calc(50% - 60px);
+  border: 3px solid #fff;
+}
+
+.return_button {
+  display: flex;
+  justify-content: center;
+  background-color: #59981a;
+  gap: 0.5rem;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  position: absolute;
+  left: 0;
+  top: 10px;
+}
+
+/* BODY */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 3rem;
+  padding-top: 0.75rem;
+  color: #000;
+}
+
+.body h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.body input {
+  border: 1px solid RGBA(0, 0, 0, 0.4);
+  background-color: RGBA(0, 0, 0, 0.1);
+}
+
+.body h4 {
+  text-align: start;
+  margin: 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.rows {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.rows__label {
+  display: flex;
+  justify-content: space-between;
+  margin: -1rem 0;
+}
+
+.error {
+  color: red;
+}
+.success {
+  color: green;
+}
+
+/*FOOTER*/
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.5rem 0;
+}
+
+.submit_button {
+  background-color: RGBA(81, 152, 26, 0.8);
+  font-weight: bold;
+  width: 50%;
+  font-size: 1.125rem;
+  box-shadow: 0px 5px 5px rgba(2, 44, 42, 0.1);
+}
+
+.already_account {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem 3rem;
+  border-radius: 1rem;
+}
+
+.already_account h1 {
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.already_account button {
+  width: 90%;
+  background-color: RGBA(61, 85, 12, 0.6);
+  padding: 0.5rem 1rem;
+  box-shadow: none;
+  font-size: 0.875rem;
+}
+
+.form_input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.field {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: #000;
+}

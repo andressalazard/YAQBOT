@@ -1,0 +1,43 @@
+.option {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 0.25rem;
+
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.option_title {
+  font-size: 0.75rem;
+  font-family: 'Monsterrat', sans-serif;
+}
+
+.option_icon {
+  font-size: 2rem;
+}
+
+.selected_option {
+  border-radius: 0.5rem;
+  animation: fadeInHighLight 0.3s ease forwards;
+  /* box-shadow: 0 0 5px rgba(255, 255, 0, 0.2); */
+}
+
+@keyframes fadeInHighLight {
+  0% {
+    background-color: transparent;
+    transform: scale(1);
+  }
+
+  50% {
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
+  }
+
+  100% {
+    background-color: rgba(0, 0, 0, 0.3);
+    transform: scale(1.07);
+  }
+}

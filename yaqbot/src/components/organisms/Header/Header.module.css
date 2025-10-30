@@ -1,0 +1,79 @@
+.header {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height: 14vh;
+  background-color: rgba(99, 194, 115, 0.9);
+  font-weight: bold;
+  text-align: center;
+  align-items: center;
+  position: relative;
+}
+
+.logo {
+  font-family: Pacifico, sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: #224b12;
+  border-radius: 0.5rem;
+  justify-content: center;
+  -webkit-text-stroke: 0.1rem #224b12;
+  display: flex;
+  align-items: center;
+}
+
+.user_logo {
+  width: 5vw;
+  height: 100%;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 2rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.user-logo i {
+  padding: 0;
+  margin: 0;
+}
+
+.nav_menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile_menu {
+  /* background-color: darkorange; */
+  background-color: #c9db75;
+  position: absolute;
+  top: 80px;
+  right: 0;
+  z-index: 4;
+}
+
+.profile_menu_option {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.profile_menu_option:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.profile_pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}

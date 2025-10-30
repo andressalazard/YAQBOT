@@ -1,0 +1,60 @@
+.plantForm {
+  background-color: var(--soft-green-color);
+  border-radius: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border: 2px solid var(--primary-darker-color);
+
+  justify-content: space-between;
+}
+
+.plantForm header {
+  font-family: var(--page-title);
+  text-align: left;
+  font-size: 2rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.choose_a_plant {
+  margin-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+}
+
+.choose_a_plant h1 {
+  padding-top: 0.75rem;
+  text-align: start;
+  margin-bottom: 0.5rem;
+}
+
+.inputField {
+  text-align: left;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputField input {
+  background-color: var(--primary-white-color);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.carousel {
+  background-color: var(--medium-grey-color);
+}
+
+.create_plant_btn {
+  padding: 1rem;
+  background-color: var(--primary-intense-color);
+  color: var(--primary-white-color);
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
+}

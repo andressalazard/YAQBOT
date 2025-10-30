@@ -1,0 +1,112 @@
+.card {
+  width: 35%;
+  background-color: rgba(256, 256, 256, 0.5);
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);
+}
+
+.medium_card {
+  width: 50%;
+  background-color: rgba(256, 256, 256, 0.5);
+  box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);
+}
+
+.form_body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1.5rem;
+  padding-top: 0.75rem;
+  border-radius: 1.5rem;
+  color: #000;
+}
+
+.form_body h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.form_body section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form_body input {
+  border: 1px solid #000;
+}
+
+.form_body h4 {
+  text-align: start;
+  margin: 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.button {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+
+  background-color: rgba(56, 133, 69, 0.5);
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.rows {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/*MEDIUM*/
+
+.form_body_medium {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 3rem;
+  padding-top: 0.75rem;
+  border-radius: 1.5rem;
+  color: #000;
+  border: 1px solid #000;
+}
+
+.form_body_medium h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.form_body_medium section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form_body_medium input {
+  border: 1px solid #000;
+}
+
+.form_body_medium h4 {
+  text-align: start;
+  margin: 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.form_input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.field {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: #000;
+}

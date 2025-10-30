@@ -1,0 +1,48 @@
+.social_card {
+  grid-area: c; /*grid area defined at template level*/
+  background-color: rgba(61, 85, 12, 0.5);
+  color: #000;
+  position: relative;
+}
+
+.section_header {
+  text-align: start;
+  font-size: 1.5rem;
+  padding: 0 1rem;
+  font-weight: 600;
+}
+
+.links_board {
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-top: 1rem;
+}
+
+.link {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 0.5rem;
+  color: #f1f1f1;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit_icon {
+  position: absolute;
+  padding: 0.5rem;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(16, 20, 6, 0.5);
+  border-radius: 50%;
+  color: #f1efef;
+  cursor: pointer;
+  font-size: 1rem;
+}

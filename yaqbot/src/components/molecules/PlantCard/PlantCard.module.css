@@ -1,0 +1,63 @@
+.plantCard {
+  color: #000;
+  border-radius: 1rem;
+  padding: 1.3rem 1rem;
+  border: 2px solid #609e6b;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+}
+
+.plantCard:hover {
+  background-color: #bdb9b9;
+  font-weight: bold;
+}
+
+.description {
+  display: flex;
+}
+
+.details {
+  text-align: left;
+}
+
+.details h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Outfit', sans-serif;
+}
+
+.details p {
+  color: #5f5d5d;
+  margin-left: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.details h3,
+p {
+}
+
+.potIcon {
+  margin-left: 0.5rem;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: #609e6b;
+  color: #35503a;
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.seeDetails {
+  padding: 1rem;
+  background-color: #71c780;
+  color: #f1f1f1;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}

@@ -1,0 +1,32 @@
+.pageContent {
+  color: #000;
+  width: 100vw;
+  padding: 1rem;
+}
+
+.pageTitle {
+  font-family: var(--page-title);
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.newRegister {
+  display: grid;
+  grid-template-rows: auto 2fr;
+  gap: 1rem;
+  padding: 1rem;
+}
