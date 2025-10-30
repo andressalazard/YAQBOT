@@ -3,15 +3,12 @@ import Icon from '../../atoms/Icon';
 import styles from './Pagination.module.css';
 
 interface PaginationProps {
-  itemsPerPage: number;
-  totalItems: number;
   totalPages: number;
   currentPage: number;
   onPageChange: (page: number) => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, totalItems, totalPages, currentPage, onPageChange }) => {
-  // const totalPages = Math.ceil(totalItems / itemsPerPage);
+const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage, onPageChange }) => {
   const numbers = [...Array(totalPages + 1).keys()].slice(1);
 
   const handlePreviousPage = () => {
@@ -38,7 +35,7 @@ const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, totalItems, total
           handlePreviousPage();
         }}
       >
-        <Icon className={`material-icons ${styles.icons}`} feature='arrow_back' />
+        <Icon className={`material-icons ${styles.icons}`} feature="arrow_back" />
       </Button>
       <ul className={styles.pages}>
         {numbers.map((number, index) => (
@@ -59,7 +56,7 @@ const Pagination: React.FC<PaginationProps> = ({ itemsPerPage, totalItems, total
           handleNextPage();
         }}
       >
-        <Icon className={`material-icons ${styles.icons}`} feature='arrow_forward' />
+        <Icon className={`material-icons ${styles.icons}`} feature="arrow_forward" />
       </Button>
     </div>
   );

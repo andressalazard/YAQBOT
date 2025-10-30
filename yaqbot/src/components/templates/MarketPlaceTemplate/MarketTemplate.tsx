@@ -34,8 +34,6 @@ const MarketPlaceTemplate: React.FC = () => {
         </section>
         {totalPages > 1 && (
           <Pagination
-            itemsPerPage={productsPerPage}
-            totalItems={productsCatalog.length}
             totalPages={totalPages}
             currentPage={currentPage}
             onPageChange={setCurrentPage}

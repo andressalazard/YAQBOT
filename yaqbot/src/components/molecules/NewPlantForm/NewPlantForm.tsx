@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './NewPlantForm.module.css';
 import Carousel from '../../organisms/Carousel/Carousel';
 import { catalogPlant } from '../../../models/dataModel';
 import PlantOption from '../PlantOption/PlantOption';
+import { usePlant } from '../../context/PlantContext';
+import { useToast } from '../../context/ToastContext';
+import { useAppSelector } from '../../../hooks/hook';
 
 interface NewPlantFormProps {
   plantsCatalog: catalogPlant[];
 }
 
 const NewPlantForm: React.FC<NewPlantFormProps> = ({ plantsCatalog }) => {
-  const [plantName, setPlantName] = useState<string>('');
+  const [plantNickname, setPlantNickname] = useState<string>('');
   const [chosenPlant, setChosenPlant] = useState<catalogPlant | undefined>(undefined);
+  const userid = useAppSelector((state) => state.auth.userid);
+  const { changeEdition } = usePlant();
+  const { addToast } = useToast();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPlantName(e.target.value);
+    setPlantNickname(e.target.value);
   };
 
   const handlePlantSelect = (index: number) => {
@@ -23,14 +29,32 @@ const NewPlantForm: React.FC<NewPlantFormProps> = ({ plantsCatalog }) => {
     }
   };
 
-  useEffect(() => {
-    console.log('chosen plant: ', chosenPlant);
-  }, [chosenPlant]);
+  const handleSubmit = () => {
+    if (plantNickname === '' || chosenPlant === undefined) {
+      addToast('Procura completar todos los campos para registrar tu nueva planta', 'warning');
+      return;
+    }
+    const newRegister = {
+      userid,
+      plant: {
+        plantid: chosenPlant?.id,
+        userPlantsName: plantNickname,
+      },
+    };
+    addToast('Tu nueva planta fue registrada con éxito!', 'success');
+    console.log('el registro de la nueva planta es: ', newRegister);
+    cleanForm();
+    changeEdition();
+  };
+
+  const cleanForm = () => {
+    setChosenPlant(undefined);
+    setPlantNickname('');
+  };
 
   const plantItems = plantsCatalog.map((item, i) => (
     <PlantOption
       key={i}
-      id={item.id}
       image={item.image[0]}
       title={item.name}
       type={item.plant.type}
@@ -54,11 +78,18 @@ const NewPlantForm: React.FC<NewPlantFormProps> = ({ plantsCatalog }) => {
           </div>
         </section>
         <section className={styles.choose_a_plant}>
-          <h1>Escoge una de las siguientes opciones: </h1>
+          <h1>Escoge una de las siguientes opciones </h1>
           <Carousel items={plantItems} onSelectItem={handlePlantSelect} />
         </section>
         <footer>
-          <button className={styles.create_plant_btn}>Añadir Planta</button>
+          <button
+            className={styles.create_plant_btn}
+            onClick={() => {
+              handleSubmit();
+            }}
+          >
+            Añadir Planta
+          </button>
         </footer>
       </div>
     </div>

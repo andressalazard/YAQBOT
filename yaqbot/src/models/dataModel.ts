@@ -123,6 +123,7 @@ export interface Plant {
 export interface retrievedPlant {
   id: string;
   name: string;
+  nickname: string;
   type: string;
   status: string;
 }

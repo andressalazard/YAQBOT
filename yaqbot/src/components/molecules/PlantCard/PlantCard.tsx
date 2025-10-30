@@ -18,7 +18,8 @@ const PlantCard: React.FC<PlantCardProps> = ({ plant }) => {
           <div className={styles.details}>
             <span className={`material-symbols-outlined ${styles.potIcon}`}>potted_plant</span>
             <div>
-              <h3>{plant.name}</h3>
+              <h3>{plant.nickname}</h3>
+              <h2>{plant.name}</h2>
               <p>{plant.type}</p>
               <p>Status: {plant.status}</p>
             </div>

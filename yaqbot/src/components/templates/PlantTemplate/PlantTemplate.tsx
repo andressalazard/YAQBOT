@@ -1,30 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import styles from './PlantTemplate.module.css';
 import RenderTemplate from '../RenderTemplate/RenderTemplate';
 import { retrievedPlant } from '../../../models/dataModel';
-import PlantCard from '../../molecules/PlantCard/PlantCard';
 import AddPlantButton from '../../molecules/AddPlantButton/AddPlantButton';
 import NewPlantForm from '../../molecules/NewPlantForm/NewPlantForm';
 import { usePlant } from '../../context/PlantContext';
+import PlantsDashboard from '../../organisms/PlantsDashboard/PlantsDashboard';
+import styles from './PlantTemplate.module.css';
 
 const plantsMock: retrievedPlant[] = [
   {
     id: '06badb29-e268-4f96-8637-c9b730193408',
-    name: 'Carmelita',
+    name: 'Aloe Vera',
+    nickname: 'Carmelita',
     type: 'planta de interior',
     status: 'Agua',
   },
 
   {
     id: '02bdcfe2-7093-4d78-9024-993cc220bdba',
-    name: 'Pancho',
+    name: 'Filodendro',
+    nickname: 'Pancho',
     type: 'planta trepadora',
     status: 'Estoy bien',
   },
 
   {
     id: '9031b166-309f-4988-a50a-8b851f22c4af',
-    name: 'Becky',
+    name: 'Monstera Deliciosa',
+    nickname: 'Becky',
+    type: 'planta de interior',
+    status: 'Agua',
+  },
+  {
+    id: '9031b166-309f-4988-a50a-8b851f22c4af',
+    name: 'Monstera Deliciosa',
+    nickname: 'Becky2',
     type: 'planta de interior',
     status: 'Agua',
   },
@@ -46,11 +56,7 @@ const PlantTemplate: React.FC = () => {
         <h1 className={styles.pageTitle}>Mis plantas registradas</h1>
 
         <div className={styles.content}>
-          <section className={styles.dashboard}>
-            {plantsList.map((plant, index) => (
-              <PlantCard key={index} plant={plant} />
-            ))}
-          </section>
+          <PlantsDashboard ownedPlants={plantsList} />
 
           <section className={styles.newRegister}>
             <AddPlantButton
