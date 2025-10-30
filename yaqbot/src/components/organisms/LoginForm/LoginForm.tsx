@@ -69,6 +69,7 @@ const LoginForm = () => {
         </section>
         <Button className={styles.button} label='Ingresar' type='button' onClick={() => handleLogin(email, password)} />
       </form>
+      <a className='text-gray-800' href="/forgot-password">Has olvidado tu contraseña?</a>
     </Card>
   );
 };
