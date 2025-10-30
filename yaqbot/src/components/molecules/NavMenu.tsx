@@ -1,21 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useCallback, useEffect } from 'react';
+import MenuOption from './MenuOption/MenuOption';
+import { useLocation } from 'react-router-dom';
 
 interface NavMenuProps {
   className?: string;
   navLinks: {
-    label: string;
-    href: string;
+    icon: string;
+    title: string;
+    navigateTo?: string;
   }[];
 }
 
 const NavMenu: React.FC<NavMenuProps> = ({ navLinks, className }) => {
+  const location = useLocation();
+
   return (
     <ul className={className}>
       {navLinks.map((link, index) => (
-        <Link to={link.href} key={index}>
-          <li>{link.label}</li>
-        </Link>
+        <MenuOption
+          key={index}
+          icon={link.icon}
+          title={link.title}
+          navigateTo={link.navigateTo}
+          selected={location.pathname === link.navigateTo}
+        />
       ))}
     </ul>
   );

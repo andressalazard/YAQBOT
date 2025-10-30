@@ -1,11 +1,42 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleSearch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #000;
+}
+
+.titleSearch h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.marketplace {
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-end;
+  justify-content: center;
+  padding: 1rem;
+  width: 100%;
+}
+
 .dashboard {
-  padding: 2rem;
+  padding-top: 2rem;
   --grid-max-col-count: 3;
   --grid-min-col-size: 180px;
   --grid-gap: 1rem;
 
   /*calculations*/
-  --grid-col-size-calc: calc((100% - var(--grid-gap) * var(--grid-max-col-count)) / var(--grid-max-col-count));
+  --grid-col-size-calc: calc(
+    (100% - var(--grid-gap) * var(--grid-max-col-count)) / var(--grid-max-col-count)
+  );
 
   display: grid;
   gap: var(--grid-gap);

@@ -92,6 +92,52 @@ export interface Product {
 }
 
 /****************************************************
+ * Plant
+ *****************************************************/
+type wateringMode = 'HIGH' | 'MODERATE' | 'LOW';
+type lightType = 'FULL_SUNLIGHT' | 'PARTIAL_LIGHT' | 'INDIRECT_LIGHT' | 'DAPPLED_LIGHT' | 'SHADE';
+type weather =
+  | 'CLEAR'
+  | 'CLOUDY'
+  | 'PARTIALLY_CLOUDLY'
+  | 'OVERCAST'
+  | 'GLOOMY'
+  | 'BRIGHT'
+  | 'DARK'
+  | 'FOGGY'
+  | 'MISTY'
+  | 'HAZY'
+  | 'DAMP';
+export interface Plant {
+  id: string;
+  name: string;
+  type: string;
+  maxHeight: number;
+  wateringMode: wateringMode;
+  wateringFrequency: number;
+  weather: weather[];
+  light: lightType;
+  specialCares: string;
+}
+
+export interface retrievedPlant {
+  id: string;
+  name: string;
+  type: string;
+  status: string;
+}
+
+export interface catalogPlant {
+  id: string;
+  name: string;
+  image: string[];
+  plant: {
+    type: string;
+    weather: weather[];
+  };
+}
+
+/****************************************************
  * Payloads
  ***************************************************/
 export interface ValidPayload {

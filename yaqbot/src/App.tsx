@@ -13,6 +13,7 @@ import { ToastProvider } from './components/context/ToastContext';
 import NotFoundPage from './components/pages/NotFoundPage';
 import MarketPlacePage from './components/pages/MarketPlacePage';
 import { ProductProvider } from './components/context/ProductContext';
+import UserPlantsPage from './components/pages/UserPlantsPage';
 import { ForgotPasswordPage } from './components/pages/ForgotPasswordPage';
 import { ResetPasswordPage } from './components/pages/ResetPasswordPage';
 
@@ -23,7 +24,7 @@ function App() {
         <SettingsProvider>
           <Routes>
             <Route
-              path='/home'
+              path="/home"
               element={
                 <ProtectedRoute>
                   <HomePage />
@@ -32,7 +33,7 @@ function App() {
             />
 
             <Route
-              path='/profile'
+              path="/profile"
               element={
                 <ProtectedRoute>
                   <ProfilePage />
@@ -40,7 +41,7 @@ function App() {
               }
             />
             <Route
-              path='/marketplace'
+              path="/marketplace"
               element={
                 <ProtectedRoute>
                   <ProductProvider>
@@ -50,6 +51,18 @@ function App() {
               }
             />
 
+            <Route
+              path="/plant"
+              element={
+                <ProtectedRoute>
+                  <UserPlantsPage />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signin" element={<SigninPage />} />
+            <Route path="*" element={<NotFoundPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<SigninPage />} />
             <Route path='/forgot-password' element={<ForgotPasswordPage />} />

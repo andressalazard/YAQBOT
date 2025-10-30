@@ -1,0 +1,35 @@
+.plantCard {
+  /* border: 2px solid var(--primary-darker-color); */
+  background-color: var(--soft-grey-color);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.2);
+  width: 170px;
+  height: 270px;
+}
+
+.plantImage {
+  border: 1px solid var(--primary-darker-color);
+  border-radius: 0.5rem;
+}
+
+.details h1 {
+  font-family: var(--header-title);
+  font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 1.25rem;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+.details p {
+  font-family: var(--details-title);
+  font-size: 0.9rem;
+  line-height: 1.25rem;
+}
+
+.details span {
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 0.5rem;
+}
