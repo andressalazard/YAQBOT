@@ -23,6 +23,19 @@ export const postData = async (endpoint: string, data: any) => {
   return fetchData(endpoint, options);
 };
 
+export const postPassword = async (endpoint: string, token: string, data: any) => {
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify(data),
+  };
+
+  return fetchData(endpoint, options);
+}
+
 export const patchData = async (endpoint: string, data: any, config = {}) => {
   const options: Record<string, any> = {
     method: 'PATCH',

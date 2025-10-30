@@ -9,7 +9,7 @@ import { OptionsMenuSignIn } from "../../molecules/OptionsMenu";
 import UploadAvatar from "../UploadAvatar/UploadAvatar";
 import Spinner from "../../atoms/Spinner/Spinner";
 import { signin } from "../../../services/authService";
-import { createProfile } from "../../../services/profileService";
+import { createProfile, updateAvatar } from "../../../services/profileService";
 
 type Genero = "MALE" | "FEMALE" | "OTHER";
 
@@ -45,8 +45,7 @@ const SigninOrganism = () => {
     region: "",
     direccion: "",
     fechaNacimiento: "",
-    genero: "",
-    nivelJardineria: "",
+    genero: "OTHER",
     biografia: "",
   });
 
@@ -100,6 +99,16 @@ const SigninOrganism = () => {
         bio: datos.biografia,
       });
       console.log("Perfil creado con éxito:", payloadProfile);
+      if (!payloadProfile.userid) {
+        throw new Error("No se recibió un userid válido");
+      }
+    
+     const payloadImage = await updateAvatar(payload.userid, file);
+      console.log("Avatar actualizado con éxito:", payloadImage);
+      if (!payloadImage.userid) {
+        throw new Error("No se recibió un userid válido");
+      }
+
       setSelectedOption(4);
     } catch (error) {
       console.error("Error creando usuario:", error);
@@ -109,14 +118,13 @@ const SigninOrganism = () => {
   }
 
   useEffect(() => {
-    console.log("DATOS:", datos, formData);
     if (selectedOption === 3) {
       createNewUser();
     }
   }, [selectedOption]);
 
   return (
-    <div className={styles.body}>
+    <div className={`${styles.body} !min-h-screen`}>
       <Card className={styles.card}>
         <OptionsMenuSignIn
           selectedOption={selectedOption}
@@ -162,7 +170,7 @@ const SigninOrganism = () => {
           </div>
         )}
 
-        <div className={styles.already_account}>
+        <div className={`${styles.already_account} p-2`}>
           {selectedOption !== 4 && <h2>¿Ya tienes una cuenta registrada?</h2>}
           <NavigationButton
             buttonProps={{
