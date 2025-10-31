@@ -120,14 +120,6 @@ export interface Plant {
   specialCares: string;
 }
 
-export interface retrievedPlant {
-  id: string;
-  name: string;
-  nickname: string;
-  type: string;
-  status: string;
-}
-
 export interface catalogPlant {
   id: string;
   name: string;
@@ -135,6 +127,26 @@ export interface catalogPlant {
   plant: {
     type: string;
     weather: weather[];
+  };
+}
+
+export interface retrievedPlant {
+  id: string;
+  nickname: string;
+  status: string;
+  plant: {
+    id: string;
+    name: string;
+    type: string;
+    weather: weather[];
+  };
+}
+
+export interface NewOwnership {
+  userid: string;
+  plant: {
+    id: string;
+    nickname: string;
   };
 }
 

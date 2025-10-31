@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './NewPlantForm.module.css';
 import Carousel from '../../organisms/Carousel/Carousel';
-import { catalogPlant } from '../../../models/dataModel';
+import { catalogPlant, NewOwnership } from '../../../models/dataModel';
 import PlantOption from '../PlantOption/PlantOption';
 import { usePlant } from '../../context/PlantContext';
 import { useToast } from '../../context/ToastContext';
@@ -15,7 +15,7 @@ const NewPlantForm: React.FC<NewPlantFormProps> = ({ plantsCatalog }) => {
   const [plantNickname, setPlantNickname] = useState<string>('');
   const [chosenPlant, setChosenPlant] = useState<catalogPlant | undefined>(undefined);
   const userid = useAppSelector((state) => state.auth.userid);
-  const { changeEdition } = usePlant();
+  const { changeEdition, publishNewUserPlant } = usePlant();
   const { addToast } = useToast();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,21 +30,27 @@ const NewPlantForm: React.FC<NewPlantFormProps> = ({ plantsCatalog }) => {
   };
 
   const handleSubmit = () => {
+    if (!userid) {
+      return;
+    }
     if (plantNickname === '' || chosenPlant === undefined) {
       addToast('Procura completar todos los campos para registrar tu nueva planta', 'warning');
       return;
     }
-    const newRegister = {
+    const newRegister: NewOwnership = {
       userid,
       plant: {
-        plantid: chosenPlant?.id,
-        userPlantsName: plantNickname,
+        id: chosenPlant?.id,
+        nickname: plantNickname,
       },
     };
-    addToast('Tu nueva planta fue registrada con éxito!', 'success');
-    console.log('el registro de la nueva planta es: ', newRegister);
-    cleanForm();
-    changeEdition();
+
+    publishNewUserPlant(newRegister);
+    setTimeout(() => {
+      addToast('Tu nueva planta fue registrada con éxito!', 'success');
+      cleanForm();
+      changeEdition();
+    }, 3000);
   };
 
   const cleanForm = () => {

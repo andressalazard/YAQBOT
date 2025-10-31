@@ -1,14 +1,20 @@
 import React, { useContext, useState } from 'react';
-import { catalogPlant } from '../../models/dataModel';
-import { getAvailablePlants } from '../../services/plantService';
+import { catalogPlant, NewOwnership, retrievedPlant } from '../../models/dataModel';
+import { getAvailablePlants, getOwnerPlants, registerNewPlant } from '../../services/plantService';
 
 interface PlantContextType {
   plantsCatalog: catalogPlant[];
   getPlantsCatalog: () => void;
+
+  userPlants: retrievedPlant[];
+  getUserPlants: (userid: string) => void;
+
   isEditing: boolean;
   changeEdition: () => void;
   chosenPlantId: string;
   setChosenPlantId: (id: string) => void;
+
+  publishNewUserPlant: (data: NewOwnership) => void;
 }
 
 //context
@@ -17,6 +23,7 @@ export const PlantContext = React.createContext<PlantContextType | undefined>(un
 //provider
 export const PlantProvider = ({ children }: { children: React.ReactNode }) => {
   const [plantsCatalog, setPlantsCatalog] = useState<catalogPlant[]>([]);
+  const [userPlants, setUserPlants] = useState<retrievedPlant[]>([]);
   const [isEditing, setIsEditing] = useState(false);
   const [chosenPlantId, setChosenPlantId] = useState<string>('');
 
@@ -29,6 +36,16 @@ export const PlantProvider = ({ children }: { children: React.ReactNode }) => {
     const catalog = await getAvailablePlants();
     setPlantsCatalog(catalog);
   };
+
+  const getUserPlants = async (userid: string) => {
+    const ownedPlants = await getOwnerPlants(userid);
+    setUserPlants(ownedPlants);
+  };
+
+  const publishNewUserPlant = async (newPlantRecord: NewOwnership) => {
+    return await registerNewPlant(newPlantRecord);
+  };
+
   return (
     <PlantContext.Provider
       value={{
@@ -38,6 +55,9 @@ export const PlantProvider = ({ children }: { children: React.ReactNode }) => {
         changeEdition,
         chosenPlantId,
         setChosenPlantId,
+        userPlants,
+        getUserPlants,
+        publishNewUserPlant,
       }}
     >
       {children}

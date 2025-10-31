@@ -22,7 +22,7 @@ const PlantsDashboard: React.FC<PlantsDashboardProps> = ({ ownedPlants, plantsTo
     <div className={styles.dashboard}>
       <section className={styles.plantsCollection}>
         {visiblePlants.map((plant, index) => (
-          <PlantCard key={index} plant={plant} />
+          <PlantCard key={index} data={plant} />
         ))}
       </section>
       {totalGroups > 1 && (

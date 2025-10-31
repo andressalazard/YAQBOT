@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 import Spinner from '../../atoms/Spinner/Spinner';
 
 interface PlantCardProps {
-  plant: retrievedPlant;
+  data: retrievedPlant;
 }
 
-const PlantCard: React.FC<PlantCardProps> = ({ plant }) => {
+const PlantCard: React.FC<PlantCardProps> = ({ data: plant }) => {
   return (
     <div className={styles.plantCard}>
       {!plant ? (
@@ -19,8 +19,8 @@ const PlantCard: React.FC<PlantCardProps> = ({ plant }) => {
             <span className={`material-symbols-outlined ${styles.potIcon}`}>potted_plant</span>
             <div>
               <h3>{plant.nickname}</h3>
-              <h2>{plant.name}</h2>
-              <p>{plant.type}</p>
+              <h2>{plant.plant.name}</h2>
+              <p>{plant.plant.type}</p>
               <p>Status: {plant.status}</p>
             </div>
           </div>
