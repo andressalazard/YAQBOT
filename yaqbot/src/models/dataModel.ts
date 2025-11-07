@@ -150,6 +150,25 @@ export interface NewOwnership {
   };
 }
 
+export interface PlantDetails {
+  nickname: string;
+  status: string;
+  createdAt: string;
+  notes?: string[];
+  userPhotos?: any;
+  location?: string;
+  remindMeFlag: boolean;
+  plant: {
+    name: string;
+    type: string;
+    weather: weather[];
+    light: string;
+    product: {
+      image: string[];
+    };
+  };
+}
+
 /****************************************************
  * Payloads
  ***************************************************/

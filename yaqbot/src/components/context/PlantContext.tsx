@@ -1,6 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { catalogPlant, NewOwnership, retrievedPlant } from '../../models/dataModel';
-import { getAvailablePlants, getOwnerPlants, registerNewPlant } from '../../services/plantService';
+import { catalogPlant, NewOwnership, PlantDetails, retrievedPlant } from '../../models/dataModel';
+import {
+  getAvailablePlants,
+  getOwnerPlants,
+  getUserPlantDetails,
+  registerNewPlant,
+} from '../../services/plantService';
 
 interface PlantContextType {
   plantsCatalog: catalogPlant[];
@@ -14,6 +19,11 @@ interface PlantContextType {
   chosenPlantId: string;
   setChosenPlantId: (id: string) => void;
 
+  plantDetails: PlantDetails | null;
+  getPlantDetails: (ownedplantid: string) => void;
+
+  isLoading: boolean;
+
   publishNewUserPlant: (data: NewOwnership) => void;
 }
 
@@ -24,8 +34,10 @@ export const PlantContext = React.createContext<PlantContextType | undefined>(un
 export const PlantProvider = ({ children }: { children: React.ReactNode }) => {
   const [plantsCatalog, setPlantsCatalog] = useState<catalogPlant[]>([]);
   const [userPlants, setUserPlants] = useState<retrievedPlant[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState(false);
   const [chosenPlantId, setChosenPlantId] = useState<string>('');
+  const [plantDetails, setPlantDetails] = useState<PlantDetails | null>(null);
 
   const changeEdition = () => {
     setIsEditing((prevStatus) => (prevStatus === false ? true : false));
@@ -42,6 +54,18 @@ export const PlantProvider = ({ children }: { children: React.ReactNode }) => {
     setUserPlants(ownedPlants);
   };
 
+  const getPlantDetails = async (ownedPlantId: string) => {
+    setIsLoading(true);
+    try {
+      const detailsData = await getUserPlantDetails(ownedPlantId);
+      setPlantDetails(detailsData);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const publishNewUserPlant = async (newPlantRecord: NewOwnership) => {
     return await registerNewPlant(newPlantRecord);
   };
@@ -51,6 +75,7 @@ export const PlantProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         plantsCatalog,
         getPlantsCatalog,
+        isLoading,
         isEditing,
         changeEdition,
         chosenPlantId,
@@ -58,6 +83,8 @@ export const PlantProvider = ({ children }: { children: React.ReactNode }) => {
         userPlants,
         getUserPlants,
         publishNewUserPlant,
+        plantDetails,
+        getPlantDetails,
       }}
     >
       {children}

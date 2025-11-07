@@ -16,6 +16,7 @@ import { ProductProvider } from './components/context/ProductContext';
 import UserPlantsPage from './components/pages/UserPlantsPage';
 import { ForgotPasswordPage } from './components/pages/ForgotPasswordPage';
 import { ResetPasswordPage } from './components/pages/ResetPasswordPage';
+import PlantDetailsPage from './components/pages/PlantDetailPage';
 
 function App() {
   return (
@@ -56,6 +57,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <UserPlantsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/plant/:plantid"
+              element={
+                <ProtectedRoute>
+                  <PlantDetailsPage />
                 </ProtectedRoute>
               }
             />
