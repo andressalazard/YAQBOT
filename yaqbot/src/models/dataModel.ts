@@ -203,3 +203,11 @@ export interface UserState {
   user: User | null;
   profile: Profile | null;
 }
+
+/*****************************************
+ * general purpose
+ *****************************************/
+export interface descriptionType {
+  label: string;
+  value: string;
+}

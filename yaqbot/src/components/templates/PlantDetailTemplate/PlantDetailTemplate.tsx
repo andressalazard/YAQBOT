@@ -4,6 +4,7 @@ import RenderTemplate from '../RenderTemplate/RenderTemplate';
 import PlantInfo from '../../organisms/PlantInfo/PlantInfo';
 import { usePlant } from '../../context/PlantContext';
 import styles from './PlantdetailTemplate.module.css';
+import { formatDate } from '../../../services/generalPurpose';
 
 const PlantDetailTemplate: React.FC = () => {
   const { plantid } = useParams<{ plantid: string }>();
@@ -36,6 +37,12 @@ const PlantDetailTemplate: React.FC = () => {
             status: plantDetails.status,
             type: plantDetails.plant.type,
           }}
+          details={[
+            { label: 'FECHA DE CREACIÓN', value: formatDate(plantDetails.createdAt) },
+            { label: 'CLIMA', value: plantDetails.plant.weather[0] },
+            { label: 'LUZ', value: plantDetails.plant.light },
+            { label: 'UBICACION', value: plantDetails.location || '' },
+          ]}
         />
 
         <section className={styles.weather}>Here goes the weather charts</section>

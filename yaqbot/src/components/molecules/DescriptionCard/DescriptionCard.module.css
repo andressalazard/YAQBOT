@@ -1,0 +1,15 @@
+.description {
+  text-align: left;
+  border-bottom: 1px solid #000;
+  font-family: var(--details-title);
+  padding: 0.3rem 0;
+}
+
+.description h1 {
+  font-family: var(--header-title);
+  font-size: 1.25rem;
+}
+
+.description p {
+  color: var(--medium-grey-color);
+}
