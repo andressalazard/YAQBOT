@@ -1,0 +1,6 @@
+.option_body {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  align-items: center;
+}
