@@ -39,9 +39,9 @@ const PlantDetailTemplate: React.FC = () => {
           }}
           details={[
             { label: 'FECHA DE CREACIÓN', value: formatDate(plantDetails.createdAt) },
-            { label: 'CLIMA', value: plantDetails.plant.weather[0] },
-            { label: 'LUZ', value: plantDetails.plant.light },
-            { label: 'UBICACION', value: plantDetails.location || '' },
+            { label: 'CLIMAS QUE SOPORTA', value: plantDetails.plant.weather[0] },
+            { label: 'TIPO DE LUZ IDEAL', value: plantDetails.plant.light },
+            { label: 'UBICACIÓN O HABITACIÓN', value: plantDetails.location || '' },
           ]}
         />
 

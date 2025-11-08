@@ -1,7 +1,5 @@
 .rack {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  border: 1px solid var(--primary-darker-color);
-  border-radius: 0.5rem;
+  padding: 0.5rem;
 }

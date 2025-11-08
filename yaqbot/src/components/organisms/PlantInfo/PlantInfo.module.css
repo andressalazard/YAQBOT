@@ -5,3 +5,22 @@
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr;
 }
+
+.details_board {
+  border: 1px solid var(--primary-darker-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.field_name {
+  font-size: 1.25rem;
+  font-family: var(--header-title);
+  text-align: left;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.5rem;
+}

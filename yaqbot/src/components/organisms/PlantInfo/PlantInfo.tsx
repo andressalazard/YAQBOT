@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PlantDetailCard from '../../molecules/PlantDetailCard/PlantDetailCard';
 import DescriptionRack from '../DescriptionRack/DescriptionRack';
 import { descriptionType } from '../../../models/dataModel';
 import styles from './PlantInfo.module.css';
-import Toggle from '../../atoms/Toogle/Toogle';
-import ToggleOption from '../../molecules/ToggleOption/ToggleOption';
+import PlantConfiguration from '../../molecules/PlantConfiguration/PlantConfiguration';
 
 interface PlantInfoProps {
   image: string;
@@ -20,19 +19,15 @@ interface PlantInfoProps {
 const PlantInfo: React.FC<PlantInfoProps> = ({ image, plant, details }) => {
   const { name, nickname, status, type } = plant;
 
-  const options = [
-    { label: 'Mostrar esta planta como pública', isToggle: false },
-    { label: 'Activar el autoregado de la planta', isToggle: true },
-  ];
-
   return (
     <div className={styles.content}>
       <PlantDetailCard name={name} nickname={nickname} status={status} type={type} image={image} />
-      <div>
-        <DescriptionRack descriptionList={details} />
-        {options.map((option, index) => (
-          <ToggleOption key={index} label={option.label} isToggle={option.isToggle} />
-        ))}
+      <div className={styles.header}>
+        <div className={styles.details_board}>
+          <h1 className={styles.field_name}>DETALLES DE MI PLANTA</h1>
+          <DescriptionRack descriptionList={details} />
+        </div>
+        <PlantConfiguration />
       </div>
 
       {/* <section className={styles.plant_description}>
