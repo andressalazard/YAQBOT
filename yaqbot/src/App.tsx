@@ -16,6 +16,7 @@ import { ProductProvider } from './components/context/ProductContext';
 import UserPlantsPage from './components/pages/UserPlantsPage';
 import { ForgotPasswordPage } from './components/pages/ForgotPasswordPage';
 import { ResetPasswordPage } from './components/pages/ResetPasswordPage';
+import { CartPage } from './components/pages/CartPage';
 
 function App() {
   return (
@@ -47,6 +48,15 @@ function App() {
                   <ProductProvider>
                     <MarketPlacePage />
                   </ProductProvider>
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/cart"
+              element={
+                <ProtectedRoute>
+                  <CartPage />
                 </ProtectedRoute>
               }
             />
