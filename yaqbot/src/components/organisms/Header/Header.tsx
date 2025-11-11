@@ -20,10 +20,11 @@ const navMenu = [
   { icon: 'storefront', title: 'Tienda', navigateTo: '/marketplace' },
   { icon: 'notifications', title: 'Notificaciones' },
   { icon: 'account_circle', title: 'Perfil', navigateTo: '/profile' },
+  { icon: 'shopping_cart', title: 'Carrito', navigateTo: '/cart' },
 ];
 
 const userMenu: { title: string; icon: string; navigateTo?: string; type: OptionsTypes }[] = [
-  { title: 'Mis Compras', icon: 'shopping_cart', navigateTo: '/my-purchases', type: 'shopping' },
+  { title: 'Mis Compras', icon: 'shopping_cart', navigateTo: '/cart', type: 'shopping' },
   { title: 'Configuración', icon: 'settings', navigateTo: '/settings', type: 'settings' },
   { title: 'Cerrar Sesión', icon: 'logout', type: 'logout' },
 ];
@@ -35,6 +36,7 @@ const Header: React.FC<HeaderProps> = ({ userAvatar, profileMenuHeader }) => {
     <header className={styles.header}>
       <Logo className={styles.logo} />
       <NavMenu navLinks={navMenu} className={styles.nav_menu} />
+
       <ProfilePhoto
         src={userAvatar}
         className={styles.profile_pic}

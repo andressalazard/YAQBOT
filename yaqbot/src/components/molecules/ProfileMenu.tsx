@@ -4,6 +4,7 @@ import { useAppDispatch } from '../../hooks/hook';
 import { useSettings } from '../context/SettingsContext';
 
 import { logout } from '../../features/auth/authSlice';
+import { Link } from 'react-router-dom';
 
 export type OptionsTypes = 'logout' | 'settings' | 'shopping';
 
@@ -47,12 +48,14 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ menuHeader, menuOptions, opti
           <>
             {menuOptions.map((option, index) => (
               <li key={index}>
-                <ProfileMenuOption
-                  title={option.title}
-                  icon={option.icon}
-                  className={optionsClassName}
-                  onClick={option.type === 'logout' ? () => handleLogout() : () => {}}
-                />
+                <Link to={option.navigateTo || '#'}>
+                  <ProfileMenuOption
+                    title={option.title}
+                    icon={option.icon}
+                    className={optionsClassName}
+                    onClick={option.type === 'logout' ? () => handleLogout() : () => {}}
+                  />
+                </Link>
               </li>
             ))}
           </>
