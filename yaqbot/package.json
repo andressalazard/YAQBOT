@@ -13,7 +13,9 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.9.0",
     "@tailwindcss/vite": "^4.1.10",
+    "@types/node": "^24.10.0",
     "axios": "^1.11.0",
+    "dotenv": "^17.2.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-easy-crop": "^5.5.3",
