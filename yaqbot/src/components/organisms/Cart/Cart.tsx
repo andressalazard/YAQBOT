@@ -7,7 +7,7 @@ export const Cart = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-xl">
+    <div className="max-w-4xl mx-auto my-4 p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-xl">
       <section className="flex justify-between items-center mb-6 pb-4 border-b-2 border-green-200">
         <h2 className="text-3xl font-bold text-green-800 flex items-center gap-2">🛒 Mi Carrito</h2>
         <button
@@ -90,12 +90,17 @@ export const Cart = () => {
       )}
       <div className="border-t-2 border-green-300 my-6"></div>
       <section className="bg-gradient-to-r from-green-100 to-emerald-100 p-6 rounded-xl shadow-inner">
-        <p className="text-right text-3xl font-bold text-green-900 flex justify-end items-center gap-2">
+        <p className="text-right text-3xl font-bold text-green-900 flex justify-end items-center gap-2 mb-6">
           <span className="text-xl text-gray-600">Total:</span>
           <span className="text-green-700">
             ${cartItems.reduce((acc: number, item: any) => acc + item.totalPrice, 0).toFixed(2)}
           </span>
         </p>
+        <div className="flex justify-end">
+          <button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-4 px-10 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center gap-2">
+            <span>Ir a Pagar</span>
+          </button>
+        </div>
       </section>
     </div>
   );

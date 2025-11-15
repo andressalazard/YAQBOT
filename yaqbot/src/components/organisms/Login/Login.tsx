@@ -1,15 +1,18 @@
-import Card from '../../atoms/Card';
+import HeaderImage from '../../atoms/HeaderImage';
 import LoginCard from '../../molecules/LoginCard/LoginCard';
 import LoginForm from '../LoginForm/LoginForm';
-import styles from './Login.module.css';
 
 const LoginOrganism = () => {
   return (
     <div>
-      <Card className={styles.card}>
+      <HeaderImage imageUrl="" height="20vh" overlayOpacity={0.6}>
+        <h1 className="text-white text-5xl font-bold">🌿 Bienvenido a YaqBot</h1>
+        <p className="text-white text-xl">Las mejores plantas para tu hogar</p>
+      </HeaderImage>
+      <HeaderImage height="80vh" imageUrl="/bg/plants-2.webp" overlayOpacity={0.4}>
         <LoginCard />
         <LoginForm />
-      </Card>
+      </HeaderImage>
     </div>
   );
 };
