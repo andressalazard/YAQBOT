@@ -14,7 +14,7 @@ const getCurrentDate = (): string => {
   const month = date.toLocaleString('es-ES', { month: 'short' }).toUpperCase();
   const day = date.getDate().toString().padStart(2, '0');
 
-  return `${day} - ${month} - ${year}`;
+  return `${day} ${month} ${year}`;
 };
 
 const getCurrentHour = (): string => {

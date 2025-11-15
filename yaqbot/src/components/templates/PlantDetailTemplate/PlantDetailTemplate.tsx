@@ -20,6 +20,12 @@ const mockData = {
   weatherDescription: 'Soleado',
 };
 
+const forecastMockData = [
+  { hour: '9:00', temperature: 22, weatherDescription: 'clear_day' },
+  { hour: '12:00', temperature: 24, weatherDescription: 'clear_day' },
+  { hour: '15:00', temperature: 21, weatherDescription: 'clear_day' },
+];
+
 const PlantDetailTemplate: React.FC = () => {
   const { plantid } = useParams<{ plantid: string }>();
   const { getPlantDetails, plantDetails } = usePlant();
@@ -27,7 +33,7 @@ const PlantDetailTemplate: React.FC = () => {
 
   const plantImage = plantDetails?.plant.product.image[0];
   useEffect(() => {
-    //exampleWeather();
+    exampleWeather();
     if (plantid) {
       getPlantDetails(plantid);
       console.log(plantDetails);
@@ -51,33 +57,38 @@ const PlantDetailTemplate: React.FC = () => {
   return (
     <RenderTemplate>
       <div className={styles.pageContent}>
-        <PlantDetailCard
-          name={plantDetails.plant.name}
-          nickname={plantDetails.nickname}
-          status={plantDetails.status}
-          type={plantDetails.plant.type}
-          image={
-            plantImage
-              ? plantImage
-              : 'https://etree.pk/wp-content/uploads/2019/05/ezgif.com-webp-to-jpg.jpg'
-          }
-        />
-        <PlantInfo
-          details={[
-            { label: 'FECHA DE CREACIÓN', value: formatDate(plantDetails.createdAt) },
-            { label: 'CLIMAS QUE SOPORTA', value: plantDetails.plant.weather[0] },
-            { label: 'TIPO DE LUZ IDEAL', value: plantDetails.plant.light },
-            { label: 'UBICACIÓN O HABITACIÓN', value: plantDetails.location || '' },
-          ]}
-        />
-        <PlantConfiguration />
+        <section className={styles.header}>
+          <PlantDetailCard
+            name={plantDetails.plant.name}
+            nickname={plantDetails.nickname}
+            status={plantDetails.status}
+            type={plantDetails.plant.type}
+            image={
+              plantImage
+                ? plantImage
+                : 'https://etree.pk/wp-content/uploads/2019/05/ezgif.com-webp-to-jpg.jpg'
+            }
+          />
+          <div className={styles.detail_section}>
+            <div className={styles.plant_details}>
+              <PlantInfo
+                details={[
+                  { label: 'FECHA DE CREACIÓN', value: formatDate(plantDetails.createdAt) },
+                  { label: 'CLIMAS QUE SOPORTA', value: plantDetails.plant.weather[0] },
+                  { label: 'TIPO DE LUZ IDEAL', value: plantDetails.plant.light },
+                  { label: 'UBICACIÓN O HABITACIÓN', value: plantDetails.location || '' },
+                ]}
+              />
+              <section className={styles.plant_actions}>
+                <button className={styles.action_btn}>Regar mi planta ahora!</button>
+                <button className={styles.action_btn}>Programar una rutina</button>
+              </section>
 
-        <WeatherDashboard weatherData={mockData} />
-
-        <section className={styles.plantActions}>
-          Here goes the plants actions like watering once, or programming a routine
+              <PlantConfiguration />
+            </div>
+            <WeatherDashboard weatherData={mockData} forecastData={forecastMockData} />
+          </div>
         </section>
-
         <section className={styles.plantCharts}>Here goes the plants stats and charts</section>
       </div>
     </RenderTemplate>

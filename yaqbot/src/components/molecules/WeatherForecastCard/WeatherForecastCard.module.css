@@ -1,0 +1,31 @@
+.content {
+  padding: 1rem;
+  background-color: var(--medium-grey-color);
+  color: var(--primary-white-color);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
+}
+
+.hour {
+  font-size: 1rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--primary-white-color);
+  width: 100%;
+}
+
+.weather_icon {
+  font-size: 2.75rem;
+}
+
+.temperature {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 0.75rem;
+}

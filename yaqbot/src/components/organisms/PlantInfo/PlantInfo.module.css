@@ -1,3 +1,7 @@
+.content {
+  grid-area: plant_info;
+}
+
 .details_board {
   border: 1px solid var(--primary-darker-color);
   padding: 1rem;

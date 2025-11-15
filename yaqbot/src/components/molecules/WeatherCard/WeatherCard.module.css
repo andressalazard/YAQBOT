@@ -1,7 +1,7 @@
 .weather_card {
   background-color: var(--medium-grey-color);
   color: var(--primary-white-color);
-  padding: 1rem;
+  padding: 1rem 2rem;
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -27,11 +27,11 @@ h3 {
 }
 
 .location h3 {
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .location p {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
 }
 
 .weather_info {

@@ -14,12 +14,13 @@ const WeatherForecastCard: React.FC<WeatherForecastCardProps> = ({
 }) => {
   return (
     <div className={styles.content}>
-      <p>{hour}</p>
+      <p className={styles.hour}>{hour}</p>
       <Icon
         className={`material-symbols-outlined ${styles.weather_icon}`}
         feature={weatherDescription}
       />
-      <h1>{temperature}</h1>
+      <span className={styles.description}>{weatherDescription}</span>
+      <h1 className={styles.temperature}>{temperature}°</h1>
     </div>
   );
 };
