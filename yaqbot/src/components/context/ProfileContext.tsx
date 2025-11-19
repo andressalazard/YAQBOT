@@ -1,6 +1,11 @@
 import React, { ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks/hook';
-import { getProfile, updateProfile, updateAvatar, createProfile } from '../../services/profileService';
+import {
+  getProfile,
+  updateProfile,
+  updateAvatar,
+  createProfile,
+} from '../../services/profileService';
 import { getUserById, updateUser } from '../../services/userService';
 import { NewProfile, UpdatedProfile, UpdatedUser } from '../../models/dataModel';
 import { setUser, setProfile } from '../../features/user/userSlice';
@@ -102,7 +107,8 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
       addToast('Necesita subir un archivo', 'error');
       return;
     }
-    await updateAvatar(userId, file);
+    const res = await updateAvatar(userId, file);
+    console.log('res avatar', res);
     addToast('La foto de perfil se actualizó con éxito', 'success');
   };
 

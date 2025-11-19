@@ -10,7 +10,7 @@ import productReducer from '../features/product/productSlice';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth', 'productCart'], // solo persiste auth y productCart
+  whitelist: ['auth', 'productCart', 'user'], // solo persiste auth y productCart
   // blacklist: ['user'], // si quieres excluir alguno
 };
 

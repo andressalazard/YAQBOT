@@ -6,6 +6,7 @@ export const fetchData = async (endpoint: string, options = {}) => {
     if (!response.ok) {
       throw new Error(`HTTP error - status: ${response.status}`);
     }
+
     return response.json();
   } catch (error) {
     throw new Error('Error fetching data: ' + error);
@@ -28,13 +29,13 @@ export const postPassword = async (endpoint: string, token: string, data: any) =
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(data),
   };
 
   return fetchData(endpoint, options);
-}
+};
 
 export const patchData = async (endpoint: string, data: any, config = {}) => {
   const options: Record<string, any> = {
@@ -53,6 +54,7 @@ export const patchData = async (endpoint: string, data: any, config = {}) => {
       ...options.headers,
     };
     options.body = JSON.stringify(data);
+    console.log('patchData - JSON body:', options.body);
   }
 
   return fetchData(endpoint, options);

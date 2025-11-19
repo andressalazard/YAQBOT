@@ -39,6 +39,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsLoading(true);
     try {
       const payload = await login({ email, password });
+      //console.log('payload', payload);
       dispatch(loginSuccess({ token: payload.token, userid: payload.userid }));
     } catch (error) {
       addToast(`Error al iniciar sesión: ${error}`, 'error');
@@ -53,7 +54,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsLoading(false);
   };
 
-  return <AuthContext.Provider value={{ isLoading, loginApp, logoutApp, signinApp }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ isLoading, loginApp, logoutApp, signinApp }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export const useAuth = (): AuthContextType => {

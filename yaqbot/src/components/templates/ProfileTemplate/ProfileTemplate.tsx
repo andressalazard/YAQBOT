@@ -9,7 +9,7 @@ import styles from './ProfileTemplate.module.css';
 import UpdateAvatar from '../../organisms/UpdateAvatar/UpdateAvatar';
 import Spinner from '../../atoms/Spinner/Spinner';
 import RenderTemplate from '../RenderTemplate/RenderTemplate';
-
+ 
 const ProfileTemplate = () => {
   const { isEditing, isPicEditing } = useProfile();
   const user = useAppSelector((state) => state.user.user);
