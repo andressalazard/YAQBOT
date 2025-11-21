@@ -5,6 +5,8 @@ import DescriptionCard from '../../molecules/DescriptionCard/DescriptionCard';
 interface descriptionType {
   label: string;
   value: string;
+  isblocked?: boolean;
+  submitChange?: (value: string) => void;
 }
 
 interface DescriptionRackProps {
@@ -15,7 +17,12 @@ const DescriptionRack: React.FC<DescriptionRackProps> = ({ descriptionList }) =>
   return (
     <div className={styles.rack}>
       {descriptionList.map((description, index) => (
-        <DescriptionCard key={index} label={description.label} value={description.value} />
+        <DescriptionCard
+          key={index}
+          label={description.label}
+          value={description.value}
+          isblocked={description.isblocked}
+        />
       ))}
     </div>
   );

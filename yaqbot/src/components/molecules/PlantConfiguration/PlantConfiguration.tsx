@@ -15,7 +15,8 @@ const PlantConfiguration: React.FC = () => {
           <ToggleOption key={index} label={option.label} isToggle={option.isToggle} />
         ))}
       </div>
-      <Button label="Editar Información de mi planta" className={`${styles.action_btn}`} />
+      <Button label="¡Regar mi planta ahora!" className={`${styles.action_btn}`} />
+      <Button label="Programar una rutina" className={`${styles.action_btn}`} />
       <Button label="Eliminar mi planta" className={`${styles.action_btn} ${styles.delete_btn}`} />
     </div>
   );

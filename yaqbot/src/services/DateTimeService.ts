@@ -25,4 +25,21 @@ const getCurrentHour = (): string => {
   return `${hours}:${minutes}`;
 };
 
-export { formatDatetoYYYYMMDD as formatDate, getCurrentDate, getCurrentHour };
+const getNextHour = (hoursToAdd: number): string => {
+  const date = new Date();
+  date.setHours(date.getHours() + hoursToAdd);
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+
+  return `${hours}:${minutes}`;
+};
+
+const getListOfNextHours = (numberOfHours: number, periodInterval: number): string[] => {
+  const hourslist: string[] = [];
+  for (let i = 1; i <= numberOfHours; i++) {
+    hourslist.push(getNextHour(i * periodInterval));
+  }
+  return hourslist;
+};
+
+export { formatDatetoYYYYMMDD as formatDate, getCurrentDate, getCurrentHour, getListOfNextHours };

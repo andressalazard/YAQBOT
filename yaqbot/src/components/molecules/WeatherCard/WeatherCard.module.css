@@ -45,3 +45,8 @@ h3 {
 .weather_icon {
   font-size: 3rem;
 }
+
+.weather_img {
+  width: 100%;
+  object-fit: contain;
+}

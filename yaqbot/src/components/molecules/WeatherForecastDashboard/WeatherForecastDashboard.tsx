@@ -1,14 +1,9 @@
+import { ForecastInfo } from '../../../models/dataModel';
 import WeatherForecastCard from '../WeatherForecastCard/WeatherForecastCard';
 import styles from './WeatherForecastDashboard.module.css';
 
-interface WeatherForecastCardProps {
-  hour: string;
-  temperature: number;
-  weatherDescription: string;
-}
-
 interface WeatherForecastDashboardProps {
-  weatherForecasts: WeatherForecastCardProps[];
+  weatherForecasts: ForecastInfo[];
 }
 const WeatherForecastDashboard: React.FC<WeatherForecastDashboardProps> = ({
   weatherForecasts,
@@ -16,12 +11,7 @@ const WeatherForecastDashboard: React.FC<WeatherForecastDashboardProps> = ({
   return (
     <div className={styles.dashboard}>
       {weatherForecasts.map((forecast, index) => (
-        <WeatherForecastCard
-          key={index}
-          hour={forecast.hour}
-          temperature={forecast.temperature}
-          weatherDescription={forecast.weatherDescription}
-        />
+        <WeatherForecastCard key={index} forecastInfo={forecast} />
       ))}
     </div>
   );

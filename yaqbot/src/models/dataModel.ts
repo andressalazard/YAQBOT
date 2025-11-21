@@ -168,6 +168,36 @@ export interface PlantDetails {
     };
   };
 }
+export interface ForecastInfo {
+  date: string;
+  time: string;
+  temperature: number;
+  humidity: number;
+  weather: string;
+  description: string;
+  wind: number;
+  rain: number;
+  icon: string;
+}
+
+export interface WeatherData {
+  date: string;
+  time: string;
+  city: string;
+  country: string;
+  weather: string;
+  description: string;
+  temperature: number;
+  humidity: number;
+  wind: number;
+  icon: string;
+}
+
+export interface WeatherForecast {
+  city: string;
+  country: string;
+  forecast: ForecastInfo[];
+}
 
 /****************************************************
  * Payloads
@@ -210,4 +240,6 @@ export interface UserState {
 export interface descriptionType {
   label: string;
   value: string;
+  isblocked?: boolean;
+  submitChange?: (value: string) => void;
 }

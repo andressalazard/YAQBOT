@@ -13,3 +13,18 @@
 .description p {
   color: var(--medium-grey-color);
 }
+
+.value_field {
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.icon {
+  cursor: pointer;
+  color: var(--medium-grey-color);
+}
+
+.icon_edited {
+  color: var(--primary-dark-color);
+}
