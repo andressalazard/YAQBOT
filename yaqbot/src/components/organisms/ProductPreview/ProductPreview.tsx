@@ -5,6 +5,7 @@ import styles from './ProductPreview.module.css';
 import Icon from '../../atoms/Icon';
 import { useSelector, useDispatch } from 'react-redux';
 import { addProduct } from '../../../features/product/productSlice';
+import { useToast } from '../../context/ToastContext';
 
 export interface ProductPreviewProps {
   information: {
@@ -19,9 +20,9 @@ export interface ProductPreviewProps {
 
 const ProductPreview: React.FC<ProductPreviewProps> = ({ information }) => {
   // Leer del estado
-  const cartItems = useSelector((state: any) => state.productCart.products);
+  //  const cartItems = useSelector((state: any) => state.productCart.products);
   const dispatch = useDispatch();
-  console.log('CART ITEMS:', cartItems);
+  const { addToast } = useToast();
 
   return (
     <div className={styles.product_preview}>
@@ -43,10 +44,11 @@ const ProductPreview: React.FC<ProductPreviewProps> = ({ information }) => {
       <section className={styles.product_buttons}>
         <Button
           onClick={() => {
-            console.log('ADD PRODUCT');
-            console.log(information);
+            //console.log('ADD PRODUCT');
+            //console.log(information);
             // Agregar producto
             dispatch(addProduct(information));
+            addToast('Producto agregado al carrito', 'success');
           }}
           className={`${styles.button} ${styles.add_cart}`}
           label="Add to Chart"

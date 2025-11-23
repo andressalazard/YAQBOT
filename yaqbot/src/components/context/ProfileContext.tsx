@@ -77,6 +77,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
     const user = await getUserById(userId);
+    console.log('user data fetched', user);
     dispatch(setUser(user));
 
     const profileData = await getProfile(userId);

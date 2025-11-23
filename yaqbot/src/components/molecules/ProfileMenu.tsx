@@ -4,6 +4,8 @@ import { useAppDispatch } from '../../hooks/hook';
 import { useSettings } from '../context/SettingsContext';
 
 import { logout } from '../../features/auth/authSlice';
+import { clearState } from '../../features/user/userSlice';
+import { clearCart } from '../../features/product/productSlice';
 import { Link } from 'react-router-dom';
 
 export type OptionsTypes = 'logout' | 'settings' | 'shopping';
@@ -32,33 +34,46 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ menuHeader, menuOptions, opti
 
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(clearState());
+    dispatch(clearCart());
     toggleMenuStatus();
   };
 
   return (
     <div className={menuHeader.className}>
-      <ProfileMenuHeader
-        username={menuHeader.username}
-        email={menuHeader.email}
-        photo={menuHeader.photo}
-      />
+      <div className="p-4 border-b border-green-100">
+        <ProfileMenuHeader
+          username={menuHeader.username}
+          email={menuHeader.email}
+          photo={menuHeader.photo}
+        />
+      </div>
 
-      <section>
+      <section className="py-2">
         <ul>
-          <>
-            {menuOptions.map((option, index) => (
-              <li key={index}>
-                <Link to={option.navigateTo || '#'}>
+          {menuOptions.map((option, index) => (
+            <li key={index}>
+              {option.type === 'logout' ? (
+                <div onClick={handleLogout}>
                   <ProfileMenuOption
                     title={option.title}
                     icon={option.icon}
-                    className={optionsClassName}
-                    onClick={option.type === 'logout' ? () => handleLogout() : () => {}}
+                    className={`${optionsClassName} px-4 py-3 flex items-center gap-3 cursor-pointer`}
+                    onClick={() => {}}
+                  />
+                </div>
+              ) : (
+                <Link to={option.navigateTo || '#'} onClick={toggleMenuStatus}>
+                  <ProfileMenuOption
+                    title={option.title}
+                    icon={option.icon}
+                    className={`${optionsClassName} px-4 py-3 flex items-center gap-3`}
+                    onClick={() => {}}
                   />
                 </Link>
-              </li>
-            ))}
-          </>
+              )}
+            </li>
+          ))}
         </ul>
       </section>
     </div>
