@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { removeProduct, updateQuantity, clearCart } from '../../../features/product/productSlice';
+import { Link } from 'react-router-dom';
 
 export const Cart = () => {
   // Leer del estado
@@ -123,9 +124,11 @@ export const Cart = () => {
           </span>
         </p>
         <div className="flex justify-end">
-          <button className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-3 md:py-4 px-8 md:px-10 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 text-base md:text-lg">
-            <span>Ir a Pagar</span>
-          </button>
+          <Link to="/pay-cart">
+            <button className="w-full sm:w-auto bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-3 md:py-4 px-8 md:px-10 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 text-base md:text-lg">
+              <span>Ir a Pagar</span>
+            </button>
+          </Link>
         </div>
       </section>
     </div>

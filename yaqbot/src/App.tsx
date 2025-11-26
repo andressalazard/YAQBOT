@@ -17,6 +17,8 @@ import UserPlantsPage from './components/pages/UserPlantsPage';
 import { ForgotPasswordPage } from './components/pages/ForgotPasswordPage';
 import { ResetPasswordPage } from './components/pages/ResetPasswordPage';
 import { CartPage } from './components/pages/CartPage';
+import { PayPage } from './components/pages/PayPage';
+import { OrdersPage } from './components/pages/OrdersPage';
 
 function App() {
   return (
@@ -53,10 +55,28 @@ function App() {
             />
 
             <Route
+              path="/compras"
+              element={
+                <ProtectedRoute>
+                  <OrdersPage />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
               path="/cart"
               element={
                 <ProtectedRoute>
                   <CartPage />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/pay-cart"
+              element={
+                <ProtectedRoute>
+                  <PayPage />
                 </ProtectedRoute>
               }
             />

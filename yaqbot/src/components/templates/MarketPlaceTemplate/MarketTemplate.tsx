@@ -24,7 +24,7 @@ const MarketPlaceTemplate: React.FC = () => {
     <RenderTemplate>
       <div className={`${styles.marketplace}  min-h-screen p-6`}>
         <div className={styles.titleSearch}>
-          <h1 className={`text-white`}>Lista de productos</h1>
+          <h1 className={`text-white text-3xl font-bold mx-2`}>Lista de productos</h1>
           <SearchBar searchTerm={searchTerm} changePage={setCurrentPage} />
         </div>
         <section className={styles.dashboard}>

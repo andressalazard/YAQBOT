@@ -29,14 +29,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, changePage }) => {
 
   return (
     <div className={styles.search_bar}>
-      <Icon className={`material-icons ${styles.search_icon}`} feature='search'></Icon>
+      <Icon className={`material-icons ${styles.search_icon}`} feature="search"></Icon>
       <Input
         className={styles.search_input}
-        inputType='text'
-        id='searchbar'
+        inputType="text"
+        id="searchbar"
         value={searchTerm}
         onChange={handleChange}
-        placeholder='Start searching the products you like'
+        placeholder="Buscar productos..."
       />
 
       {searchTerm.length > 0 && (
@@ -46,7 +46,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, changePage }) => {
             clearSearch();
           }}
         >
-          <Icon className={`material-icons ${styles.icons}`} feature='close' />
+          <Icon className={`material-icons ${styles.icons}`} feature="close" />
         </Button>
       )}
     </div>
