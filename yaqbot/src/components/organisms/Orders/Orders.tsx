@@ -10,7 +10,7 @@ export const Orders = () => {
     const fetchOrders = async () => {
       try {
         const orders = await getOrdersByUserId(user);
-        console.log('Fetched orders:', orders);
+        //console.log('Fetched orders:', orders);
         setData(orders);
       } catch (error) {
         console.error('Error fetching orders:', error);
@@ -21,14 +21,11 @@ export const Orders = () => {
   }, [user]);
 
   return (
-    <div>
+    <div className="w-full min-h-[50vh] p-5 md:p-10">
       {data && data.length > 0 ? (
-        <ul>
-          {data.map((order: any, index: number) => (
-            <li key={`order-${index}`}>
-              <p>Order ID: {order.id}</p>
-              <p>Date: {new Date(order.orderDate).toLocaleDateString()}</p>
-              <p>Total: ${order.total.toFixed(2)}</p>
+        <ul className="space-y-10">
+          {data.map((order: any) => (
+            <li key={`orderItem-${order.id}`}>
               <ItemOrder
                 id={order.id}
                 date={order.orderDate}
