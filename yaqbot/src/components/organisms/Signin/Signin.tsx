@@ -1,24 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import Card from "../../atoms/Card";
-import NavigationButton from "../../molecules/NavigationButton";
-import SigninForm from "../../organisms/SigninForm/SigninForm";
-import CreateProfile from "../CreateProfile/CreateProfile";
-import styles from "./Signin.module.css";
-import { OptionsMenuSignIn } from "../../molecules/OptionsMenu";
-import UploadAvatar from "../UploadAvatar/UploadAvatar";
-import Spinner from "../../atoms/Spinner/Spinner";
-import { signin } from "../../../services/authService";
-import { createProfile, updateAvatar } from "../../../services/profileService";
+import Card from '../../atoms/Card';
+import NavigationButton from '../../molecules/NavigationButton';
+import SigninForm from '../../organisms/SigninForm/SigninForm';
+import CreateProfile from '../CreateProfile/CreateProfile';
+import styles from './Signin.module.css';
+import { OptionsMenuSignIn } from '../../molecules/OptionsMenu';
+import UploadAvatar from '../UploadAvatar/UploadAvatar';
+import Spinner from '../../atoms/Spinner/Spinner';
+import { signin } from '../../../services/authService';
+import { createProfile, updateAvatar } from '../../../services/profileService';
+import HeaderImage from '../../atoms/HeaderImage';
 
-type Genero = "MALE" | "FEMALE" | "OTHER";
+type Genero = 'MALE' | 'FEMALE' | 'OTHER';
 
 const OPCIONES_GENERO: { label: string; value: Genero }[] = [
-  { label: "Seleccionar género", value: "OTHER" },
-  { label: "Masculino", value: "MALE" },
-  { label: "Femenino", value: "FEMALE" },
-  { label: "Otro", value: "OTHER" },
-  { label: "Prefiero no decir", value: "OTHER" },
+  { label: 'Seleccionar género', value: 'OTHER' },
+  { label: 'Masculino', value: 'MALE' },
+  { label: 'Femenino', value: 'FEMALE' },
+  { label: 'Otro', value: 'OTHER' },
+  { label: 'Prefiero no decir', value: 'OTHER' },
 ];
 export interface DatosFormulario {
   name: string;
@@ -35,32 +36,32 @@ export interface formDataProps {
   email: string;
   password: string;
   confirmedPassword: string;
-  stateForm: "WAITING" | "SUCCESS" | "ERROR" | "PROCESSING";
+  stateForm: 'WAITING' | 'SUCCESS' | 'ERROR' | 'PROCESSING';
 }
 
 const SigninOrganism = () => {
   const [datos, setDatos] = useState<DatosFormulario>({
-    name: "",
-    telephone: "",
-    region: "",
-    direccion: "",
-    fechaNacimiento: "",
-    genero: "OTHER",
-    biografia: "",
+    name: '',
+    telephone: '',
+    region: '',
+    direccion: '',
+    fechaNacimiento: '',
+    genero: 'OTHER',
+    biografia: '',
   });
 
   const [selectedOption, setSelectedOption] = useState<number>(0);
 
   const [formData, setFormData] = useState<formDataProps>({
-    username: "",
-    email: "",
-    password: "",
-    confirmedPassword: "",
-    stateForm: "WAITING",
+    username: '',
+    email: '',
+    password: '',
+    confirmedPassword: '',
+    stateForm: 'WAITING',
   });
 
   const [urlImage, setUrlImage] = useState<string>(
-    "https://i.pinimg.com/736x/c6/3b/a4/c63ba4abc256a03c3f3a830965c365ac.jpg"
+    'https://i.pinimg.com/736x/c6/3b/a4/c63ba4abc256a03c3f3a830965c365ac.jpg'
   );
   const [file, setFile] = useState<File | null>(null);
 
@@ -83,9 +84,9 @@ const SigninOrganism = () => {
         email: formData.email,
         password: formData.password,
       });
-      console.log("Usuario creado con éxito:", payload);
+      //console.log('Usuario creado con éxito:', payload);
       if (!payload.userid) {
-        throw new Error("No se recibió un userid válido");
+        throw new Error('No se recibió un userid válido');
       }
 
       const payloadProfile = await createProfile(payload.userid, {
@@ -94,24 +95,24 @@ const SigninOrganism = () => {
         region: datos.region,
         address: datos.direccion,
         birthday: datos.fechaNacimiento,
-        gender: datos.genero || "OTHER",
+        gender: datos.genero || 'OTHER',
         avatar: urlImage,
         bio: datos.biografia,
       });
-      console.log("Perfil creado con éxito:", payloadProfile);
-      if (!payloadProfile.userid) {
-        throw new Error("No se recibió un userid válido");
+      //console.log('Perfil creado con éxito:', payloadProfile);
+      if (!payloadProfile.response.userId) {
+        throw new Error('No se recibió un userid válido');
       }
-    
-     const payloadImage = await updateAvatar(payload.userid, file);
-      console.log("Avatar actualizado con éxito:", payloadImage);
+      //console.log('ID', payload.userid);
+      const payloadImage = await updateAvatar(payload.userid, file);
+      //console.log('Avatar actualizado con éxito:', payloadImage);
       if (!payloadImage.userid) {
-        throw new Error("No se recibió un userid válido");
+        throw new Error('No se recibió un userid válido');
       }
 
       setSelectedOption(4);
     } catch (error) {
-      console.error("Error creando usuario:", error);
+      console.error('Error creando usuario:', error);
     } finally {
       setSelectedOption(4);
     }
@@ -124,8 +125,8 @@ const SigninOrganism = () => {
   }, [selectedOption]);
 
   return (
-    <div className={`${styles.body} !min-h-screen`}>
-      <Card className={styles.card}>
+    <HeaderImage height="100vh" imageUrl="/bg/plants-5.webp" overlayOpacity={0.4}>
+      <Card className={`max-h-[80vh] overflow-auto !bg-white/50 !backdrop-blur-sm`}>
         <OptionsMenuSignIn
           selectedOption={selectedOption}
           onSelectOption={handleChangeOption}
@@ -156,17 +157,11 @@ const SigninOrganism = () => {
             handleNextStep={setSelectedOption}
           />
         )}
-        {selectedOption === 3 && (
-          <Spinner size={"large"} className={styles.spinner} />
-        )}
+        {selectedOption === 3 && <Spinner size={'large'} className={styles.spinner} />}
         {selectedOption === 4 && (
           <div className={styles.success_message}>
-            <h2 className={styles.already_account}>
-              ¡Registro completado con éxito!
-            </h2>
-            <p className={styles.already_account}>
-              Ya puedes iniciar sesión con tu nueva cuenta.
-            </p>
+            <h2 className={styles.already_account}>¡Registro completado con éxito!</h2>
+            <p className={styles.already_account}>Ya puedes iniciar sesión con tu nueva cuenta.</p>
           </div>
         )}
 
@@ -174,15 +169,16 @@ const SigninOrganism = () => {
           {selectedOption !== 4 && <h2>¿Ya tienes una cuenta registrada?</h2>}
           <NavigationButton
             buttonProps={{
-              className: `${styles.button} ${styles.submit_button}`,
-              label: "Iniciar Sesión",
-              type: "button",
+              className:
+                'bg-gradient-to-r from-green-700 to-emerald-700 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-2 md:py-2 px-6 md:px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-base md:text-lg w-full md:w-auto',
+              label: 'Iniciar Sesión',
+              type: 'button',
             }}
             navigateTo="/login"
           />
         </div>
       </Card>
-    </div>
+    </HeaderImage>
   );
 };
 

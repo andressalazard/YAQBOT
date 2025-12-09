@@ -3,9 +3,7 @@ import { useAppSelector } from '../../../hooks/hook';
 import Card from '../../atoms/Card';
 import ProfileDetails from '../../organisms/ProfileDetails/ProfileDetails';
 import ProfilePhoto from '../../organisms/ProfilePhoto/ProfilePhoto';
-import ProfileSocials from '../../organisms/ProfileSocials/ProfileSocials';
 import UpdateProfile from '../../organisms/UpdateProfile/UpdateProfile';
-import styles from './ProfileTemplate.module.css';
 import UpdateAvatar from '../../organisms/UpdateAvatar/UpdateAvatar';
 import Spinner from '../../atoms/Spinner/Spinner';
 import RenderTemplate from '../RenderTemplate/RenderTemplate';
@@ -31,7 +29,7 @@ const ProfileTemplate = () => {
           }
         />
       ) : (
-        <Card className={styles.profile}>
+        <Card className="grid grid-cols-1 lg:grid-cols-[3fr_6fr] gap-4 w-[95%] z-10">
           <ProfilePhoto
             imageProps={{
               src:
@@ -63,18 +61,6 @@ const ProfileTemplate = () => {
               },
               { label: 'Estado', description: 'Activo' },
             ]}
-          />
-
-          <ProfileSocials
-            socialLinks={
-              profile?.socialLinks || [
-                { name: 'facebook', url: 'https://www.facebook.com' },
-                { name: 'twitter', url: 'https://www.x.com' },
-                { name: 'instagram', url: 'https://www.instagram.com' },
-                { name: 'tiktok', url: 'https://www.tiktok.com' },
-                { name: 'youtube', url: 'https://www.youtube.com' },
-              ]
-            }
           />
         </Card>
       )}

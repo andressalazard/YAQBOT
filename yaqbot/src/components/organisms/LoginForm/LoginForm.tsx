@@ -38,13 +38,13 @@ const LoginForm = () => {
   }, [isAuthenticated, navigate]);
 
   return (
-    <Card className={styles.card}>
+    <Card className={`${styles.card} w-full md:w-[80%] lg:w-[35%]`}>
       <form className={styles.form_body}>
-        <h1>Iniciar Sesión</h1>
+        <h1 className="text-2xl md:text-3xl">Iniciar Sesión</h1>
         <section>
           <FormInput
             className={styles.form_input}
-            inputName='Correo Electrónico'
+            inputName="Correo Electrónico"
             inputProps={{
               className: styles.field,
               inputType: 'email',
@@ -57,7 +57,7 @@ const LoginForm = () => {
 
           <FormInput
             className={styles.form_input}
-            inputName='Contraseña'
+            inputName="Contraseña"
             inputProps={{
               className: styles.field,
               inputType: 'password',
@@ -67,9 +67,16 @@ const LoginForm = () => {
             }}
           />
         </section>
-        <Button className={styles.button} label='Ingresar' type='button' onClick={() => handleLogin(email, password)} />
+        <Button
+          className={`${styles.button} hover:!bg-green-900 transition-all duration-300 ease-in-out text-sm md:text-base`}
+          label="Ingresar"
+          type="button"
+          onClick={() => handleLogin(email, password)}
+        />
       </form>
-      <a className='text-gray-800' href="/forgot-password">Has olvidado tu contraseña?</a>
+      <a className="text-gray-800 text-sm md:text-base px-6 pb-4" href="/forgot-password">
+        Has olvidado tu contraseña?
+      </a>
     </Card>
   );
 };

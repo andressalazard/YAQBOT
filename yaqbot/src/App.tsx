@@ -17,6 +17,11 @@ import UserPlantsPage from './components/pages/UserPlantsPage';
 import { ForgotPasswordPage } from './components/pages/ForgotPasswordPage';
 import { ResetPasswordPage } from './components/pages/ResetPasswordPage';
 import PlantDetailsPage from './components/pages/PlantDetailPage';
+import { CartPage } from './components/pages/CartPage';
+import { PayPage } from './components/pages/PayPage';
+import { OrdersPage } from './components/pages/OrdersPage';
+import LoginAdminPage from './components/pages/LoginAdminPage';
+import { IndexPage } from './components/pages/IndexPage';
 
 function App() {
   return (
@@ -53,6 +58,33 @@ function App() {
             />
 
             <Route
+              path="/compras"
+              element={
+                <ProtectedRoute>
+                  <OrdersPage />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/cart"
+              element={
+                <ProtectedRoute>
+                  <CartPage />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/pay-cart"
+              element={
+                <ProtectedRoute>
+                  <PayPage />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
               path="/plant"
               element={
                 <ProtectedRoute>
@@ -69,9 +101,11 @@ function App() {
               }
             />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/admin" element={<LoginAdminPage />} />
             <Route path="/register" element={<SigninPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
+            <Route path="/" element={<IndexPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </SettingsProvider>

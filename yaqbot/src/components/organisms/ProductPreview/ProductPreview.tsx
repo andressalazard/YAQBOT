@@ -3,9 +3,13 @@ import Button from '../../atoms/Button';
 import Image from '../../atoms/Image';
 import styles from './ProductPreview.module.css';
 import Icon from '../../atoms/Icon';
+import { useSelector, useDispatch } from 'react-redux';
+import { addProduct } from '../../../features/product/productSlice';
+import { useToast } from '../../context/ToastContext';
 
-interface ProductPreviewProps {
+export interface ProductPreviewProps {
   information: {
+    id: string;
     category: string;
     name: string;
     price: number;
@@ -15,6 +19,11 @@ interface ProductPreviewProps {
 }
 
 const ProductPreview: React.FC<ProductPreviewProps> = ({ information }) => {
+  // Leer del estado
+  //  const cartItems = useSelector((state: any) => state.productCart.products);
+  const dispatch = useDispatch();
+  const { addToast } = useToast();
+
   return (
     <div className={styles.product_preview}>
       <section className={styles.product_pic}>
@@ -26,15 +35,25 @@ const ProductPreview: React.FC<ProductPreviewProps> = ({ information }) => {
         <h1 className={styles.title}>{information.name}</h1>
         <div className={styles.details}>
           <div className={styles.product_rate}>
-            <Icon className={`material-icons ${styles.star}`} feature='star' />
+            <Icon className={`material-icons ${styles.star}`} feature="star" />
             <span className={styles.rate}>{information.rate} (1.2K Reviews)</span>
           </div>
           <span className={styles.price}>${information.price}</span>
         </div>
       </section>
       <section className={styles.product_buttons}>
-        <Button className={`${styles.button} ${styles.add_cart}`} label='Add to Chart' />
-        <Button className={`${styles.button} ${styles.buy_now}`} label='Buy Now' />
+        <Button
+          onClick={() => {
+            //console.log('ADD PRODUCT');
+            //console.log(information);
+            // Agregar producto
+            dispatch(addProduct(information));
+            addToast('Producto agregado al carrito', 'success');
+          }}
+          className={`${styles.button} ${styles.add_cart}`}
+          label="Add to Chart"
+        />
+        <Button className={`${styles.button} ${styles.buy_now}`} label="Buy Now" />
       </section>
     </div>
   );

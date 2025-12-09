@@ -207,6 +207,12 @@ export interface ValidPayload {
   userid: string;
 }
 
+export interface PayloadLoginAdmin {
+  token: string;
+  userid: string;
+  userType: string;
+}
+
 export interface PayloadForgotPassword {
   message: string;
   type: string;
@@ -224,6 +230,14 @@ export interface PayloadVerifyResetToken {
 export interface AuthState {
   token: string | null;
   userid: string | null;
+  isAuthenticated: boolean;
+  loading: boolean;
+}
+
+export interface AuthAdminState {
+  token: string | null;
+  userid: string | null;
+  userType: string | null;
   isAuthenticated: boolean;
   loading: boolean;
 }
