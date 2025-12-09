@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './PlantOption.module.css';
 import Image from '../../atoms/Image';
+import Spinner from '../../atoms/Spinner/Spinner';
 
 interface PlantOptionProps {
   image: string;
@@ -10,6 +11,14 @@ interface PlantOptionProps {
 }
 
 const PlantOption: React.FC<PlantOptionProps> = ({ image, title, type, weather }) => {
+  if (!image || !title || !type) {
+    return (
+      <div className={styles.plantCard}>
+        <Spinner />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.plantCard}>
       <Image src={image} alt="plant-image" className={styles.plantImage} />

@@ -1,0 +1,30 @@
+.description {
+  text-align: left;
+  border-bottom: 1px solid #000;
+  font-family: var(--details-title);
+  padding: 0.3rem 0;
+}
+
+.description h1 {
+  font-family: var(--header-title);
+  font-size: 0.9rem;
+}
+
+.description p {
+  color: var(--medium-grey-color);
+}
+
+.value_field {
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.icon {
+  cursor: pointer;
+  color: var(--medium-grey-color);
+}
+
+.icon_edited {
+  color: var(--primary-dark-color);
+}

@@ -3,12 +3,14 @@ import { retrievedPlant } from '../../../models/dataModel';
 import styles from './PlantCard.module.css';
 import { Link } from 'react-router-dom';
 import Spinner from '../../atoms/Spinner/Spinner';
+import { usePlant } from '../../context/PlantContext';
 
 interface PlantCardProps {
-  plant: retrievedPlant;
+  data: retrievedPlant;
 }
 
-const PlantCard: React.FC<PlantCardProps> = ({ plant }) => {
+const PlantCard: React.FC<PlantCardProps> = ({ data: plant }) => {
+  const { setChosenPlantId } = usePlant();
   return (
     <div className={styles.plantCard}>
       {!plant ? (
@@ -18,12 +20,19 @@ const PlantCard: React.FC<PlantCardProps> = ({ plant }) => {
           <div className={styles.details}>
             <span className={`material-symbols-outlined ${styles.potIcon}`}>potted_plant</span>
             <div>
-              <h3>{plant.name}</h3>
-              <p>{plant.type}</p>
+              <h3>{plant.nickname}</h3>
+              <h2>{plant.plant.name}</h2>
+              <p>{plant.plant.type}</p>
               <p>Status: {plant.status}</p>
             </div>
           </div>
-          <Link className={styles.seeDetails} to={`/plant/${plant.id}`}>
+          <Link
+            className={styles.seeDetails}
+            to={`/plant/${plant.id}`}
+            onClick={() => {
+              setChosenPlantId(plant.id);
+            }}
+          >
             Ver detalles
           </Link>
         </div>

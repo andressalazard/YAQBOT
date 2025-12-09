@@ -4,8 +4,6 @@ import Icon from '../../atoms/Icon';
 import styles from './Pagination.module.css';
 
 interface PaginationProps {
-  itemsPerPage: number;
-  totalItems: number;
   totalPages: number;
   currentPage: number;
   onPageChange: (page: number) => void;

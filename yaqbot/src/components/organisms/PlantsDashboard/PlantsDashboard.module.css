@@ -1,0 +1,12 @@
+.dashboard {
+  display: grid;
+  grid-template-rows: 2fr auto;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.plantsCollection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

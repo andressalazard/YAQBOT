@@ -1,0 +1,19 @@
+.content {
+  grid-area: plant_info;
+}
+
+.details_board {
+  border: 1px solid var(--primary-darker-color);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.field_name {
+  font-size: 1.25rem;
+  font-family: var(--header-title);
+  text-align: left;
+}
+
+.header {
+  gap: 0.5rem;
+}

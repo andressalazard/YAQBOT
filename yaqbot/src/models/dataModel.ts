@@ -120,13 +120,6 @@ export interface Plant {
   specialCares: string;
 }
 
-export interface retrievedPlant {
-  id: string;
-  name: string;
-  type: string;
-  status: string;
-}
-
 export interface catalogPlant {
   id: string;
   name: string;
@@ -135,6 +128,75 @@ export interface catalogPlant {
     type: string;
     weather: weather[];
   };
+}
+
+export interface retrievedPlant {
+  id: string;
+  nickname: string;
+  status: string;
+  plant: {
+    id: string;
+    name: string;
+    type: string;
+    weather: weather[];
+  };
+}
+
+export interface NewOwnership {
+  userid: string;
+  plant: {
+    id: string;
+    nickname: string;
+  };
+}
+
+export interface PlantDetails {
+  nickname: string;
+  status: string;
+  createdAt: string;
+  notes?: string[];
+  userPhotos?: any;
+  location?: string;
+  remindMeFlag: boolean;
+  plant: {
+    name: string;
+    type: string;
+    weather: weather[];
+    light: string;
+    product: {
+      image: string[];
+    };
+  };
+}
+export interface ForecastInfo {
+  date: string;
+  time: string;
+  temperature: number;
+  humidity: number;
+  weather: string;
+  description: string;
+  wind: number;
+  rain: number;
+  icon: string;
+}
+
+export interface WeatherData {
+  date: string;
+  time: string;
+  city: string;
+  country: string;
+  weather: string;
+  description: string;
+  temperature: number;
+  humidity: number;
+  wind: number;
+  icon: string;
+}
+
+export interface WeatherForecast {
+  city: string;
+  country: string;
+  forecast: ForecastInfo[];
 }
 
 /****************************************************
@@ -184,4 +246,14 @@ export interface UserState {
   isloading: boolean;
   user: User | null;
   profile: Profile | null;
+}
+
+/*****************************************
+ * general purpose
+ *****************************************/
+export interface descriptionType {
+  label: string;
+  value: string;
+  isblocked?: boolean;
+  submitChange?: (value: string) => void;
 }

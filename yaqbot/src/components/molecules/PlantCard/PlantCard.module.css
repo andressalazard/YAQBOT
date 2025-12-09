@@ -27,6 +27,10 @@
   font-family: 'Outfit', sans-serif;
 }
 
+.details h2 {
+  font-size: 1.125rem;
+}
+
 .details p {
   color: #5f5d5d;
   margin-left: 0.25rem;

@@ -16,6 +16,7 @@ import { ProductProvider } from './components/context/ProductContext';
 import UserPlantsPage from './components/pages/UserPlantsPage';
 import { ForgotPasswordPage } from './components/pages/ForgotPasswordPage';
 import { ResetPasswordPage } from './components/pages/ResetPasswordPage';
+import PlantDetailsPage from './components/pages/PlantDetailPage';
 import { CartPage } from './components/pages/CartPage';
 import { PayPage } from './components/pages/PayPage';
 import { OrdersPage } from './components/pages/OrdersPage';
@@ -88,6 +89,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <UserPlantsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/plant/:plantid"
+              element={
+                <ProtectedRoute>
+                  <PlantDetailsPage />
                 </ProtectedRoute>
               }
             />

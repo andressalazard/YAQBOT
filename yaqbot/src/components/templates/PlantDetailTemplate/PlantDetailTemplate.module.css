@@ -1,0 +1,31 @@
+.pageContent {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.content {
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dashboard {
+  padding-left: 3.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+  position: relative;
+  border: 1px solid red;
+  background-color: var(--medium-grey-color);
+  border-radius: 0.5rem;
+}
+
+.action_btn {
+  padding: 1rem;
+  color: var(--primary-white-color);
+  background-color: var(--primary-base-color);
+  border-radius: 0.5rem;
+}
