@@ -1,42 +1,26 @@
 .pageContent {
   display: flex;
+  width: 100%;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.content {
+  border: 1px solid blue;
+  display: flex;
   flex-direction: column;
-  width: 100%;
-}
-
-.header {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.detail_section {
-  padding: 0.5rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 3fr;
-  grid-template-areas:
-    'weatherdashboard weatherdashboard'
-    'details details';
   gap: 1rem;
 }
 
-.plant_details {
-  grid-area: details;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas:
-    'plant_info plant_configuration'
-    'plant_actions plant_actions';
-  gap: 1rem;
-}
-
-.plant_actions {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  grid-area: plant_actions;
+.dashboard {
+  padding-left: 3.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+  position: relative;
+  border: 1px solid red;
+  background-color: var(--medium-grey-color);
+  border-radius: 0.5rem;
 }
 
 .action_btn {
