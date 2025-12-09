@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import Button from "../../atoms/Button";
-import Card from "../../atoms/Card";
-import Icon from "../../atoms/Icon";
-import Image from "../../atoms/Image";
-import styles from "./UpdateAvatar.module.css";
-import InputFile from "../../atoms/InputFile";
-import { useProfile } from "../../context/ProfileContext";
+import React, { useState } from 'react';
+import Button from '../../atoms/Button';
+import Card from '../../atoms/Card';
+import Icon from '../../atoms/Icon';
+import Image from '../../atoms/Image';
+import styles from './UpdateAvatar.module.css';
+import InputFile from '../../atoms/InputFile';
+import { useProfile } from '../../context/ProfileContext';
 
 interface UpdateAvatarPhotoProps {
   imageURL: string;
@@ -31,31 +31,26 @@ const UpdateAvatar: React.FC<UpdateAvatarPhotoProps> = ({ imageURL }) => {
     if (file) {
       updateUserAvatar(file);
     }
-    toggleEditing("AVATAR");
+    toggleEditing('AVATAR');
+
+    // Recargar la página
+    //window.location.reload();
   };
 
   return (
-    <Card className={styles.card}>
+    <Card className={`${styles.card} mx-auto`}>
       <header>Avatar</header>
       <Image src={imageSrc} alt="profile-pic" className={styles.image} />
       <section>
         <Button className={`${styles.button} ${styles.btn_input}`}>
-          <Icon
-            feature="photo_camera"
-            className={`material-icons ${styles.icons}`}
-          />
+          <Icon feature="photo_camera" className={`material-icons ${styles.icons}`} />
           <span className={styles.btn_label}>Subir Foto</span>
           <InputFile className={styles.input} onFileSelect={handleFileSelect} />
         </Button>
-        <Button className={styles.button}>
-          <Icon feature="delete" className={`material-icons ${styles.icons}`} />
-          <span className={styles.btn_label}>Eliminar foto</span>
-        </Button>
+
         <Button
           className={
-            isNewPhoto === true
-              ? `${styles.button}`
-              : `${styles.button} ${styles.blocked_btn}`
+            isNewPhoto === true ? `${styles.button}` : `${styles.button} ${styles.blocked_btn}`
           }
           onClick={() => {
             acceptChanges();
@@ -69,7 +64,7 @@ const UpdateAvatar: React.FC<UpdateAvatarPhotoProps> = ({ imageURL }) => {
         feature="close"
         className={`material-icons ${styles.icon_close}`}
         onClick={() => {
-          toggleEditing("AVATAR");
+          toggleEditing('AVATAR');
         }}
       />
     </Card>

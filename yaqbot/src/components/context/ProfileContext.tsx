@@ -1,10 +1,16 @@
 import React, { ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks/hook';
-import { getProfile, updateProfile, updateAvatar, createProfile } from '../../services/profileService';
+import {
+  getProfile,
+  updateProfile,
+  updateAvatar,
+  createProfile,
+} from '../../services/profileService';
 import { getUserById, updateUser } from '../../services/userService';
 import { NewProfile, UpdatedProfile, UpdatedUser } from '../../models/dataModel';
-import { setUser, setProfile } from '../../features/user/userSlice';
+import { setUser, setProfile, setFieldProfile } from '../../features/user/userSlice';
 import { useToast } from './ToastContext';
+import { updateAvatarReducer } from '../../features/user/userSlice';
 
 type editionFlags = 'ACCOUNT' | 'PROFILE' | 'AVATAR';
 interface ProfileContextType {
@@ -25,6 +31,8 @@ export const ProfileContext = React.createContext<ProfileContextType | undefined
 export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const dispatch = useAppDispatch();
   const userId = useAppSelector((state) => state.auth.userid);
+  const profileState = useAppSelector((state) => state.user.profile);
+
   const { addToast } = useToast();
   const [isEditing, SetIsEditing] = useState(false);
   const [isPicEditing, SetIsPicEditing] = useState(false);
@@ -72,6 +80,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
       return;
     }
     const user = await getUserById(userId);
+    //console.log('user data fetched', user);
     dispatch(setUser(user));
 
     const profileData = await getProfile(userId);
@@ -80,6 +89,8 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   }, [userId, dispatch]);
 
   const updateUserData = async () => {
+    console.log('updatedUser', updatedUser);
+    console.log('updatedProfile', updatedProfile);
     if (!userId) {
       return;
     }
@@ -89,7 +100,17 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     }
 
     if (Object.keys(updatedProfile).length > 0) {
-      await updateProfile(userId, updatedProfile);
+      const res = await updateProfile(userId, updatedProfile);
+      console.log('Profile state', profileState);
+      console.log('res profile update', res);
+      dispatch(setFieldProfile({ field: 'address', value: res?.response?.address }));
+      dispatch(setFieldProfile({ field: 'fullname', value: res?.response?.fullname }));
+      dispatch(setFieldProfile({ field: 'region', value: res?.response?.region }));
+      dispatch(setFieldProfile({ field: 'bio', value: res?.response?.bio }));
+      dispatch(setFieldProfile({ field: 'birthday', value: res?.response?.birthday }));
+      dispatch(setFieldProfile({ field: 'gardernerLevel', value: res?.response?.gardernerLevel }));
+      dispatch(setFieldProfile({ field: 'gender', value: res?.response?.gender }));
+      dispatch(setFieldProfile({ field: 'phone', value: res?.response?.phone }));
       addToast('Los datos del Perfil fueron actualizados con éxito', 'success');
     }
   };
@@ -102,7 +123,11 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
       addToast('Necesita subir un archivo', 'error');
       return;
     }
-    await updateAvatar(userId, file);
+    const res = await updateAvatar(userId, file);
+
+    //console.log('res avatar', res);
+    //console.log('URL', res.imageURL);
+    dispatch(updateAvatarReducer(res.imageURL));
     addToast('La foto de perfil se actualizó con éxito', 'success');
   };
 

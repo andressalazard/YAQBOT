@@ -1,5 +1,4 @@
 .card {
-  width: 35%;
   background-color: rgba(256, 256, 256, 0.5);
   box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.4);
 }
@@ -13,15 +12,22 @@
 .form_body {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding: 1.5rem;
+  gap: 1.5rem;
+  padding: 1rem;
   padding-top: 0.75rem;
   border-radius: 1.5rem;
   color: #000;
 }
 
+@media (min-width: 768px) {
+  .form_body {
+    gap: 2rem;
+    padding: 1.5rem;
+    padding-top: 0.75rem;
+  }
+}
+
 .form_body h1 {
-  font-size: 2rem;
   font-weight: bold;
 }
 
@@ -43,13 +49,18 @@
 }
 
 .button {
-  padding: 1rem;
+  padding: 0.75rem;
   border-radius: 0.5rem;
   cursor: pointer;
-
-  background-color: rgba(56, 133, 69, 0.5);
+  background-color: rgba(24, 49, 29, 0.5);
   color: #ffffff;
   font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .button {
+    padding: 1rem;
+  }
 }
 
 .rows {

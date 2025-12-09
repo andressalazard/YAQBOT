@@ -8,11 +8,15 @@ interface ProfilePhotoHeaderProps {
   profileRole?: profileRoles | 'User';
 }
 
-const ProfilePhotoHeader: React.FC<ProfilePhotoHeaderProps> = ({ className, profileName, profileRole }) => {
+const ProfilePhotoHeader: React.FC<ProfilePhotoHeaderProps> = ({
+  className,
+  profileName,
+  profileRole,
+}) => {
   return (
     <div className={className}>
-      <h1>{profileName}</h1>
-      <span>{profileRole}</span>
+      <h2 className="font-bold text-white">{profileName}</h2>
+      <span className="text-white">{profileRole}</span>
     </div>
   );
 };

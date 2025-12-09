@@ -73,7 +73,7 @@ const UploadAvatar = ({
 
       <section className={styles.footer}>
         <Button
-          className={`${styles.button}`}
+          className="my-5 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-3 md:py-4 px-8 md:px-12 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-base md:text-lg w-full md:w-auto"
           label={`Finalizar`}
           onClick={() => {
             handleNextStep(3);

@@ -40,3 +40,9 @@
   background-color: #a7a2a2;
   color: #000;
 }
+
+@media (max-width: 768px) {
+  .search_bar {
+    width: 100%;
+  }
+}

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import Header from '../../organisms/Header/Header';
 import Footer from '../../organisms/Footer/Footer';
-import styles from './RenderTemplate.module.css';
 import { useProfile } from '../../context/ProfileContext';
 import { useAppSelector } from '../../../hooks/hook';
 
@@ -22,7 +21,7 @@ const RenderTemplate: React.FC<RenderProps> = ({ children }) => {
   }, [isAuthenticated, getUserData]);
 
   return (
-    <div className={styles.page}>
+    <div>
       <Header
         userAvatar={
           profile?.avatar ||
