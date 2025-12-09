@@ -84,7 +84,7 @@ const SigninOrganism = () => {
         email: formData.email,
         password: formData.password,
       });
-      console.log('Usuario creado con éxito:', payload);
+      //console.log('Usuario creado con éxito:', payload);
       if (!payload.userid) {
         throw new Error('No se recibió un userid válido');
       }
@@ -99,13 +99,13 @@ const SigninOrganism = () => {
         avatar: urlImage,
         bio: datos.biografia,
       });
-      console.log('Perfil creado con éxito:', payloadProfile);
-      if (!payloadProfile.userid) {
+      //console.log('Perfil creado con éxito:', payloadProfile);
+      if (!payloadProfile.response.userId) {
         throw new Error('No se recibió un userid válido');
       }
-
+      //console.log('ID', payload.userid);
       const payloadImage = await updateAvatar(payload.userid, file);
-      console.log('Avatar actualizado con éxito:', payloadImage);
+      //console.log('Avatar actualizado con éxito:', payloadImage);
       if (!payloadImage.userid) {
         throw new Error('No se recibió un userid válido');
       }
@@ -126,7 +126,7 @@ const SigninOrganism = () => {
 
   return (
     <HeaderImage height="100vh" imageUrl="/bg/plants-5.webp" overlayOpacity={0.4}>
-      <Card className={`${styles.card} !bg-white/50 !backdrop-blur-sm`}>
+      <Card className={`max-h-[80vh] overflow-auto !bg-white/50 !backdrop-blur-sm`}>
         <OptionsMenuSignIn
           selectedOption={selectedOption}
           onSelectOption={handleChangeOption}

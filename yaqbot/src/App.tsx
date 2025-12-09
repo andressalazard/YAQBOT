@@ -19,6 +19,8 @@ import { ResetPasswordPage } from './components/pages/ResetPasswordPage';
 import { CartPage } from './components/pages/CartPage';
 import { PayPage } from './components/pages/PayPage';
 import { OrdersPage } from './components/pages/OrdersPage';
+import LoginAdminPage from './components/pages/LoginAdminPage';
+import { IndexPage } from './components/pages/IndexPage';
 
 function App() {
   return (
@@ -90,9 +92,11 @@ function App() {
               }
             />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/admin" element={<LoginAdminPage />} />
             <Route path="/register" element={<SigninPage />} />
             <Route path="/forgot-password" element={<ForgotPasswordPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
+            <Route path="/" element={<IndexPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </SettingsProvider>

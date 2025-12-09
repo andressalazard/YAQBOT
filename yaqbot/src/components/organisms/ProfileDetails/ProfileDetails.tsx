@@ -15,14 +15,21 @@ const ProfileDetails: React.FC<DetailsBoardProps> = ({ bioDetails }) => {
   const { toggleEditing } = useProfile();
   return (
     <Card className={styles.dashboard_card}>
-      <h1 className={styles.section_header}>Perfil del Usuario</h1>
+      <h2 className={styles.section_header}>Perfil del Usuario</h2>
       <div className={styles.details_board}>
         {bioDetails.map((detail, index) => {
-          return <BioDetail key={index} detailName={detail.label} description={detail.description} className={styles.detail} />;
+          return (
+            <BioDetail
+              key={index}
+              detailName={detail.label}
+              description={detail.description}
+              className={styles.detail}
+            />
+          );
         })}
       </div>
       <Icon
-        feature='edit'
+        feature="edit"
         className={`material-icons ${styles.edit_icon}`}
         onClick={() => {
           toggleEditing('PROFILE');

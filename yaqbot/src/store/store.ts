@@ -5,12 +5,13 @@ import { combineReducers } from '@reduxjs/toolkit';
 import authReducer from '../features/auth/authSlice';
 import userReducer from '../features/user/userSlice';
 import productReducer from '../features/product/productSlice';
+import authAdminReducer from '../features/authAdmin/authAdminSlice';
 
 // Configuración de persist
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth', 'productCart', 'user'], // solo persiste auth y productCart
+  whitelist: ['auth', 'productCart', 'user', 'authAdmin'], // persitencia de estos reducers
   // blacklist: ['user'], // si quieres excluir alguno
 };
 
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   user: userReducer,
   productCart: productReducer,
+  authAdmin: authAdminReducer,
 });
 
 // Crear el reducer persistido

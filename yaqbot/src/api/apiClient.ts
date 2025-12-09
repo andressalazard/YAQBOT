@@ -2,6 +2,7 @@ const API_URL = 'http://localhost:3000/api';
 
 export const fetchData = async (endpoint: string, options = {}) => {
   try {
+    //console.log(`Fetching ${API_URL}/${endpoint} with options:`, options);
     const response = await fetch(`${API_URL}/${endpoint}`, options);
     if (!response.ok) {
       throw new Error(`HTTP error - status: ${response.status}`);
@@ -54,7 +55,7 @@ export const patchData = async (endpoint: string, data: any, config = {}) => {
       ...options.headers,
     };
     options.body = JSON.stringify(data);
-    console.log('patchData - JSON body:', options.body);
+    //console.log('patchData - JSON body:', options.body);
   }
 
   return fetchData(endpoint, options);

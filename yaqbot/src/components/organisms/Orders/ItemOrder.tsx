@@ -34,22 +34,11 @@ const ItemOrder = ({ id, date, total, status, orderDetails }: ItemOrderProps) =>
     processing: 'bg-blue-100 text-blue-800 border-blue-300',
   };
 
-  const statusEmojis = {
-    pending: '⏳',
-    completed: '✅',
-    cancelled: '❌',
-    processing: '🔄',
-  };
-
   const getStatusColor = (status: string) => {
     return (
       statusColors[status.toLowerCase() as keyof typeof statusColors] ||
       'bg-gray-100 text-gray-800 border-gray-300'
     );
-  };
-
-  const getStatusEmoji = (status: string) => {
-    return statusEmojis[status.toLowerCase() as keyof typeof statusEmojis] || '📦';
   };
 
   return (
@@ -89,7 +78,6 @@ const ItemOrder = ({ id, date, total, status, orderDetails }: ItemOrderProps) =>
                 <span
                   className={`px-3 py-1 rounded-full text-xs font-semibold border ${getStatusColor(status)} w-fit flex items-center gap-1`}
                 >
-                  <span>{getStatusEmoji(status)}</span>
                   <span className="capitalize">{status}</span>
                 </span>
               </div>
@@ -143,7 +131,6 @@ const ItemOrder = ({ id, date, total, status, orderDetails }: ItemOrderProps) =>
       >
         <div className="border-t-2 border-green-100 bg-gradient-to-br from-green-50 to-emerald-50 p-4 md:p-6">
           <h4 className="text-lg font-bold text-green-800 mb-4 flex items-center gap-2">
-            <span>📦</span>
             Detalles del Pedido
           </h4>
           <div className="space-y-3">

@@ -34,11 +34,11 @@ const UpdateAvatar: React.FC<UpdateAvatarPhotoProps> = ({ imageURL }) => {
     toggleEditing('AVATAR');
 
     // Recargar la página
-    window.location.reload();
+    //window.location.reload();
   };
 
   return (
-    <Card className={styles.card}>
+    <Card className={`${styles.card} mx-auto`}>
       <header>Avatar</header>
       <Image src={imageSrc} alt="profile-pic" className={styles.image} />
       <section>
@@ -47,10 +47,7 @@ const UpdateAvatar: React.FC<UpdateAvatarPhotoProps> = ({ imageURL }) => {
           <span className={styles.btn_label}>Subir Foto</span>
           <InputFile className={styles.input} onFileSelect={handleFileSelect} />
         </Button>
-        <Button className={styles.button}>
-          <Icon feature="delete" className={`material-icons ${styles.icons}`} />
-          <span className={styles.btn_label}>Eliminar foto</span>
-        </Button>
+
         <Button
           className={
             isNewPhoto === true ? `${styles.button}` : `${styles.button} ${styles.blocked_btn}`

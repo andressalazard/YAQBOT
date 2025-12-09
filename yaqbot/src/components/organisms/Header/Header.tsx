@@ -19,14 +19,13 @@ const navMenu = [
   { icon: 'home', title: 'Inicio', navigateTo: '/home' },
   { icon: 'local_florist', title: 'Mis plantas', navigateTo: '/plant' },
   { icon: 'storefront', title: 'Tienda', navigateTo: '/marketplace' },
-  { icon: 'notifications', title: 'Notificaciones' },
+  { icon: 'list', title: 'Mis Compras', navigateTo: '/compras' },
   { icon: 'account_circle', title: 'Perfil', navigateTo: '/profile' },
   { icon: 'shopping_cart', title: 'Carrito', navigateTo: '/cart' },
 ];
 
 const userMenu: { title: string; icon: string; navigateTo?: string; type: OptionsTypes }[] = [
-  { title: 'Mis Compras', icon: 'shopping_cart', navigateTo: '/cart', type: 'shopping' },
-  { title: 'Configuración', icon: 'settings', navigateTo: '/settings', type: 'settings' },
+  { title: 'Mi carrito', icon: 'shopping_cart', navigateTo: '/cart', type: 'shopping' },
   { title: 'Cerrar Sesión', icon: 'logout', type: 'logout' },
 ];
 
