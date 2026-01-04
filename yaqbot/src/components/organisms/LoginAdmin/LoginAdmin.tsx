@@ -1,5 +1,5 @@
 import HeaderImage from '../../atoms/HeaderImage';
-import LoginForm from './LoginForm';
+import LoginFormAdmin from './LoginFormAdmin';
 
 const LoginAdmin = () => {
   return (
@@ -9,7 +9,7 @@ const LoginAdmin = () => {
         <p className="text-white text-xl">Las mejores plantas para tu hogar</p>
       </HeaderImage>
       <HeaderImage height="80vh" imageUrl="/bg/plants-2.webp" overlayOpacity={0.4}>
-        <LoginForm />
+        <LoginFormAdmin />
       </HeaderImage>
     </div>
   );

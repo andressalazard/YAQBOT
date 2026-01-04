@@ -1,10 +1,20 @@
 import { postData, postPassword } from '../api/apiClient';
-import { NewLogin, NewUser, PayloadForgotPassword, ValidPayload } from '../models/dataModel';
+import {
+  NewLogin,
+  NewUser,
+  PayloadForgotPassword,
+  PayloadLoginAdmin,
+  ValidPayload,
+} from '../models/dataModel';
 
 const AUTH_ENDPOINT = 'auth';
 
 const login = async (data: NewLogin): Promise<ValidPayload> => {
   return postData(`${AUTH_ENDPOINT}/login`, data);
+};
+
+const loginAdmin = async (data: NewLogin): Promise<PayloadLoginAdmin> => {
+  return postData(`${AUTH_ENDPOINT}/login-admin`, data);
 };
 
 const signin = async (data: NewUser): Promise<ValidPayload> => {
@@ -17,10 +27,10 @@ const forgotPassword = async (email: string): Promise<PayloadForgotPassword> => 
 
 const verifyResetToken = async (token: string): Promise<any> => {
   return postData(`${AUTH_ENDPOINT}/verify-reset-token`, { token });
-}
+};
 
 const resetPassword = async (token: string, newPassword: string): Promise<any> => {
-  return postPassword(`${AUTH_ENDPOINT}/reset-password`, token, {newPassword });
-}
+  return postPassword(`${AUTH_ENDPOINT}/reset-password`, token, { newPassword });
+};
 
-export { login, signin, forgotPassword, verifyResetToken, resetPassword };
+export { login, signin, forgotPassword, verifyResetToken, resetPassword, loginAdmin };

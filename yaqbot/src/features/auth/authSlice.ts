@@ -6,6 +6,7 @@ const tokenFromStorage = localStorage.getItem('token');
 const initialState: AuthState = {
   token: tokenFromStorage,
   userid: null,
+  role: null,
   isAuthenticated: !!tokenFromStorage,
   loading: false,
 };
@@ -20,6 +21,13 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       localStorage.setItem('token', action.payload.token);
     },
+    loginAdminSuccess: (state, action: PayloadAction<ValidPayload & { role: string }>) => {
+      state.token = action.payload.token;
+      state.userid = action.payload.userid;
+      state.role = action.payload.role;
+      state.isAuthenticated = true;
+      localStorage.setItem('token', action.payload.token);
+    },
     signupSuccess: (state, action: PayloadAction<ValidPayload>) => {
       state.token = action.payload.token;
       state.userid = action.payload.userid;
@@ -30,11 +38,12 @@ const authSlice = createSlice({
     logout: (state) => {
       state.token = null;
       state.userid = null;
+      state.role = null;
       state.isAuthenticated = false;
       localStorage.removeItem('token');
     },
   },
 });
 
-export const { loginSuccess, signupSuccess, logout } = authSlice.actions;
+export const { loginSuccess, loginAdminSuccess, signupSuccess, logout } = authSlice.actions;
 export default authSlice.reducer;

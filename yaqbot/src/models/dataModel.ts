@@ -210,7 +210,7 @@ export interface ValidPayload {
 export interface PayloadLoginAdmin {
   token: string;
   userid: string;
-  userType: string;
+  role: string;
 }
 
 export interface PayloadForgotPassword {
@@ -230,6 +230,7 @@ export interface PayloadVerifyResetToken {
 export interface AuthState {
   token: string | null;
   userid: string | null;
+  role?: string | null;
   isAuthenticated: boolean;
   loading: boolean;
 }

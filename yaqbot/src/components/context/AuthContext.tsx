@@ -1,12 +1,18 @@
 import React, { ReactNode, useContext, useState } from 'react';
 import { useAppDispatch } from '../../hooks/hook';
-import { loginSuccess, logout, signupSuccess } from '../../features/auth/authSlice';
-import { login, signin } from '../../services/authService';
+import {
+  loginSuccess,
+  logout,
+  signupSuccess,
+  loginAdminSuccess,
+} from '../../features/auth/authSlice';
+import { login, loginAdmin, signin } from '../../services/authService';
 import { useToast } from './ToastContext';
 //interface for the context
 interface AuthContextType {
   isLoading: boolean;
   loginApp: (email: string, password: string) => void;
+  loginAdminApp: (email: string, password: string) => void;
   signinApp: (username: string, email: string, password: string) => void;
   logoutApp: () => void;
 }
@@ -35,16 +41,40 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const loginAdminApp = async (email: string, password: string) => {
+    setIsLoading(true);
+    try {
+      const payload = await loginAdmin({ email, password });
+      //console.log('payload', payload);
+      if (payload.token) {
+        //console.log('Login exitoso, dispatching loginSuccess');
+        dispatch(
+          loginAdminSuccess({ token: payload.token, userid: payload.userid, role: payload.role })
+        );
+      } else {
+        addToast(`Ingrese credenciales válidas`, 'error');
+      }
+    } catch (error) {
+      addToast(`Ingrese credenciales válidas`, 'error');
+    } finally {
+      //run even though is success or error
+      setIsLoading(false);
+    }
+  };
+
   const loginApp = async (email: string, password: string) => {
     setIsLoading(true);
     try {
       const payload = await login({ email, password });
       console.log('payload', payload);
       if (payload.token) {
+        console.log('Login exitoso, dispatching loginSuccess');
         dispatch(loginSuccess({ token: payload.token, userid: payload.userid }));
+      } else {
+        addToast(`Ingrese credenciales válidas`, 'error');
       }
     } catch (error) {
-      addToast(`Error al iniciar sesión: ${error}`, 'error');
+      addToast(`Ingrese credenciales válidas`, 'error');
     } finally {
       //run even though is success or error
       setIsLoading(false);
@@ -57,7 +87,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoading, loginApp, logoutApp, signinApp }}>
+    <AuthContext.Provider value={{ isLoading, loginApp, logoutApp, signinApp, loginAdminApp }}>
       {children}
     </AuthContext.Provider>
   );

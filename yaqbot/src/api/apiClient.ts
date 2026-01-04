@@ -7,6 +7,7 @@ export const fetchData = async (endpoint: string, options = {}) => {
     if (!response.ok) {
       throw new Error(`HTTP error - status: ${response.status}`);
     }
+    //console.log('Fetch response:', response);
 
     return response.json();
   } catch (error) {

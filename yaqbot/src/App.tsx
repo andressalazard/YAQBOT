@@ -22,6 +22,8 @@ import { PayPage } from './components/pages/PayPage';
 import { OrdersPage } from './components/pages/OrdersPage';
 import LoginAdminPage from './components/pages/LoginAdminPage';
 import { IndexPage } from './components/pages/IndexPage';
+import { HomeAdminPage } from './components/pages/HomeAdminPage';
+import ProtectedAdminRoute from './routes/ProtectedAdminRoute';
 
 function App() {
   return (
@@ -35,6 +37,14 @@ function App() {
                 <ProtectedRoute>
                   <HomePage />
                 </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/home"
+              element={
+                <ProtectedAdminRoute>
+                  <HomeAdminPage />
+                </ProtectedAdminRoute>
               }
             />
 

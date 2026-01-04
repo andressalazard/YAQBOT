@@ -8,13 +8,13 @@ import FormInput from '../../molecules/FormInput';
 import styles from '../LoginForm/Form.module.css';
 import { useToast } from '../../context/ToastContext';
 
-const LoginForm = () => {
+const LoginFormAdmin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { loginApp } = useAuth();
+  const { loginAdminApp } = useAuth();
   const { addToast } = useToast();
   const navigate = useNavigate();
-  const isAuthenticated = useAppSelector((state) => state.authAdmin.isAuthenticated);
+  const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
 
   const handleLogin = (email: string, password: string) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -28,12 +28,14 @@ const LoginForm = () => {
       return;
     }
 
-    loginApp(email, password);
+    //console.log('Intentando iniciar sesión con:', { email, password });
+
+    loginAdminApp(email, password);
   };
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/home');
+      navigate('/admin/home');
     }
   }, [isAuthenticated, navigate]);
 
@@ -48,7 +50,7 @@ const LoginForm = () => {
             inputProps={{
               className: styles.field,
               inputType: 'email',
-              id: 'emailInput',
+              id: 'emailInputAdmin',
               placeholder: 'johndoe123@email.com',
               value: email,
               onChange: (e) => setEmail(e.target.value),
@@ -61,14 +63,14 @@ const LoginForm = () => {
             inputProps={{
               className: styles.field,
               inputType: 'password',
-              id: 'emailInput',
+              id: 'passwordInputAdmin',
               value: password,
               onChange: (e) => setPassword(e.target.value),
             }}
           />
         </section>
         <Button
-          className={`${styles.button} hover:!bg-green-900 transition-all duration-300 ease-in-out text-sm md:text-base`}
+          className={`${styles.button} hover:bg-green-900 transition-all duration-300 ease-in-out text-sm md:text-base`}
           label="Ingresar"
           type="button"
           onClick={() => handleLogin(email, password)}
@@ -80,4 +82,4 @@ const LoginForm = () => {
     </Card>
   );
 };
-export default LoginForm;
+export default LoginFormAdmin;

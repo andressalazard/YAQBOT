@@ -26,7 +26,7 @@ const PlantTemplate: React.FC = () => {
   return (
     <RenderTemplate>
       <div className={styles.pageContent}>
-        <h1 className={styles.pageTitle}>Mis plantas registradas</h1>
+        <h1 className={styles.pageTitle}>Mi jardín</h1>
 
         <div className={styles.content}>
           <PlantsDashboard ownedPlants={userPlants} />

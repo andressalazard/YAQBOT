@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import RenderTemplate from '../RenderTemplate/RenderTemplate';
 import PlantInfo from '../../organisms/PlantInfo/PlantInfo';
 import { usePlant } from '../../context/PlantContext';
-import styles from './PlantdetailTemplate.module.css';
+import styles from './PlantDetailTemplate.module.css';
 import { formatDate } from '../../../services/DateTimeService';
 import WeatherDashboard from '../../organisms/WeatherDashboard/WeatherDashboard';
 import PlantDetailCard from '../../molecules/PlantDetailCard/PlantDetailCard';

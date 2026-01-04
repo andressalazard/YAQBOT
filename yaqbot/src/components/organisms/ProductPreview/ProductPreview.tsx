@@ -3,9 +3,10 @@ import Button from '../../atoms/Button';
 import Image from '../../atoms/Image';
 import styles from './ProductPreview.module.css';
 import Icon from '../../atoms/Icon';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addProduct } from '../../../features/product/productSlice';
 import { useToast } from '../../context/ToastContext';
+import { useNavigate } from 'react-router-dom';
 
 export interface ProductPreviewProps {
   information: {
@@ -23,6 +24,7 @@ const ProductPreview: React.FC<ProductPreviewProps> = ({ information }) => {
   //  const cartItems = useSelector((state: any) => state.productCart.products);
   const dispatch = useDispatch();
   const { addToast } = useToast();
+  const navigate = useNavigate();
 
   return (
     <div className={styles.product_preview}>
@@ -51,9 +53,17 @@ const ProductPreview: React.FC<ProductPreviewProps> = ({ information }) => {
             addToast('Producto agregado al carrito', 'success');
           }}
           className={`${styles.button} ${styles.add_cart}`}
-          label="Add to Chart"
+          label="Agregar"
         />
-        <Button className={`${styles.button} ${styles.buy_now}`} label="Buy Now" />
+        <Button
+          onClick={() => {
+            dispatch(addProduct(information));
+            addToast('Producto agregado al carrito', 'success');
+            navigate('/cart');
+          }}
+          className={`${styles.button} ${styles.buy_now}`}
+          label="Comprar ahora"
+        />
       </section>
     </div>
   );
